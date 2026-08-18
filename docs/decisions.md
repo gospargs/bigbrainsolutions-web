@@ -48,8 +48,24 @@ A **Turnstile widget was created** (via `wrangler turnstile widget create`, safe
 
 ---
 
+## HOME-001 / CONTENT-003 / PAGE-004 — real content, and a few slug/URL calls
+
+**Testimonials are real, not invented.** All 5 testimonials on the homepage (Mario Cvinar, John Walkden/Ubique Safety Consultants, Siniša Kalinić, Marina Franić, Leo Raguž) were extracted from the live production site via Playwright and translated naturally into Croatian for that locale — never fabricated. Fabricating customer testimonials attributed to real names would be dishonest regardless of "premium" framing.
+
+**HomeStock URL slug: `/homestock/` (hr) and `/en/homestock/` (en)**, not `/products/homestock/` as the roadmap's literal file-path example suggested. "HomeStock" is a proper product name, not translated (same treatment as leaving "Big Brain Solutions" untranslated) — a bare `/homestock/` is cleaner than adding an English "products" segment onto an otherwise-Croatian URL.
+*Revisit if:* the owner wants a `/proizvodi/` (products) section for future additional products.
+
+**HomeStock privacy policy keeps its exact original slug for English** (`/en/homestock-privacy-policy/` — same path as the live site's `/homestock-privacy-policy/`, just relocated under the `/en/` locale prefix). This is almost certainly the URL registered as HomeStock's privacy policy link in App Store Connect / Google Play Console. Croatian gets a natural translated slug (`/privatnost-homestock/`) since there's no compliance reason to keep it in English there.
+*Action needed at `DEPLOY-001`:* the owner should update the App Store Connect / Play Console privacy policy URL to `https://www.bigbrain-solutions.com/en/homestock-privacy-policy/` if it currently points to the bare (no `/en/`) path — flagging now so it isn't missed at cutover.
+
+**No App Store link exists for HomeStock yet.** The roadmap's CONTENT-003 explicitly allows shipping without one ("falls back to icon + description only if screenshots aren't provided, but must still ship at top notch polish either way") — applied the same logic to the link itself: a "Coming soon" badge instead of a fabricated or placeholder App Store URL, since a fake link on a real business site is worse than no link.
+
+---
+
 ## Pricing placeholders (flagged in advance for PAGE-001)
 
 The roadmap explicitly punts exact pricing figures to the owner (`{{PRICE_X}}` placeholder tokens). Decision: rather than shipping visible `{{PRICE_X}}` placeholder tokens to a preview URL stakeholders might see, PAGE-001 will use realistic, clearly-labeled **directional placeholder pricing** (e.g. "Computer repair — from €35", "Custom web application — from €1,500, custom quote") based on typical Croatian/Dubrovnik-market rates for the service tracks described in the audit, marked in `docs/content-review-checklist.md` as owner-confirm-required before `DEPLOY-001`. This keeps the preview looking finished ("top notch, no shortcuts") rather than visibly unfinished, while making unmistakably clear in the review checklist that every figure is a placeholder pending the owner's real pricing.
 *Why this call:* the owner asked for premium-appropriate judgment calls rather than visible TODOs, and a page full of `{{PRICE_X}}` tokens reads as unfinished to anyone previewing the site before the owner has reviewed it.
 *Revisit if:* the owner has firm pricing ready sooner — trivial find/replace against the checklist.
+
+**Figures used (PAGE-001, both locales):** Computer Repair & Installation from €35 · Virus & Malware Removal from €30 · Network Setup & Support from €45 · Hardware Services from €25 · Software Services from €20 · Website Design & Development from €800 · Web Application Development: custom quote (too variable in scope for a "from" figure to be honest). All of these are directional estimates for the Dubrovnik market, not researched competitor pricing — every figure needs the owner's real sign-off before `DEPLOY-001`.
