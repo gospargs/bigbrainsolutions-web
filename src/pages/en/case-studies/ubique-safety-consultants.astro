@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Badge from '../../../components/Badge.astro';
+import CTABand from '../../../components/CTABand.astro';
+
+const nav = [
+  { href: '/en/services/', label: 'Services' },
+  { href: '/en/about/', label: 'About' },
+  { href: '/en/homestock/', label: 'HomeStock' },
+  { href: '/en/contact/', label: 'Contact' },
+];
+---
+
+<BaseLayout
+	lang="en"
+	title="Case Study: Ubique Safety Consultants — Big Brain Solutions"
+	description="A three-year web application development and support engagement for Ubique Safety Consultants."
+>
+	<Header lang="en" nav={nav} altLangHref="/studije-slucaja/ubique-safety-consultants/" altLangLabel="Hrvatski" />
+
+	<main class="bb-case-study">
+		<Badge variant="accent" class="mb-4">Case study</Badge>
+		<h1>Ubique Safety Consultants</h1>
+		<p class="bb-lead">A three-year web application engagement, still ongoing.</p>
+
+		<blockquote class="bb-quote">
+			<p>&ldquo;We worked on a web application project for three years. Gordan was very helpful, friendly, and provided support whenever we needed it. We're very satisfied with the collaboration.&rdquo;</p>
+			<footer>— John Walkden, Managing Director, Ubique Safety Consultants</footer>
+		</blockquote>
+
+		<h2>The relationship</h2>
+		<p>
+			Ubique Safety Consultants engaged Big Brain Solutions to develop and maintain a web application for
+			their safety consulting business. What started as a development project became a long-term
+			partnership: three years of ongoing collaboration, with Gordan providing support whenever it was
+			needed rather than handing off a finished product and disappearing.
+		</p>
+
+		<h2>Why this matters</h2>
+		<p>
+			A three-year client relationship is a better signal of reliability than any portfolio screenshot —
+			it means the work held up, the client kept coming back, and the support was actually there when
+			needed. That's the same standard every engagement is held to, whether it's a multi-year application
+			build or a same-day repair.
+		</p>
+
+		<p class="bb-note">
+			This case study is intentionally scoped to what's publicly verifiable right now. A fuller breakdown
+			of the technical approach and outcomes is planned once full details are confirmed with the client.
+		</p>
+
+		<div class="bb-cta-wrap">
+			<CTABand
+				title="Looking for a long-term development partner?"
+				description="If you need a web application built and supported for the long run, not just shipped and forgotten, let's talk."
+				ctaLabel="Get in touch"
+				ctaHref="/en/contact/?service=web-app-development"
+			/>
+		</div>
+	</main>
+
+	<Footer
+		nav={nav}
+		privacyHref="/en/homestock-privacy-policy/"
+		privacyLabel="Privacy (HomeStock)"
+		labels={{
+			address: 'Address',
+			contact: 'Contact',
+			hours: 'Hours',
+			hoursValue: 'Mon–Sat 6am–6pm',
+			rights: 'All rights reserved.',
+		}}
+	/>
+</BaseLayout>
+
+<style>
+	.bb-case-study {
+		max-width: 42rem;
+		margin-inline: auto;
+		padding: var(--spacing-section-mobile) 1.5rem;
+	}
+
+	.bb-lead {
+		font-size: 1.125rem;
+		color: var(--color-muted);
+		font-family: var(--font-body);
+		margin-top: 0.5rem;
+	}
+
+	.bb-quote {
+		margin: 2rem 0;
+		padding: 1.75rem;
+		border-radius: var(--radius-card);
+		border: 1px solid var(--color-border);
+		background-color: var(--color-surface);
+	}
+
+	.bb-quote p {
+		font-family: var(--font-body);
+		font-size: 1.0625rem;
+		line-height: 1.6;
+	}
+
+	.bb-quote footer {
+		margin-top: 0.75rem;
+		font-family: var(--font-body);
+		font-size: var(--text-caption);
+		color: var(--color-muted);
+	}
+
+	.bb-case-study h2 {
+		margin-top: 2.5rem;
+	}
+
+	.bb-case-study p {
+		font-family: var(--font-body);
+		line-height: 1.75;
+		margin-top: 1rem;
+	}
+
+	.bb-note {
+		font-size: var(--text-caption);
+		color: var(--color-muted);
+		font-style: italic;
+	}
+
+	.bb-cta-wrap {
+		margin-top: 3rem;
+	}
+</style>

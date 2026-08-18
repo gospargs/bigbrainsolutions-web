@@ -114,6 +114,11 @@ const tracks = [
 						</Card>
 					))}
 				</div>
+				{track.key === 'dev' && (
+					<p class="bb-track-note">
+						See what this looks like in practice: <a href="/en/case-studies/ubique-safety-consultants/">case study — Ubique Safety Consultants</a>, a three-year web application engagement.
+					</p>
+				)}
 			</section>
 		))}
 	</main>
@@ -160,6 +165,17 @@ const tracks = [
 		display: grid;
 		gap: 1.5rem;
 		grid-template-columns: 1fr;
+	}
+
+	.bb-track-note {
+		margin-top: 1.5rem;
+		font-family: var(--font-body);
+		color: var(--color-muted);
+		font-size: 0.9375rem;
+	}
+
+	.bb-track-note a {
+		color: var(--color-primary-text);
 	}
 
 	@media (min-width: 48rem) {

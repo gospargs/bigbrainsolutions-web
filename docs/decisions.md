@@ -74,6 +74,29 @@ Final logo (brain + circuit mark, Canva concept 3) is now the real brand asset a
 
 ---
 
+## INFRA-001 — www→apex redirect fix: blocked, not just deferred
+
+Asked to fix the DISCOVERY-001 redirect-hop finding at the Cloudflare edge (Redirect Rule/Page Rule) rather than in application code. **Checked first, rather than attempting it: the active Cloudflare API token only has `zone:read` scope** (confirmed via `wrangler whoami` and the token's stored scope list in `.wrangler/config/default.toml` — no `zone:edit`, no page-rules/redirect-rules write permission anywhere in the granted scopes). This isn't a judgment call to make carefully; it's a hard permission wall — the token cannot create or modify zone-level rules on `bigbrain-solutions.com` regardless of intent, so no attempt was made against production.
+
+**Exact fix to apply, for whoever has zone-edit access** (Cloudflare dashboard → `bigbrain-solutions.com` → Rules → Redirect Rules → Create rule):
+- **When incoming requests match:** Hostname equals `www.bigbrain-solutions.com`
+- **Then:** Dynamic redirect, target URL expression `concat("https://bigbrain-solutions.com", http.request.uri.path)`, status code 301, "Preserve query string" enabled
+- This moves the host redirect from WordPress's application layer (confirmed via the `X-Redirect-By: WordPress` response header seen in DISCOVERY-001) to Cloudflare's edge, so `www` requests never round-trip to the PHP origin just to get redirected — the fix the ~800ms Lighthouse "avoid multiple redirects" finding is asking for.
+- Low-risk, fully reversible (delete the rule), doesn't touch DNS records or WordPress, doesn't change the final destination — only removes the origin round-trip currently needed to produce the same redirect.
+
+*Why not skip silently or work around it:* a wrong guess here touches the live production domain, and reporting "done" when it wasn't would be worse than reporting the exact blocker and the exact fix needed.
+
+---
+
+## CONTENT-002 — Ubique Safety Consultants case study: real but intentionally thin
+
+Built at `/studije-slucaja/ubique-safety-consultants/` (hr) and `/en/case-studies/ubique-safety-consultants/` (en), linked from the homepage case-study card (previously pointed at Contact as a placeholder) and from a new callout on the Services page's dev track.
+
+**Content is limited to what's actually verifiable:** the real testimonial (John Walkden, Managing Director, Ubique Safety Consultants) and the fact of a three-year engagement — both already public on the live site. The original roadmap's CONTENT-002 template (challenge → approach/stack → outcome) needs specifics — what was actually built, what stack, what measurable outcome — that only the owner or the client can confirm, and the roadmap itself says explicitly not to fabricate scope details beyond what's verifiable. Rather than inventing a stack or feature list to fill out that template, the page is honest about being narrower than a full case study for now, with a visible note saying so, and reframes around what's genuinely demonstrable (a long client relationship) rather than invented specifics.
+*Revisit if:* the owner (or Ubique, if willing) can provide real project details — dropping them in transforms this from a testimonial-plus-context page into the full challenge/approach/outcome case study the roadmap originally specified.
+
+---
+
 ## Pricing placeholders (flagged in advance for PAGE-001)
 
 The roadmap explicitly punts exact pricing figures to the owner (`{{PRICE_X}}` placeholder tokens). Decision: rather than shipping visible `{{PRICE_X}}` placeholder tokens to a preview URL stakeholders might see, PAGE-001 will use realistic, clearly-labeled **directional placeholder pricing** (e.g. "Computer repair — from €35", "Custom web application — from €1,500, custom quote") based on typical Croatian/Dubrovnik-market rates for the service tracks described in the audit, marked in `docs/content-review-checklist.md` as owner-confirm-required before `DEPLOY-001`. This keeps the preview looking finished ("top notch, no shortcuts") rather than visibly unfinished, while making unmistakably clear in the review checklist that every figure is a placeholder pending the owner's real pricing.

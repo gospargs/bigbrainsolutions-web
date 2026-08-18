@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Badge from '../../components/Badge.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const nav = [
+  { href: '/usluge/', label: 'Usluge' },
+  { href: '/o-nama/', label: 'O nama' },
+  { href: '/homestock/', label: 'HomeStock' },
+  { href: '/kontakt/', label: 'Kontakt' },
+];
+---
+
+<BaseLayout
+	lang="hr"
+	title="Studija slučaja: Ubique Safety Consultants — Big Brain Solutions"
+	description="Trogodišnja suradnja na razvoju i podršci web aplikacije za Ubique Safety Consultants."
+>
+	<Header lang="hr" nav={nav} altLangHref="/en/case-studies/ubique-safety-consultants/" altLangLabel="English" />
+
+	<main class="bb-case-study">
+		<Badge variant="accent" class="mb-4">Studija slučaja</Badge>
+		<h1>Ubique Safety Consultants</h1>
+		<p class="bb-lead">Trogodišnja suradnja na razvoju web aplikacije, koja i dalje traje.</p>
+
+		<blockquote class="bb-quote">
+			<p>&ldquo;Tri godine surađivali smo na projektu web aplikacije. Gordan je bio vrlo koristan, prijateljski nastrojen i pružao je podršku kad god je bilo potrebno. Iznimno smo zadovoljni suradnjom.&rdquo;</p>
+			<footer>— John Walkden, direktor, Ubique Safety Consultants</footer>
+		</blockquote>
+
+		<h2>Suradnja</h2>
+		<p>
+			Ubique Safety Consultants angažirao je Big Brain Solutions za razvoj i održavanje web aplikacije za
+			svoje poslovanje u području sigurnosnog savjetovanja. Ono što je počelo kao razvojni projekt preraslo
+			je u dugoročno partnerstvo: tri godine kontinuirane suradnje, uz podršku kad god je bila potrebna,
+			umjesto predaje gotovog proizvoda i prekida kontakta.
+		</p>
+
+		<h2>Zašto je ovo važno</h2>
+		<p>
+			Trogodišnji odnos s klijentom bolji je pokazatelj pouzdanosti od bilo koje slike u portfelju — znači
+			da je rad izdržao vrijeme, da se klijent vraćao i da je podrška zaista bila dostupna kad je bila
+			potrebna. Isti standard vrijedi za svaku suradnju, bila to višegodišnja izrada aplikacije ili popravak
+			u istom danu.
+		</p>
+
+		<p class="bb-note">
+			Ova studija slučaja namjerno je ograničena na ono što je trenutno javno provjerljivo. Detaljniji
+			pregled tehničkog pristupa i rezultata planiran je nakon što se svi detalji potvrde s klijentom.
+		</p>
+
+		<div class="bb-cta-wrap">
+			<CTABand
+				title="Tražite dugoročnog razvojnog partnera?"
+				description="Ako trebate web aplikaciju izgrađenu i podržanu na duge staze, a ne samo isporučenu i zaboravljenu, javite nam se."
+				ctaLabel="Kontaktirajte nas"
+				ctaHref="/kontakt/?service=web-app-development"
+			/>
+		</div>
+	</main>
+
+	<Footer
+		nav={nav}
+		privacyHref="/privatnost-homestock/"
+		privacyLabel="Privatnost (HomeStock)"
+		labels={{
+			address: 'Adresa',
+			contact: 'Kontakt',
+			hours: 'Radno vrijeme',
+			hoursValue: 'Pon–Sub 6:00–18:00',
+			rights: 'Sva prava pridržana.',
+		}}
+	/>
+</BaseLayout>
+
+<style>
+	.bb-case-study {
+		max-width: 42rem;
+		margin-inline: auto;
+		padding: var(--spacing-section-mobile) 1.5rem;
+	}
+
+	.bb-lead {
+		font-size: 1.125rem;
+		color: var(--color-muted);
+		font-family: var(--font-body);
+		margin-top: 0.5rem;
+	}
+
+	.bb-quote {
+		margin: 2rem 0;
+		padding: 1.75rem;
+		border-radius: var(--radius-card);
+		border: 1px solid var(--color-border);
+		background-color: var(--color-surface);
+	}
+
+	.bb-quote p {
+		font-family: var(--font-body);
+		font-size: 1.0625rem;
+		line-height: 1.6;
+	}
+
+	.bb-quote footer {
+		margin-top: 0.75rem;
+		font-family: var(--font-body);
+		font-size: var(--text-caption);
+		color: var(--color-muted);
+	}
+
+	.bb-case-study h2 {
+		margin-top: 2.5rem;
+	}
+
+	.bb-case-study p {
+		font-family: var(--font-body);
+		line-height: 1.75;
+		margin-top: 1rem;
+	}
+
+	.bb-note {
+		font-size: var(--text-caption);
+		color: var(--color-muted);
+		font-style: italic;
+	}
+
+	.bb-cta-wrap {
+		margin-top: 3rem;
+	}
+</style>
