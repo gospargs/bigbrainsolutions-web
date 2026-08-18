@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const nav = [
+  { href: '/en/services/', label: 'Services' },
+  { href: '/en/about/', label: 'About' },
+  { href: '/en/homestock/', label: 'HomeStock' },
+  { href: '/en/contact/', label: 'Contact' },
+];
+---
+
+<BaseLayout
+	lang="en"
+	title="HomeStock Privacy Policy — Big Brain Solutions"
+	description="Privacy policy for the HomeStock mobile app: what data we collect, how we use it, and your rights."
+>
+	<Header lang="en" nav={nav} altLangHref="/privatnost-homestock/" altLangLabel="Hrvatski" />
+
+	<main class="bb-legal">
+		<h1>HomeStock Privacy Policy</h1>
+		<p class="text-muted">Last updated: 15 August 2026</p>
+
+		<p><strong>BIG BRAIN SOLUTIONS, Obrt za računalno programiranje</strong>, based in Croatia, operates the HomeStock mobile application (the "App"). This Privacy Policy explains what information we collect, how we use it, who we share it with, and the choices and rights you have.</p>
+		<p>By using HomeStock, you agree to the collection and use of information as described here. If you do not agree, please do not use the App.</p>
+
+		<h2>1. Who We Are</h2>
+		<p>Data controller: Big Brain Solutions, obrt<br />Location: Croatia, European Union<br />Contact for privacy matters: <a href="mailto:info@bigbrain-solutions.com">info@bigbrain-solutions.com</a></p>
+
+		<h2>2. Information We Collect</h2>
+		<h3>2.1 Account information</h3>
+		<ul>
+			<li>Email address — required to create an account and log in, whether you sign up directly or via "Continue with Google."</li>
+			<li>Password — if you sign up directly (not via Google). We never see or store your plaintext password; it is handled and stored securely by our authentication provider (Supabase Auth).</li>
+			<li>If you use "Continue with Google," Google shares your basic account information (email, and any profile info Google's sign-in flow discloses to us) with us, per Google's own consent screen shown to you at sign-in.</li>
+		</ul>
+
+		<h3>2.2 Household and inventory data</h3>
+		<p>Everything you enter into the App to use its core features:</p>
+		<ul>
+			<li>Home and room names, icons, and organization</li>
+			<li>Item names, categories, units, quantities, prices, and notes</li>
+			<li>A history of quantity/price changes (purchases, stock adjustments) tied to each item</li>
+			<li>Shopping lists and their contents</li>
+			<li>Your selected currency</li>
+		</ul>
+
+		<h3>2.3 Receipt scanning</h3>
+		<p>When you scan a receipt, the photo is processed entirely on your device. We extract structured data (item names, quantities, prices, store name, date) from the image using on-device text recognition. The photo itself is never uploaded to our servers and is discarded immediately after processing — we do not store receipt images.</p>
+
+		<h3>2.4 Household sharing</h3>
+		<p>If you invite someone to your home, or you join someone else's home using an invite code, your email address becomes visible to other members of that home (so people know who they're sharing with), and all inventory, shopping list, and spend data in that home becomes accessible to every member. Only invite the people you actually want to share this data with.</p>
+
+		<h3>2.5 Diagnostic and crash data</h3>
+		<p>We use Firebase Crashlytics to automatically collect crash reports if the App malfunctions — this includes technical information (device model, OS version, app version, and the technical details of what caused the crash) but not the content of your inventory or personal messages.</p>
+
+		<h3>2.6 What we do NOT collect</h3>
+		<ul>
+			<li>We do not store receipt images.</li>
+			<li>We do not collect your location.</li>
+			<li>We do not use advertising trackers, and the App contains no ads.</li>
+			<li>We do not access your contacts, camera roll, or files beyond what's needed for the specific photo you choose to scan.</li>
+			<li>We do not sell your data to anyone, ever.</li>
+		</ul>
+
+		<h2>3. How We Use Your Information</h2>
+		<p>We use the information above only to:</p>
+		<ul>
+			<li>Provide and operate the App's core functionality (inventory tracking, syncing across your devices, shopping lists, spend insights)</li>
+			<li>Enable household sharing that you explicitly set up by inviting or being invited</li>
+			<li>Diagnose and fix crashes and technical problems</li>
+			<li>Communicate with you about your account (e.g. email confirmation) where necessary</li>
+			<li>Comply with legal obligations</li>
+		</ul>
+		<p>Legal basis (for users in the EU/EEA): we process your account and inventory data because it's necessary to provide the service you've signed up for (performance of a contract). We process crash diagnostics under our legitimate interest in keeping the App reliable and secure.</p>
+
+		<h2>4. Who We Share Data With</h2>
+		<ul>
+			<li>Other members of a home you've joined or created, as described in Section 2.4 — this is a core, intentional feature of the App, not incidental sharing.</li>
+			<li>Service providers who process data on our behalf: Supabase (database, authentication, and sync infrastructure); Google Firebase (crash reporting) and Google Sign-In (if you choose to sign in with Google); Google Play (app distribution).</li>
+		</ul>
+		<p>These providers only process data as needed to provide their service to us, under their own data processing agreements. Some of these providers may process data on servers located outside your country, including outside the European Economic Area; where that happens, we rely on the safeguards those providers maintain (such as standard contractual clauses) to protect your data.</p>
+		<p>We do not share your data with advertisers or data brokers, and we do not sell your data.</p>
+
+		<h2>5. Data Retention</h2>
+		<p>We keep your account and inventory data for as long as your account is active. If you delete your account (see Section 6), we delete your personal data within a reasonable period, except where we're required to retain certain records by law.</p>
+
+		<h2>6. Your Rights</h2>
+		<p>Depending on where you live, you may have the right to:</p>
+		<ul>
+			<li>Access the data we hold about you</li>
+			<li>Correct inaccurate data (most of this you can do directly in the App)</li>
+			<li>Delete your account and associated data ("right to erasure")</li>
+			<li>Export your data in a portable format</li>
+			<li>Withdraw consent where processing is based on consent</li>
+			<li>Object to or restrict certain processing</li>
+		</ul>
+		<p>To exercise any of these rights, including account deletion, contact us at <a href="mailto:info@bigbrain-solutions.com">info@bigbrain-solutions.com</a>. We will respond within the timeframe required by applicable law.</p>
+		<p>If you're in the EU/EEA and believe we haven't handled your data properly, you also have the right to lodge a complaint with your national data protection authority (in Croatia, this is AZOP — the Croatian Personal Data Protection Agency).</p>
+
+		<h2>7. Children's Privacy</h2>
+		<p>HomeStock is not directed at children, and we do not knowingly collect personal information from anyone under 16. If you believe a child has provided us with personal data, contact us and we will delete it.</p>
+
+		<h2>8. Security</h2>
+		<p>We take reasonable technical and organizational measures to protect your data, including encrypted data transmission and database-level access controls that restrict each user's data to themselves and the household members they've explicitly shared it with. No method of transmission or storage is 100% secure, and we cannot guarantee absolute security.</p>
+
+		<h2>9. Changes to This Policy</h2>
+		<p>We may update this Privacy Policy from time to time. If we make material changes, we will notify you through the App or by other reasonable means. The "Last updated" date at the top reflects the most recent revision.</p>
+
+		<h2>10. Contact Us</h2>
+		<p>BIG BRAIN SOLUTIONS, Obrt za računalno programiranje<br />Riječka 15a, 20000 Dubrovnik<br /><a href="mailto:info@bigbrain-solutions.com">info@bigbrain-solutions.com</a></p>
+	</main>
+
+	<Footer
+		nav={nav}
+		privacyHref="/en/homestock-privacy-policy/"
+		privacyLabel="Privacy (HomeStock)"
+		labels={{
+			address: 'Address',
+			contact: 'Contact',
+			hours: 'Hours',
+			hoursValue: 'Mon–Sat 6am–6pm',
+			rights: 'All rights reserved.',
+		}}
+	/>
+</BaseLayout>
+
+<style>
+	.bb-legal {
+		max-width: 42rem;
+		margin-inline: auto;
+		padding: var(--spacing-section-mobile) 1.5rem;
+	}
+
+	.bb-legal h2 {
+		margin-top: 2.5rem;
+	}
+
+	.bb-legal h3 {
+		margin-top: 1.75rem;
+	}
+
+	.bb-legal p,
+	.bb-legal li {
+		font-family: var(--font-body);
+		line-height: 1.7;
+		color: var(--color-foreground);
+	}
+
+	.bb-legal ul {
+		padding-left: 1.25rem;
+	}
+
+	.bb-legal a {
+		color: var(--color-primary-text);
+	}
+</style>

@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const nav = [
+  { href: '/usluge/', label: 'Usluge' },
+  { href: '/o-nama/', label: 'O nama' },
+  { href: '/homestock/', label: 'HomeStock' },
+  { href: '/kontakt/', label: 'Kontakt' },
+];
+---
+
+<BaseLayout
+	lang="hr"
+	title="Politika privatnosti HomeStock — Big Brain Solutions"
+	description="Politika privatnosti za mobilnu aplikaciju HomeStock: koje podatke prikupljamo, kako ih koristimo i koja su vaša prava."
+>
+	<Header lang="hr" nav={nav} altLangHref="/en/homestock-privacy-policy/" altLangLabel="English" />
+
+	<main class="bb-legal">
+		<h1>Politika privatnosti aplikacije HomeStock</h1>
+		<p class="text-muted">Posljednje ažurirano: 15. kolovoza 2026.</p>
+
+		<p><strong>BIG BRAIN SOLUTIONS, Obrt za računalno programiranje</strong>, sa sjedištem u Hrvatskoj, upravlja mobilnom aplikacijom HomeStock ("Aplikacija"). Ova politika privatnosti objašnjava koje podatke prikupljamo, kako ih koristimo, s kim ih dijelimo te koja su vaša prava i izbori.</p>
+		<p>Korištenjem aplikacije HomeStock pristajete na prikupljanje i korištenje podataka na način opisan u nastavku. Ako se ne slažete, molimo da ne koristite Aplikaciju.</p>
+
+		<h2>1. Tko smo mi</h2>
+		<p>Voditelj obrade podataka: Big Brain Solutions, obrt<br />Lokacija: Hrvatska, Europska unija<br />Kontakt za pitanja privatnosti: <a href="mailto:info@bigbrain-solutions.com">info@bigbrain-solutions.com</a></p>
+
+		<h2>2. Podaci koje prikupljamo</h2>
+		<h3>2.1 Podaci o računu</h3>
+		<ul>
+			<li>E-mail adresa — potrebna za otvaranje računa i prijavu, bilo da se registrirate izravno ili putem opcije "Continue with Google".</li>
+			<li>Lozinka — ako se registrirate izravno (ne putem Googlea). Nikada ne vidimo niti pohranjujemo vašu lozinku u izvornom obliku; njome sigurno upravlja i pohranjuje je naš davatelj usluge autentifikacije (Supabase Auth).</li>
+			<li>Ako koristite "Continue with Google", Google nam dijeli osnovne podatke o vašem računu (e-mail i informacije o profilu koje Googleov postupak prijave otkriva) sukladno suglasnosti koju ste dali na Googleovom zaslonu prijave.</li>
+		</ul>
+
+		<h3>2.2 Podaci o kućanstvu i inventaru</h3>
+		<p>Sve što unesete u Aplikaciju radi korištenja njezinih osnovnih funkcija:</p>
+		<ul>
+			<li>Nazivi domova i prostorija, ikone i organizacija</li>
+			<li>Nazivi artikala, kategorije, jedinice, količine, cijene i napomene</li>
+			<li>Povijest promjena količine/cijene (kupnje, korekcije zaliha) za svaki artikl</li>
+			<li>Popisi za kupovinu i njihov sadržaj</li>
+			<li>Vaša odabrana valuta</li>
+		</ul>
+
+		<h3>2.3 Skeniranje računa</h3>
+		<p>Kada skenirate račun, fotografija se obrađuje u potpunosti na vašem uređaju. Iz slike izdvajamo strukturirane podatke (nazive artikala, količine, cijene, naziv trgovine, datum) korištenjem prepoznavanja teksta na samom uređaju. Fotografija se nikada ne šalje na naše servere i briše se odmah nakon obrade — ne pohranjujemo slike računa.</p>
+
+		<h3>2.4 Zajedničko korištenje kućanstva</h3>
+		<p>Ako pozovete nekoga u svoj dom, ili se pridružite tuđem domu putem pozivnog koda, vaša e-mail adresa postaje vidljiva drugim članovima tog doma (kako bi znali s kim dijele podatke), a svi podaci o inventaru, popisima za kupovinu i potrošnji u tom domu postaju dostupni svim članovima. Pozovite samo osobe s kojima zaista želite podijeliti te podatke.</p>
+
+		<h3>2.5 Dijagnostički podaci i podaci o rušenju aplikacije</h3>
+		<p>Koristimo Firebase Crashlytics za automatsko prikupljanje izvještaja o rušenju u slučaju kvara Aplikacije — ovo uključuje tehničke podatke (model uređaja, verziju operativnog sustava, verziju aplikacije i tehničke detalje uzroka pada), ali ne sadržaj vašeg inventara ili osobnih poruka.</p>
+
+		<h3>2.6 Što NE prikupljamo</h3>
+		<ul>
+			<li>Ne pohranjujemo slike računa.</li>
+			<li>Ne prikupljamo vašu lokaciju.</li>
+			<li>Ne koristimo oglasne alate za praćenje, a Aplikacija ne sadrži reklame.</li>
+			<li>Ne pristupamo vašim kontaktima, galeriji fotografija ili datotekama, osim onoga što je potrebno za konkretnu fotografiju koju odlučite skenirati.</li>
+			<li>Nikada ne prodajemo vaše podatke.</li>
+		</ul>
+
+		<h2>3. Kako koristimo vaše podatke</h2>
+		<p>Podatke navedene gore koristimo isključivo za:</p>
+		<ul>
+			<li>Pružanje i rad osnovnih funkcija Aplikacije (praćenje inventara, sinkronizacija između uređaja, popisi za kupovinu, uvid u potrošnju)</li>
+			<li>Omogućavanje zajedničkog korištenja kućanstva koje sami postavite pozivanjem ili prihvaćanjem pozivnice</li>
+			<li>Dijagnosticiranje i otklanjanje padova i tehničkih problema</li>
+			<li>Komunikaciju s vama o vašem računu (npr. potvrda e-mail adrese) kada je to potrebno</li>
+			<li>Ispunjavanje zakonskih obveza</li>
+		</ul>
+		<p>Pravna osnova (za korisnike u EU/EGP-u): podatke o računu i inventaru obrađujemo jer je to nužno za pružanje usluge za koju ste se prijavili (izvršenje ugovora). Dijagnostičke podatke o padovima obrađujemo na temelju našeg legitimnog interesa da Aplikacija bude pouzdana i sigurna.</p>
+
+		<h2>4. S kim dijelimo podatke</h2>
+		<ul>
+			<li>Drugi članovi doma kojem se pridružite ili kojeg stvorite, kao što je opisano u odjeljku 2.4 — ovo je temeljna, namjerna značajka Aplikacije, a ne slučajno dijeljenje.</li>
+			<li>Pružatelji usluga koji obrađuju podatke u naše ime: Supabase (baza podataka, autentifikacija i infrastruktura sinkronizacije); Google Firebase (izvještaji o padovima) i Google Sign-In (ako se odlučite prijaviti putem Googlea); Google Play (distribucija aplikacije).</li>
+		</ul>
+		<p>Ovi pružatelji usluga obrađuju podatke samo u mjeri potrebnoj za pružanje svoje usluge nama, prema svojim vlastitim ugovorima o obradi podataka. Neki od ovih pružatelja mogu obrađivati podatke na serverima izvan vaše zemlje, uključujući izvan Europskog gospodarskog prostora; u tom slučaju oslanjamo se na zaštitne mjere koje ti pružatelji primjenjuju (kao što su standardne ugovorne klauzule) za zaštitu vaših podataka.</p>
+		<p>Ne dijelimo vaše podatke s oglašivačima ili posrednicima podataka i ne prodajemo vaše podatke.</p>
+
+		<h2>5. Čuvanje podataka</h2>
+		<p>Podatke o vašem računu i inventaru čuvamo dok je vaš račun aktivan. Ako obrišete svoj račun (vidi odjeljak 6), vaše osobne podatke brišemo u razumnom roku, osim ako smo zakonski obvezni čuvati određene evidencije.</p>
+
+		<h2>6. Vaša prava</h2>
+		<p>Ovisno o mjestu vašeg boravišta, možda imate pravo na:</p>
+		<ul>
+			<li>Pristup podacima koje o vama čuvamo</li>
+			<li>Ispravak netočnih podataka (većinu ovoga možete učiniti izravno u Aplikaciji)</li>
+			<li>Brisanje računa i pripadajućih podataka ("pravo na zaborav")</li>
+			<li>Izvoz podataka u prenosivom formatu</li>
+			<li>Povlačenje pristanka kada se obrada temelji na pristanku</li>
+			<li>Prigovor ili ograničenje određene obrade</li>
+		</ul>
+		<p>Za ostvarivanje bilo kojeg od ovih prava, uključujući brisanje računa, kontaktirajte nas na <a href="mailto:info@bigbrain-solutions.com">info@bigbrain-solutions.com</a>. Odgovorit ćemo u roku propisanom važećim zakonom.</p>
+		<p>Ako se nalazite u EU/EGP-u i smatrate da nismo pravilno postupali s vašim podacima, imate pravo podnijeti pritužbu nadležnom tijelu za zaštitu podataka (u Hrvatskoj je to AZOP — Agencija za zaštitu osobnih podataka).</p>
+
+		<h2>7. Privatnost djece</h2>
+		<p>HomeStock nije namijenjen djeci i svjesno ne prikupljamo osobne podatke osoba mlađih od 16 godina. Ako smatrate da nam je dijete dostavilo osobne podatke, obratite nam se i podatke ćemo obrisati.</p>
+
+		<h2>8. Sigurnost</h2>
+		<p>Poduzimamo razumne tehničke i organizacijske mjere za zaštitu vaših podataka, uključujući šifrirani prijenos podataka i kontrole pristupa na razini baze podataka koje ograničavaju pristup podacima svakog korisnika samo njemu i članovima kućanstva s kojima ih je izričito podijelio. Nijedan način prijenosa ili pohrane podataka nije 100% siguran i ne možemo garantirati potpunu sigurnost.</p>
+
+		<h2>9. Promjene ove politike</h2>
+		<p>Ovu politiku privatnosti možemo s vremena na vrijeme ažurirati. Ako uvedemo značajne promjene, obavijestit ćemo vas putem Aplikacije ili na drugi razuman način. Datum "Posljednje ažurirano" na vrhu stranice odražava najnoviju izmjenu.</p>
+
+		<h2>10. Kontaktirajte nas</h2>
+		<p>BIG BRAIN SOLUTIONS, Obrt za računalno programiranje<br />Riječka 15a, 20000 Dubrovnik<br /><a href="mailto:info@bigbrain-solutions.com">info@bigbrain-solutions.com</a></p>
+	</main>
+
+	<Footer
+		nav={nav}
+		privacyHref="/privatnost-homestock/"
+		privacyLabel="Privatnost (HomeStock)"
+		labels={{
+			address: 'Adresa',
+			contact: 'Kontakt',
+			hours: 'Radno vrijeme',
+			hoursValue: 'Pon–Sub 6:00–18:00',
+			rights: 'Sva prava pridržana.',
+		}}
+	/>
+</BaseLayout>
+
+<style>
+	.bb-legal {
+		max-width: 42rem;
+		margin-inline: auto;
+		padding: var(--spacing-section-mobile) 1.5rem;
+	}
+
+	.bb-legal h2 {
+		margin-top: 2.5rem;
+	}
+
+	.bb-legal h3 {
+		margin-top: 1.75rem;
+	}
+
+	.bb-legal p,
+	.bb-legal li {
+		font-family: var(--font-body);
+		line-height: 1.7;
+		color: var(--color-foreground);
+	}
+
+	.bb-legal ul {
+		padding-left: 1.25rem;
+	}
+
+	.bb-legal a {
+		color: var(--color-primary-text);
+	}
+</style>
