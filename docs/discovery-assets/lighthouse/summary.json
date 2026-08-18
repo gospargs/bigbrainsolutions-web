@@ -1,0 +1,513 @@
+[
+  {
+    "slug": "home",
+    "url": "https://bigbrain-solutions.com/",
+    "form": "mobile",
+    "scores": {
+      "performance": 54,
+      "accessibility": 89,
+      "bestPractices": 96,
+      "seo": 85
+    },
+    "metrics": {
+      "LCP": "6.3 s",
+      "CLS": "0.298",
+      "TBT": "0 ms",
+      "FCP": "3.7 s",
+      "SI": "3.7 s",
+      "totalByteWeight": "Total size was 556 KiB"
+    },
+    "topOpportunities": [
+      {
+        "id": "redirects",
+        "title": "Avoid multiple page redirects",
+        "savingsMs": 1060
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "savingsMs": 240
+      }
+    ],
+    "accessibilityFailures": [
+      {
+        "id": "heading-order",
+        "title": "Heading elements are not in a sequentially-descending order"
+      },
+      {
+        "id": "landmark-one-main",
+        "title": "Document does not have a main landmark."
+      },
+      {
+        "id": "link-name",
+        "title": "Links do not have a discernible name"
+      },
+      {
+        "id": "target-size",
+        "title": "Touch targets do not have sufficient size or spacing."
+      }
+    ],
+    "seoFailures": [
+      {
+        "id": "meta-description",
+        "title": "Document does not have a meta description"
+      },
+      {
+        "id": "link-text",
+        "title": "Links do not have descriptive text"
+      }
+    ]
+  },
+  {
+    "slug": "home",
+    "url": "https://bigbrain-solutions.com/",
+    "form": "desktop",
+    "scores": {
+      "performance": 60,
+      "accessibility": 85,
+      "bestPractices": 100,
+      "seo": 85
+    },
+    "metrics": {
+      "LCP": "4.5 s",
+      "CLS": "0.058",
+      "TBT": "10 ms",
+      "FCP": "3.2 s",
+      "SI": "3.2 s",
+      "totalByteWeight": "Total size was 567 KiB"
+    },
+    "topOpportunities": [
+      {
+        "id": "redirects",
+        "title": "Avoid multiple page redirects",
+        "savingsMs": 798
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "savingsMs": 150
+      }
+    ],
+    "accessibilityFailures": [
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio."
+      },
+      {
+        "id": "heading-order",
+        "title": "Heading elements are not in a sequentially-descending order"
+      },
+      {
+        "id": "landmark-one-main",
+        "title": "Document does not have a main landmark."
+      },
+      {
+        "id": "link-name",
+        "title": "Links do not have a discernible name"
+      },
+      {
+        "id": "target-size",
+        "title": "Touch targets do not have sufficient size or spacing."
+      }
+    ],
+    "seoFailures": [
+      {
+        "id": "meta-description",
+        "title": "Document does not have a meta description"
+      },
+      {
+        "id": "link-text",
+        "title": "Links do not have descriptive text"
+      }
+    ]
+  },
+  {
+    "slug": "services",
+    "url": "https://bigbrain-solutions.com/services/",
+    "form": "mobile",
+    "scores": {
+      "performance": 83,
+      "accessibility": 89,
+      "bestPractices": 96,
+      "seo": 92
+    },
+    "metrics": {
+      "LCP": "3.7 s",
+      "CLS": "0",
+      "TBT": "0 ms",
+      "FCP": "3.1 s",
+      "SI": "3.1 s",
+      "totalByteWeight": "Total size was 261 KiB"
+    },
+    "topOpportunities": [
+      {
+        "id": "redirects",
+        "title": "Avoid multiple page redirects",
+        "savingsMs": 801
+      }
+    ],
+    "accessibilityFailures": [
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio."
+      },
+      {
+        "id": "heading-order",
+        "title": "Heading elements are not in a sequentially-descending order"
+      },
+      {
+        "id": "landmark-one-main",
+        "title": "Document does not have a main landmark."
+      },
+      {
+        "id": "link-name",
+        "title": "Links do not have a discernible name"
+      }
+    ],
+    "seoFailures": [
+      {
+        "id": "meta-description",
+        "title": "Document does not have a meta description"
+      }
+    ]
+  },
+  {
+    "slug": "services",
+    "url": "https://bigbrain-solutions.com/services/",
+    "form": "desktop",
+    "scores": {
+      "performance": 64,
+      "accessibility": 86,
+      "bestPractices": 100,
+      "seo": 92
+    },
+    "metrics": {
+      "LCP": "3.4 s",
+      "CLS": "0.002",
+      "TBT": "0 ms",
+      "FCP": "3.1 s",
+      "SI": "3.1 s",
+      "totalByteWeight": "Total size was 261 KiB"
+    },
+    "topOpportunities": [
+      {
+        "id": "redirects",
+        "title": "Avoid multiple page redirects",
+        "savingsMs": 799
+      }
+    ],
+    "accessibilityFailures": [
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio."
+      },
+      {
+        "id": "heading-order",
+        "title": "Heading elements are not in a sequentially-descending order"
+      },
+      {
+        "id": "landmark-one-main",
+        "title": "Document does not have a main landmark."
+      },
+      {
+        "id": "link-name",
+        "title": "Links do not have a discernible name"
+      }
+    ],
+    "seoFailures": [
+      {
+        "id": "meta-description",
+        "title": "Document does not have a meta description"
+      }
+    ]
+  },
+  {
+    "slug": "about",
+    "url": "https://bigbrain-solutions.com/about/",
+    "form": "mobile",
+    "scores": {
+      "performance": 81,
+      "accessibility": 93,
+      "bestPractices": 96,
+      "seo": 92
+    },
+    "metrics": {
+      "LCP": "4.0 s",
+      "CLS": "0.011",
+      "TBT": "0 ms",
+      "FCP": "3.1 s",
+      "SI": "3.1 s",
+      "totalByteWeight": "Total size was 374 KiB"
+    },
+    "topOpportunities": [
+      {
+        "id": "redirects",
+        "title": "Avoid multiple page redirects",
+        "savingsMs": 799
+      }
+    ],
+    "accessibilityFailures": [
+      {
+        "id": "heading-order",
+        "title": "Heading elements are not in a sequentially-descending order"
+      },
+      {
+        "id": "landmark-one-main",
+        "title": "Document does not have a main landmark."
+      },
+      {
+        "id": "link-name",
+        "title": "Links do not have a discernible name"
+      }
+    ],
+    "seoFailures": [
+      {
+        "id": "meta-description",
+        "title": "Document does not have a meta description"
+      }
+    ]
+  },
+  {
+    "slug": "about",
+    "url": "https://bigbrain-solutions.com/about/",
+    "form": "desktop",
+    "scores": {
+      "performance": 62,
+      "accessibility": 89,
+      "bestPractices": 100,
+      "seo": 92
+    },
+    "metrics": {
+      "LCP": "4.0 s",
+      "CLS": "0.002",
+      "TBT": "0 ms",
+      "FCP": "3.1 s",
+      "SI": "3.1 s",
+      "totalByteWeight": "Total size was 389 KiB"
+    },
+    "topOpportunities": [
+      {
+        "id": "redirects",
+        "title": "Avoid multiple page redirects",
+        "savingsMs": 800
+      }
+    ],
+    "accessibilityFailures": [
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio."
+      },
+      {
+        "id": "heading-order",
+        "title": "Heading elements are not in a sequentially-descending order"
+      },
+      {
+        "id": "landmark-one-main",
+        "title": "Document does not have a main landmark."
+      },
+      {
+        "id": "link-name",
+        "title": "Links do not have a discernible name"
+      }
+    ],
+    "seoFailures": [
+      {
+        "id": "meta-description",
+        "title": "Document does not have a meta description"
+      }
+    ]
+  },
+  {
+    "slug": "contact",
+    "url": "https://bigbrain-solutions.com/contact/",
+    "form": "mobile",
+    "scores": {
+      "performance": 66,
+      "accessibility": 94,
+      "bestPractices": 96,
+      "seo": 92
+    },
+    "metrics": {
+      "LCP": "5.4 s",
+      "CLS": "0.172",
+      "TBT": "0 ms",
+      "FCP": "3.2 s",
+      "SI": "3.2 s",
+      "totalByteWeight": "Total size was 807 KiB"
+    },
+    "topOpportunities": [
+      {
+        "id": "redirects",
+        "title": "Avoid multiple page redirects",
+        "savingsMs": 801
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "savingsMs": 430
+      }
+    ],
+    "accessibilityFailures": [
+      {
+        "id": "heading-order",
+        "title": "Heading elements are not in a sequentially-descending order"
+      },
+      {
+        "id": "landmark-one-main",
+        "title": "Document does not have a main landmark."
+      },
+      {
+        "id": "link-name",
+        "title": "Links do not have a discernible name"
+      }
+    ],
+    "seoFailures": [
+      {
+        "id": "meta-description",
+        "title": "Document does not have a meta description"
+      }
+    ]
+  },
+  {
+    "slug": "contact",
+    "url": "https://bigbrain-solutions.com/contact/",
+    "form": "desktop",
+    "scores": {
+      "performance": 62,
+      "accessibility": 89,
+      "bestPractices": 100,
+      "seo": 92
+    },
+    "metrics": {
+      "LCP": "3.9 s",
+      "CLS": "0.057",
+      "TBT": "0 ms",
+      "FCP": "3.2 s",
+      "SI": "3.2 s",
+      "totalByteWeight": "Total size was 798 KiB"
+    },
+    "topOpportunities": [
+      {
+        "id": "redirects",
+        "title": "Avoid multiple page redirects",
+        "savingsMs": 797
+      }
+    ],
+    "accessibilityFailures": [
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio."
+      },
+      {
+        "id": "heading-order",
+        "title": "Heading elements are not in a sequentially-descending order"
+      },
+      {
+        "id": "landmark-one-main",
+        "title": "Document does not have a main landmark."
+      },
+      {
+        "id": "link-name",
+        "title": "Links do not have a discernible name"
+      }
+    ],
+    "seoFailures": [
+      {
+        "id": "meta-description",
+        "title": "Document does not have a meta description"
+      }
+    ]
+  },
+  {
+    "slug": "homestock-privacy-policy",
+    "url": "https://bigbrain-solutions.com/homestock-privacy-policy/",
+    "form": "mobile",
+    "scores": {
+      "performance": 87,
+      "accessibility": 91,
+      "bestPractices": 96,
+      "seo": 92
+    },
+    "metrics": {
+      "LCP": "3.3 s",
+      "CLS": "0.002",
+      "TBT": "0 ms",
+      "FCP": "3.0 s",
+      "SI": "3.0 s",
+      "totalByteWeight": "Total size was 328 KiB"
+    },
+    "topOpportunities": [
+      {
+        "id": "redirects",
+        "title": "Avoid multiple page redirects",
+        "savingsMs": 798
+      }
+    ],
+    "accessibilityFailures": [
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio."
+      },
+      {
+        "id": "heading-order",
+        "title": "Heading elements are not in a sequentially-descending order"
+      },
+      {
+        "id": "link-name",
+        "title": "Links do not have a discernible name"
+      }
+    ],
+    "seoFailures": [
+      {
+        "id": "meta-description",
+        "title": "Document does not have a meta description"
+      }
+    ]
+  },
+  {
+    "slug": "homestock-privacy-policy",
+    "url": "https://bigbrain-solutions.com/homestock-privacy-policy/",
+    "form": "desktop",
+    "scores": {
+      "performance": 63,
+      "accessibility": 89,
+      "bestPractices": 100,
+      "seo": 92
+    },
+    "metrics": {
+      "LCP": "3.6 s",
+      "CLS": "0.007",
+      "TBT": "0 ms",
+      "FCP": "3.3 s",
+      "SI": "3.3 s",
+      "totalByteWeight": "Total size was 328 KiB"
+    },
+    "topOpportunities": [
+      {
+        "id": "redirects",
+        "title": "Avoid multiple page redirects",
+        "savingsMs": 797
+      }
+    ],
+    "accessibilityFailures": [
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio."
+      },
+      {
+        "id": "heading-order",
+        "title": "Heading elements are not in a sequentially-descending order"
+      },
+      {
+        "id": "link-name",
+        "title": "Links do not have a discernible name"
+      }
+    ],
+    "seoFailures": [
+      {
+        "id": "meta-description",
+        "title": "Document does not have a meta description"
+      }
+    ]
+  }
+]

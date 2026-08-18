@@ -1,0 +1,902 @@
+{
+  "pages": {
+    "home": {
+      "url": "https://www.bigbrain-solutions.com/",
+      "viewports": {
+        "375": {
+          "status": 200,
+          "requestCount": 55,
+          "consoleErrors": [],
+          "screenshot": "screenshots/home-375.png"
+        },
+        "768": {
+          "status": 200,
+          "requestCount": 55,
+          "consoleErrors": [],
+          "screenshot": "screenshots/home-768.png"
+        },
+        "1440": {
+          "status": 200,
+          "requestCount": 55,
+          "consoleErrors": [],
+          "screenshot": "screenshots/home-1440.png"
+        }
+      },
+      "scripts": [
+        "https://bigbrain-solutions.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+        "https://bigbrain-solutions.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1",
+        "https://bigbrain-solutions.com/wp-includes/js/wp-emoji-release.min.js?ver=6.8.8",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/lib/smartmenus/jquery.smartmenus.min.js?ver=1.2.1",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/lib/sticky/jquery.sticky.min.js?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/lib/lottie/lottie.min.js?ver=5.6.6",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/lib/swiper/v8/swiper.min.js?ver=8.4.5",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-includes/js/dist/hooks.min.js?ver=4d63a3d491d11ffd8ac6",
+        "https://bigbrain-solutions.com/wp-includes/js/dist/i18n.min.js?ver=5e580eb46a90c2b997e6",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js?ver=3.32.0",
+        "https://bigbrain-solutions.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/shared-frontend-handlers.03caa53373b56d3bab67.bundle.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/nav-menu.0edc0c22e9f3101552ed.bundle.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/text-editor.45609661e409413f1cef.bundle.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/lottie.e74a53bfa4c0bd939250.bundle.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/carousel.3620fca501cb18163600.bundle.min.js"
+      ],
+      "stylesheets": [
+        "https://bigbrain-solutions.com/wp-content/themes/hello-biz/assets/css/theme.css?ver=1.1.1",
+        "https://bigbrain-solutions.com/wp-content/themes/hello-biz/assets/css/header-footer.css?ver=1.1.1",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/css/widget-nav-menu.min.css?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/css/modules/sticky.min.css?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/css/modules/motion-fx.min.css?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-heading.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/conditionals/apple-webkit.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/css/post-201.css?ver=1786783249",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/css/widget-lottie.min.css?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min.css?ver=8.4.5",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/conditionals/e-swiper.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/css/widget-testimonial-carousel.min.css?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/css/widget-carousel-module-base.min.css?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/css/post-253.css?ver=1786783265",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/css/post-214.css?ver=1786783249",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/css/post-211.css?ver=1786783249",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/google-fonts/css/inter.css?ver=1757314440"
+      ],
+      "infiniteAnimations": [],
+      "analyticsDetected": [],
+      "pluginFolders": [
+        "elementor",
+        "elementor-pro",
+        "theme:hello-biz"
+      ],
+      "axeViolations": null,
+      "axeMobile": [
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "description": "Ensure the order of headings is semantically correct",
+          "help": "Heading levels should only increase by one",
+          "nodes": 3,
+          "targets": [
+            ".elementor-element-358de774 > h3",
+            ".elementor-element-271b5fd4 > h6",
+            ".elementor-element-617ccf81 > h6"
+          ]
+        },
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "nodes": 1,
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "nodes": 2,
+          "targets": [
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-7a27f5c6.e-con-full[data-id=\"7a27f5c6\"] > .elementor-element-69eb968.elementor-widget-theme-site-logo[data-id=\"69eb968\"] > a[href$=\"bigbrain-solutions.com\"]",
+            ".elementor-element-35cd4347 > a[href$=\"bigbrain-solutions.com\"]"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "nodes": 8,
+          "targets": [
+            ".elementor-element-63153654",
+            ".elementor-element-46c8e4c9",
+            ".elementor-element-53bdc47b",
+            ".elementor-element-5d83a32a",
+            ".elementor-element-680c6cb7"
+          ]
+        }
+      ],
+      "axeDesktop": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 3,
+          "targets": [
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-165490e.e-con-full[data-id=\"165490e\"] > .elementor-element-5513b111.elementor-nav-menu--stretch.elementor-nav-menu__text-align-center > .elementor-nav-menu--main.elementor-nav-menu--layout-horizontal.e--pointer-none > .elementor-nav-menu[data-smartmenus-id=\"1787070215007963\"] > .menu-item-263.menu-item.menu-item-type-post_type > .elementor-item",
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-165490e.e-con-full[data-id=\"165490e\"] > .elementor-element-5513b111.elementor-nav-menu--stretch.elementor-nav-menu__text-align-center > .elementor-nav-menu--main.elementor-nav-menu--layout-horizontal.e--pointer-none > .elementor-nav-menu[data-smartmenus-id=\"1787070215007963\"] > .menu-item-261.menu-item.menu-item-type-post_type > .elementor-item",
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-165490e.e-con-full[data-id=\"165490e\"] > .elementor-element-5513b111.elementor-nav-menu--stretch.elementor-nav-menu__text-align-center > .elementor-nav-menu--main.elementor-nav-menu--layout-horizontal.e--pointer-none > .elementor-nav-menu[data-smartmenus-id=\"1787070215007963\"] > .menu-item-262.menu-item.menu-item-type-post_type > .elementor-item"
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "description": "Ensure the order of headings is semantically correct",
+          "help": "Heading levels should only increase by one",
+          "nodes": 3,
+          "targets": [
+            ".elementor-element-358de774 > h3",
+            ".elementor-element-271b5fd4 > h6",
+            ".elementor-element-617ccf81 > h6"
+          ]
+        },
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "nodes": 1,
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "nodes": 2,
+          "targets": [
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-7a27f5c6.e-con-full[data-id=\"7a27f5c6\"] > .elementor-element-69eb968.elementor-widget-theme-site-logo[data-id=\"69eb968\"] > a[href$=\"bigbrain-solutions.com\"]",
+            ".elementor-element-35cd4347 > a[href$=\"bigbrain-solutions.com\"]"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "nodes": 8,
+          "targets": [
+            ".elementor-element-63153654",
+            ".elementor-element-46c8e4c9",
+            ".elementor-element-53bdc47b",
+            ".elementor-element-5d83a32a",
+            ".elementor-element-680c6cb7"
+          ]
+        }
+      ]
+    },
+    "services": {
+      "url": "https://www.bigbrain-solutions.com/services/",
+      "viewports": {
+        "375": {
+          "status": 200,
+          "requestCount": 43,
+          "consoleErrors": [],
+          "screenshot": "screenshots/services-375.png"
+        },
+        "768": {
+          "status": 200,
+          "requestCount": 43,
+          "consoleErrors": [],
+          "screenshot": "screenshots/services-768.png"
+        },
+        "1440": {
+          "status": 200,
+          "requestCount": 43,
+          "consoleErrors": [],
+          "screenshot": "screenshots/services-1440.png"
+        }
+      },
+      "scripts": [
+        "https://bigbrain-solutions.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+        "https://bigbrain-solutions.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1",
+        "https://bigbrain-solutions.com/wp-includes/js/wp-emoji-release.min.js?ver=6.8.8",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/lib/smartmenus/jquery.smartmenus.min.js?ver=1.2.1",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/lib/sticky/jquery.sticky.min.js?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-includes/js/dist/hooks.min.js?ver=4d63a3d491d11ffd8ac6",
+        "https://bigbrain-solutions.com/wp-includes/js/dist/i18n.min.js?ver=5e580eb46a90c2b997e6",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js?ver=3.32.0",
+        "https://bigbrain-solutions.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/shared-frontend-handlers.03caa53373b56d3bab67.bundle.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/nav-menu.0edc0c22e9f3101552ed.bundle.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/text-editor.45609661e409413f1cef.bundle.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/0726b2d81686a5392236.bundle.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/table-of-contents.339d2b8b27914b2a038a.bundle.min.js"
+      ],
+      "stylesheets": [
+        "https://bigbrain-solutions.com/wp-content/themes/hello-biz/assets/css/theme.css?ver=1.1.1",
+        "https://bigbrain-solutions.com/wp-content/themes/hello-biz/assets/css/header-footer.css?ver=1.1.1",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/css/widget-nav-menu.min.css?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/css/modules/sticky.min.css?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/css/modules/motion-fx.min.css?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-heading.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/conditionals/apple-webkit.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/css/post-201.css?ver=1786783249",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/css/widget-table-of-contents.min.css?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-icon-box.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/css/post-240.css?ver=1786785803",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/css/post-214.css?ver=1786783249",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/css/post-211.css?ver=1786783249",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/google-fonts/css/inter.css?ver=1757314440"
+      ],
+      "infiniteAnimations": [],
+      "analyticsDetected": [],
+      "pluginFolders": [
+        "elementor",
+        "elementor-pro",
+        "theme:hello-biz"
+      ],
+      "axeViolations": null,
+      "axeMobile": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 6,
+          "targets": [
+            ".elementor-toc__list-item:nth-child(1) > .elementor-toc__list-item-text-wrapper > .elementor-toc__list-item-text",
+            ".elementor-toc__list-item:nth-child(2) > .elementor-toc__list-item-text-wrapper > .elementor-toc__list-item-text",
+            ".elementor-toc__list-item:nth-child(3) > .elementor-toc__list-item-text-wrapper > .elementor-toc__list-item-text",
+            ".elementor-toc__list-item:nth-child(5) > .elementor-toc__list-item-text-wrapper > .elementor-toc__list-item-text",
+            ".elementor-toc__list-item:nth-child(6) > .elementor-toc__list-item-text-wrapper > .elementor-toc__list-item-text"
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "description": "Ensure the order of headings is semantically correct",
+          "help": "Heading levels should only increase by one",
+          "nodes": 2,
+          "targets": [
+            ".elementor-toc__header-title",
+            "h6"
+          ]
+        },
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "nodes": 1,
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "nodes": 2,
+          "targets": [
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-7a27f5c6.e-con-full[data-id=\"7a27f5c6\"] > .elementor-element-69eb968.elementor-widget-theme-site-logo[data-id=\"69eb968\"] > a[href$=\"bigbrain-solutions.com\"]",
+            ".elementor-element-35cd4347 > a[href$=\"bigbrain-solutions.com\"]"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "nodes": 25,
+          "targets": [
+            ".elementor-element-57963ad7",
+            ".elementor-element-3ef30ca3",
+            ".elementor-toc__header",
+            ".elementor-toc__list-item:nth-child(1) > .elementor-toc__list-item-text-wrapper > .elementor-toc__list-item-text",
+            ".elementor-toc__list-item:nth-child(2) > .elementor-toc__list-item-text-wrapper > .elementor-toc__list-item-text"
+          ]
+        }
+      ],
+      "axeDesktop": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 9,
+          "targets": [
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-165490e.e-con-full[data-id=\"165490e\"] > .elementor-element-5513b111.elementor-nav-menu--stretch.elementor-nav-menu__text-align-center > .elementor-nav-menu--main.elementor-nav-menu--layout-horizontal.e--pointer-none > .elementor-nav-menu[data-smartmenus-id=\"17870702243452039\"] > .menu-item-home.menu-item-260.menu-item > .elementor-item",
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-165490e.e-con-full[data-id=\"165490e\"] > .elementor-element-5513b111.elementor-nav-menu--stretch.elementor-nav-menu__text-align-center > .elementor-nav-menu--main.elementor-nav-menu--layout-horizontal.e--pointer-none > .elementor-nav-menu[data-smartmenus-id=\"17870702243452039\"] > .menu-item-261.menu-item.menu-item-type-post_type > .elementor-item",
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-165490e.e-con-full[data-id=\"165490e\"] > .elementor-element-5513b111.elementor-nav-menu--stretch.elementor-nav-menu__text-align-center > .elementor-nav-menu--main.elementor-nav-menu--layout-horizontal.e--pointer-none > .elementor-nav-menu[data-smartmenus-id=\"17870702243452039\"] > .menu-item-262.menu-item.menu-item-type-post_type > .elementor-item",
+            ".elementor-toc__list-item:nth-child(1) > .elementor-toc__list-item-text-wrapper > .elementor-toc__list-item-text",
+            ".elementor-toc__list-item:nth-child(3) > .elementor-toc__list-item-text-wrapper > .elementor-toc__list-item-text"
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "description": "Ensure the order of headings is semantically correct",
+          "help": "Heading levels should only increase by one",
+          "nodes": 2,
+          "targets": [
+            ".elementor-toc__header-title",
+            "h6"
+          ]
+        },
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "nodes": 1,
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "nodes": 2,
+          "targets": [
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-7a27f5c6.e-con-full[data-id=\"7a27f5c6\"] > .elementor-element-69eb968.elementor-widget-theme-site-logo[data-id=\"69eb968\"] > a[href$=\"bigbrain-solutions.com\"]",
+            ".elementor-element-35cd4347 > a[href$=\"bigbrain-solutions.com\"]"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "nodes": 25,
+          "targets": [
+            ".elementor-element-57963ad7",
+            ".elementor-element-3ef30ca3",
+            ".elementor-toc__header",
+            ".elementor-toc__list-item:nth-child(1) > .elementor-toc__list-item-text-wrapper > .elementor-toc__list-item-text",
+            ".elementor-item-active.elementor-toc__list-item-text"
+          ]
+        }
+      ]
+    },
+    "about": {
+      "url": "https://www.bigbrain-solutions.com/about/",
+      "viewports": {
+        "375": {
+          "status": 200,
+          "requestCount": 45,
+          "consoleErrors": [],
+          "screenshot": "screenshots/about-375.png"
+        },
+        "768": {
+          "status": 200,
+          "requestCount": 45,
+          "consoleErrors": [],
+          "screenshot": "screenshots/about-768.png"
+        },
+        "1440": {
+          "status": 200,
+          "requestCount": 45,
+          "consoleErrors": [],
+          "screenshot": "screenshots/about-1440.png"
+        }
+      },
+      "scripts": [
+        "https://bigbrain-solutions.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+        "https://bigbrain-solutions.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1",
+        "https://bigbrain-solutions.com/wp-includes/js/wp-emoji-release.min.js?ver=6.8.8",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/lib/smartmenus/jquery.smartmenus.min.js?ver=1.2.1",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/lib/sticky/jquery.sticky.min.js?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-includes/js/dist/hooks.min.js?ver=4d63a3d491d11ffd8ac6",
+        "https://bigbrain-solutions.com/wp-includes/js/dist/i18n.min.js?ver=5e580eb46a90c2b997e6",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js?ver=3.32.0",
+        "https://bigbrain-solutions.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/shared-frontend-handlers.03caa53373b56d3bab67.bundle.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/nav-menu.0edc0c22e9f3101552ed.bundle.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/text-editor.45609661e409413f1cef.bundle.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/toggle.2a177a3ef4785d3dfbc5.bundle.min.js"
+      ],
+      "stylesheets": [
+        "https://bigbrain-solutions.com/wp-content/themes/hello-biz/assets/css/theme.css?ver=1.1.1",
+        "https://bigbrain-solutions.com/wp-content/themes/hello-biz/assets/css/header-footer.css?ver=1.1.1",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/css/widget-nav-menu.min.css?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/css/modules/sticky.min.css?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/css/modules/motion-fx.min.css?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-heading.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/conditionals/apple-webkit.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/css/post-201.css?ver=1786783249",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-image-box.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-toggle.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/css/post-224.css?ver=1786785904",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/css/post-214.css?ver=1786783249",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/css/post-211.css?ver=1786783249",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/google-fonts/css/inter.css?ver=1757314440"
+      ],
+      "infiniteAnimations": [],
+      "analyticsDetected": [],
+      "pluginFolders": [
+        "elementor",
+        "elementor-pro",
+        "theme:hello-biz"
+      ],
+      "axeViolations": null,
+      "axeMobile": [
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "description": "Ensure the order of headings is semantically correct",
+          "help": "Heading levels should only increase by one",
+          "nodes": 1,
+          "targets": [
+            "h6"
+          ]
+        },
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "nodes": 1,
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "nodes": 2,
+          "targets": [
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-7a27f5c6.e-con-full[data-id=\"7a27f5c6\"] > .elementor-element-69eb968.elementor-widget-theme-site-logo[data-id=\"69eb968\"] > a[href$=\"bigbrain-solutions.com\"]",
+            ".elementor-element-35cd4347 > a[href$=\"bigbrain-solutions.com\"]"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "nodes": 6,
+          "targets": [
+            ".elementor-element-10f99bde",
+            ".elementor-element-3904f4fb",
+            ".elementor-element-50614973",
+            ".elementor-element-75827176",
+            ".elementor-element-667713c8"
+          ]
+        }
+      ],
+      "axeDesktop": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 3,
+          "targets": [
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-165490e.e-con-full[data-id=\"165490e\"] > .elementor-element-5513b111.elementor-nav-menu--stretch.elementor-nav-menu__text-align-center > .elementor-nav-menu--main.elementor-nav-menu--layout-horizontal.e--pointer-none > .elementor-nav-menu[data-smartmenus-id=\"17870702336272627\"] > .menu-item-home.menu-item-260.menu-item > .elementor-item",
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-165490e.e-con-full[data-id=\"165490e\"] > .elementor-element-5513b111.elementor-nav-menu--stretch.elementor-nav-menu__text-align-center > .elementor-nav-menu--main.elementor-nav-menu--layout-horizontal.e--pointer-none > .elementor-nav-menu[data-smartmenus-id=\"17870702336272627\"] > .menu-item-263.menu-item.menu-item-type-post_type > .elementor-item",
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-165490e.e-con-full[data-id=\"165490e\"] > .elementor-element-5513b111.elementor-nav-menu--stretch.elementor-nav-menu__text-align-center > .elementor-nav-menu--main.elementor-nav-menu--layout-horizontal.e--pointer-none > .elementor-nav-menu[data-smartmenus-id=\"17870702336272627\"] > .menu-item-262.menu-item.menu-item-type-post_type > .elementor-item"
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "description": "Ensure the order of headings is semantically correct",
+          "help": "Heading levels should only increase by one",
+          "nodes": 1,
+          "targets": [
+            "h6"
+          ]
+        },
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "nodes": 1,
+          "targets": [
+            "html"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "nodes": 2,
+          "targets": [
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-7a27f5c6.e-con-full[data-id=\"7a27f5c6\"] > .elementor-element-69eb968.elementor-widget-theme-site-logo[data-id=\"69eb968\"] > a[href$=\"bigbrain-solutions.com\"]",
+            ".elementor-element-35cd4347 > a[href$=\"bigbrain-solutions.com\"]"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "nodes": 6,
+          "targets": [
+            ".elementor-element-10f99bde",
+            ".elementor-element-3904f4fb",
+            ".elementor-element-50614973",
+            ".elementor-element-75827176",
+            ".elementor-element-667713c8"
+          ]
+        }
+      ]
+    },
+    "contact": {
+      "url": "https://www.bigbrain-solutions.com/contact/",
+      "viewports": {
+        "375": {
+          "status": 200,
+          "requestCount": 66,
+          "consoleErrors": [],
+          "screenshot": "screenshots/contact-375.png"
+        },
+        "768": {
+          "status": 200,
+          "requestCount": 69,
+          "consoleErrors": [],
+          "screenshot": "screenshots/contact-768.png"
+        },
+        "1440": {
+          "status": 200,
+          "requestCount": 68,
+          "consoleErrors": [],
+          "screenshot": "screenshots/contact-1440.png"
+        }
+      },
+      "scripts": [
+        "https://bigbrain-solutions.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+        "https://bigbrain-solutions.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1",
+        "https://bigbrain-solutions.com/wp-includes/js/wp-emoji-release.min.js?ver=6.8.8",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/lib/smartmenus/jquery.smartmenus.min.js?ver=1.2.1",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/lib/sticky/jquery.sticky.min.js?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/lib/lottie/lottie.min.js?ver=5.6.6",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-includes/js/dist/hooks.min.js?ver=4d63a3d491d11ffd8ac6",
+        "https://bigbrain-solutions.com/wp-includes/js/dist/i18n.min.js?ver=5e580eb46a90c2b997e6",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js?ver=3.32.0",
+        "https://bigbrain-solutions.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/shared-frontend-handlers.03caa53373b56d3bab67.bundle.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/nav-menu.0edc0c22e9f3101552ed.bundle.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/text-editor.45609661e409413f1cef.bundle.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/lottie.e74a53bfa4c0bd939250.bundle.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/form.5fb35271b8ba3fb1e7d6.bundle.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/popup.f7b15b2ca565b152bf98.bundle.min.js",
+        "https://maps.gstatic.com/maps-api-v3/embed/js/65/12f/init_embed.js",
+        "https://maps.googleapis.com/maps-api-v3/api/js/65/12f/search.js",
+        "https://maps.googleapis.com/maps-api-v3/api/js/65/12f/geometry.js",
+        "https://maps.googleapis.com/maps-api-v3/api/js/65/12f/main.js",
+        "https://maps.googleapis.com/maps-api-v3/api/js/65/12f/common.js",
+        "https://maps.googleapis.com/maps-api-v3/api/js/65/12f/util.js",
+        "https://maps.googleapis.com/maps-api-v3/api/js/65/12f/map.js",
+        "https://maps.googleapis.com/maps-api-v3/api/js/65/12f/controls.js",
+        "https://maps.googleapis.com/maps-api-v3/api/js/65/12f/places_impl.js",
+        "https://maps.googleapis.com/maps-api-v3/api/js/65/12f/places.js",
+        "https://maps.googleapis.com/maps-api-v3/api/js/65/12f/onion.js",
+        "https://maps.googleapis.com/maps-api-v3/api/js/65/12f/search_impl.js"
+      ],
+      "stylesheets": [
+        "https://bigbrain-solutions.com/wp-content/themes/hello-biz/assets/css/theme.css?ver=1.1.1",
+        "https://bigbrain-solutions.com/wp-content/themes/hello-biz/assets/css/header-footer.css?ver=1.1.1",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/css/widget-nav-menu.min.css?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/css/modules/sticky.min.css?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/css/modules/motion-fx.min.css?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-heading.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/conditionals/apple-webkit.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/css/post-201.css?ver=1786783249",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/css/widget-lottie.min.css?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-google_maps.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-menu-anchor.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/css/widget-form.min.css?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/css/post-219.css?ver=1786785904",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/css/post-214.css?ver=1786783249",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/css/post-211.css?ver=1786783249",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/google-fonts/css/inter.css?ver=1757314440"
+      ],
+      "infiniteAnimations": [],
+      "analyticsDetected": [],
+      "pluginFolders": [
+        "elementor",
+        "elementor-pro",
+        "theme:hello-biz"
+      ],
+      "axeViolations": null,
+      "axeMobile": [
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "description": "Ensure the order of headings is semantically correct",
+          "help": "Heading levels should only increase by one",
+          "nodes": 1,
+          "targets": [
+            ".elementor-element-4c2edc05 > h3"
+          ]
+        },
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "nodes": 2,
+          "targets": [
+            "html",
+            "iframe html"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "nodes": 2,
+          "targets": [
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-7a27f5c6.e-con-full[data-id=\"7a27f5c6\"] > .elementor-element-69eb968.elementor-widget-theme-site-logo[data-id=\"69eb968\"] > a[href$=\"bigbrain-solutions.com\"]",
+            ".elementor-element-35cd4347 > a[href$=\"bigbrain-solutions.com\"]"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "nodes": 5,
+          "targets": [
+            ".elementor-element-1eebd3c4",
+            ".elementor-element-bb9b863",
+            "iframe embed-place-card-element",
+            ".elementor-element-503eb2c7",
+            ".elementor-element-715a3c6d"
+          ]
+        }
+      ],
+      "axeDesktop": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 3,
+          "targets": [
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-165490e.e-con-full[data-id=\"165490e\"] > .elementor-element-5513b111.elementor-nav-menu--stretch.elementor-nav-menu__text-align-center > .elementor-nav-menu--main.elementor-nav-menu--layout-horizontal.e--pointer-none > .elementor-nav-menu[data-smartmenus-id=\"17870702446087686\"] > .menu-item-home.menu-item-260.menu-item > .elementor-item",
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-165490e.e-con-full[data-id=\"165490e\"] > .elementor-element-5513b111.elementor-nav-menu--stretch.elementor-nav-menu__text-align-center > .elementor-nav-menu--main.elementor-nav-menu--layout-horizontal.e--pointer-none > .elementor-nav-menu[data-smartmenus-id=\"17870702446087686\"] > .menu-item-263.menu-item.menu-item-type-post_type > .elementor-item",
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-165490e.e-con-full[data-id=\"165490e\"] > .elementor-element-5513b111.elementor-nav-menu--stretch.elementor-nav-menu__text-align-center > .elementor-nav-menu--main.elementor-nav-menu--layout-horizontal.e--pointer-none > .elementor-nav-menu[data-smartmenus-id=\"17870702446087686\"] > .menu-item-261.menu-item.menu-item-type-post_type > .elementor-item"
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "description": "Ensure the order of headings is semantically correct",
+          "help": "Heading levels should only increase by one",
+          "nodes": 1,
+          "targets": [
+            ".elementor-element-4c2edc05 > h3"
+          ]
+        },
+        {
+          "id": "landmark-one-main",
+          "impact": "moderate",
+          "description": "Ensure the document has a main landmark",
+          "help": "Document should have one main landmark",
+          "nodes": 2,
+          "targets": [
+            "html",
+            "iframe html"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "nodes": 2,
+          "targets": [
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-7a27f5c6.e-con-full[data-id=\"7a27f5c6\"] > .elementor-element-69eb968.elementor-widget-theme-site-logo[data-id=\"69eb968\"] > a[href$=\"bigbrain-solutions.com\"]",
+            ".elementor-element-35cd4347 > a[href$=\"bigbrain-solutions.com\"]"
+          ]
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "description": "Ensure all page content is contained by landmarks",
+          "help": "All page content should be contained by landmarks",
+          "nodes": 4,
+          "targets": [
+            ".elementor-element-1eebd3c4",
+            ".elementor-element-bb9b863",
+            ".elementor-element-503eb2c7",
+            ".elementor-element-715a3c6d"
+          ]
+        }
+      ]
+    },
+    "homestock-privacy-policy": {
+      "url": "https://www.bigbrain-solutions.com/homestock-privacy-policy/",
+      "viewports": {
+        "375": {
+          "status": 200,
+          "requestCount": 40,
+          "consoleErrors": [],
+          "screenshot": "screenshots/homestock-privacy-policy-375.png"
+        },
+        "768": {
+          "status": 200,
+          "requestCount": 40,
+          "consoleErrors": [],
+          "screenshot": "screenshots/homestock-privacy-policy-768.png"
+        },
+        "1440": {
+          "status": 200,
+          "requestCount": 40,
+          "consoleErrors": [],
+          "screenshot": "screenshots/homestock-privacy-policy-1440.png"
+        }
+      },
+      "scripts": [
+        "https://bigbrain-solutions.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+        "https://bigbrain-solutions.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1",
+        "https://bigbrain-solutions.com/wp-includes/js/wp-emoji-release.min.js?ver=6.8.8",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/lib/smartmenus/jquery.smartmenus.min.js?ver=1.2.1",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/lib/sticky/jquery.sticky.min.js?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-includes/js/dist/hooks.min.js?ver=4d63a3d491d11ffd8ac6",
+        "https://bigbrain-solutions.com/wp-includes/js/dist/i18n.min.js?ver=5e580eb46a90c2b997e6",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js?ver=3.32.0",
+        "https://bigbrain-solutions.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/shared-frontend-handlers.03caa53373b56d3bab67.bundle.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/js/nav-menu.0edc0c22e9f3101552ed.bundle.min.js",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/js/text-editor.45609661e409413f1cef.bundle.min.js"
+      ],
+      "stylesheets": [
+        "https://bigbrain-solutions.com/wp-content/themes/hello-biz/assets/css/theme.css?ver=1.1.1",
+        "https://bigbrain-solutions.com/wp-content/themes/hello-biz/assets/css/header-footer.css?ver=1.1.1",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/css/widget-nav-menu.min.css?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/css/modules/sticky.min.css?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor-pro/assets/css/modules/motion-fx.min.css?ver=3.32.0",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-heading.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/plugins/elementor/assets/css/conditionals/apple-webkit.min.css?ver=4.1.4",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/css/post-201.css?ver=1786783249",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/css/post-544.css?ver=1786880906",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/css/post-214.css?ver=1786783249",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/css/post-211.css?ver=1786783249",
+        "https://bigbrain-solutions.com/wp-content/uploads/elementor/google-fonts/css/inter.css?ver=1757314440"
+      ],
+      "infiniteAnimations": [],
+      "analyticsDetected": [],
+      "pluginFolders": [
+        "elementor",
+        "elementor-pro",
+        "theme:hello-biz"
+      ],
+      "axeViolations": null,
+      "axeMobile": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 1,
+          "targets": [
+            ".underline"
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "description": "Ensure the order of headings is semantically correct",
+          "help": "Heading levels should only increase by one",
+          "nodes": 1,
+          "targets": [
+            "h5"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "nodes": 2,
+          "targets": [
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-7a27f5c6.e-con-full[data-id=\"7a27f5c6\"] > .elementor-element-69eb968.elementor-widget-theme-site-logo[data-id=\"69eb968\"] > a[href$=\"bigbrain-solutions.com\"]",
+            ".elementor-element-35cd4347 > a[href$=\"bigbrain-solutions.com\"]"
+          ]
+        }
+      ],
+      "axeDesktop": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": 5,
+          "targets": [
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-165490e.e-con-full[data-id=\"165490e\"] > .elementor-element-5513b111.elementor-nav-menu--stretch.elementor-nav-menu__text-align-center > .elementor-nav-menu--main.elementor-nav-menu--layout-horizontal.e--pointer-none > .elementor-nav-menu[data-smartmenus-id=\"17870702549341772\"] > .menu-item-home.menu-item-260.menu-item > .elementor-item",
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-165490e.e-con-full[data-id=\"165490e\"] > .elementor-element-5513b111.elementor-nav-menu--stretch.elementor-nav-menu__text-align-center > .elementor-nav-menu--main.elementor-nav-menu--layout-horizontal.e--pointer-none > .elementor-nav-menu[data-smartmenus-id=\"17870702549341772\"] > .menu-item-263.menu-item.menu-item-type-post_type > .elementor-item",
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-165490e.e-con-full[data-id=\"165490e\"] > .elementor-element-5513b111.elementor-nav-menu--stretch.elementor-nav-menu__text-align-center > .elementor-nav-menu--main.elementor-nav-menu--layout-horizontal.e--pointer-none > .elementor-nav-menu[data-smartmenus-id=\"17870702549341772\"] > .menu-item-261.menu-item.menu-item-type-post_type > .elementor-item",
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-165490e.e-con-full[data-id=\"165490e\"] > .elementor-element-5513b111.elementor-nav-menu--stretch.elementor-nav-menu__text-align-center > .elementor-nav-menu--main.elementor-nav-menu--layout-horizontal.e--pointer-none > .elementor-nav-menu[data-smartmenus-id=\"17870702549341772\"] > .menu-item-262.menu-item.menu-item-type-post_type > .elementor-item",
+            ".underline"
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "description": "Ensure the order of headings is semantically correct",
+          "help": "Heading levels should only increase by one",
+          "nodes": 1,
+          "targets": [
+            "h5"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "description": "Ensure links have discernible text",
+          "help": "Links must have discernible text",
+          "nodes": 2,
+          "targets": [
+            ".elementor-sticky--active > .e-con-inner > .elementor-element-7a27f5c6.e-con-full[data-id=\"7a27f5c6\"] > .elementor-element-69eb968.elementor-widget-theme-site-logo[data-id=\"69eb968\"] > a[href$=\"bigbrain-solutions.com\"]",
+            ".elementor-element-35cd4347 > a[href$=\"bigbrain-solutions.com\"]"
+          ]
+        }
+      ]
+    }
+  }
+}

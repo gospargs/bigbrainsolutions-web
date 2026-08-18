@@ -1,0 +1,214 @@
+[
+  {
+    "id": "color-contrast",
+    "impact": "serious",
+    "tags": [
+      "cat.color",
+      "wcag2aa",
+      "wcag143",
+      "TTv5",
+      "TT13.c",
+      "EN-301-549",
+      "EN-9.1.4.3",
+      "ACT",
+      "RGAAv4",
+      "RGAA-3.2.1"
+    ],
+    "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    "nodes": [
+      {
+        "any": [
+          {
+            "id": "color-contrast",
+            "data": {
+              "fgColor": "#cc3366",
+              "bgColor": "#0e172d",
+              "contrastRatio": 3.58,
+              "fontSize": "12.0pt (16px)",
+              "fontWeight": "normal",
+              "messageKey": null,
+              "expectedContrastRatio": "4.5:1"
+            },
+            "relatedNodes": [
+              {
+                "html": "<body class=\"wp-singular page-template-default page page-id-544 wp-custom-logo wp-theme-hello-biz ehbiz-default elementor-default elementor-kit-201 elementor-page elementor-page-544 elementor-page-193 e--ua-blink e--ua-webkit\" data-elementor-device-mode=\"mobile\">",
+                "target": [
+                  "body"
+                ]
+              }
+            ],
+            "impact": "serious",
+            "message": "Element has insufficient color contrast of 3.58 (foreground color: #cc3366, background color: #0e172d, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "serious",
+        "html": "<a class=\"underline underline underline-offset-2 decoration-1 decoration-current/40 hover:decoration-current focus:decoration-current\" href=\"mailto:privacy@bigbrain-solutions.com\">info@bigbrain-solutions.com</a>",
+        "target": [
+          ".underline"
+        ],
+        "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.58 (foreground color: #cc3366, background color: #0e172d, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+      }
+    ]
+  },
+  {
+    "id": "heading-order",
+    "impact": "moderate",
+    "tags": [
+      "cat.semantics",
+      "best-practice"
+    ],
+    "description": "Ensure the order of headings is semantically correct",
+    "help": "Heading levels should only increase by one",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/heading-order?application=playwright",
+    "nodes": [
+      {
+        "any": [
+          {
+            "id": "heading-order",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Heading order invalid"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<h5 class=\"mt-0\">BIG BRAIN SOLUTIONS, Obrt za računalno programiranje</h5>",
+        "target": [
+          "h5"
+        ],
+        "failureSummary": "Fix any of the following:\n  Heading order invalid"
+      }
+    ]
+  },
+  {
+    "id": "link-name",
+    "impact": "serious",
+    "tags": [
+      "cat.name-role-value",
+      "wcag2a",
+      "wcag244",
+      "wcag412",
+      "section508",
+      "section508.22.a",
+      "TTv5",
+      "TT6.a",
+      "EN-301-549",
+      "EN-9.2.4.4",
+      "EN-9.4.1.2",
+      "ACT",
+      "RGAAv4",
+      "RGAA-6.2.1"
+    ],
+    "description": "Ensure links have discernible text",
+    "help": "Links must have discernible text",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/link-name?application=playwright",
+    "nodes": [
+      {
+        "any": [
+          {
+            "id": "has-visible-text",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "Element does not have text that is visible to screen readers"
+          },
+          {
+            "id": "aria-label",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "aria-label attribute does not exist or is empty"
+          },
+          {
+            "id": "aria-labelledby",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+          },
+          {
+            "id": "non-empty-title",
+            "data": {
+              "messageKey": "noAttr"
+            },
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "Element has no title attribute"
+          }
+        ],
+        "all": [],
+        "none": [
+          {
+            "id": "focusable-no-name",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "Element is in tab order and does not have accessible text"
+          }
+        ],
+        "impact": "serious",
+        "html": "<a href=\"https://bigbrain-solutions.com\">",
+        "target": [
+          ".elementor-sticky--active > .e-con-inner > .elementor-element-7a27f5c6.e-con-full[data-id=\"7a27f5c6\"] > .elementor-element-69eb968.elementor-widget-theme-site-logo[data-id=\"69eb968\"] > a[href$=\"bigbrain-solutions.com\"]"
+        ],
+        "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+      },
+      {
+        "any": [
+          {
+            "id": "has-visible-text",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "Element does not have text that is visible to screen readers"
+          },
+          {
+            "id": "aria-label",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "aria-label attribute does not exist or is empty"
+          },
+          {
+            "id": "aria-labelledby",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+          },
+          {
+            "id": "non-empty-title",
+            "data": {
+              "messageKey": "noAttr"
+            },
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "Element has no title attribute"
+          }
+        ],
+        "all": [],
+        "none": [
+          {
+            "id": "focusable-no-name",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "Element is in tab order and does not have accessible text"
+          }
+        ],
+        "impact": "serious",
+        "html": "<a href=\"https://bigbrain-solutions.com\">",
+        "target": [
+          ".elementor-element-35cd4347 > a[href$=\"bigbrain-solutions.com\"]"
+        ],
+        "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+      }
+    ]
+  }
+]

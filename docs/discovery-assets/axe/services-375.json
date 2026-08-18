@@ -1,0 +1,975 @@
+[
+  {
+    "id": "color-contrast",
+    "impact": "serious",
+    "tags": [
+      "cat.color",
+      "wcag2aa",
+      "wcag143",
+      "TTv5",
+      "TT13.c",
+      "EN-301-549",
+      "EN-9.1.4.3",
+      "ACT",
+      "RGAAv4",
+      "RGAA-3.2.1"
+    ],
+    "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=playwright",
+    "nodes": [
+      {
+        "any": [
+          {
+            "id": "color-contrast",
+            "data": {
+              "fgColor": "#5e6782",
+              "bgColor": "#0e172d",
+              "contrastRatio": 3.17,
+              "fontSize": "13.5pt (18px)",
+              "fontWeight": "normal",
+              "messageKey": null,
+              "expectedContrastRatio": "4.5:1"
+            },
+            "relatedNodes": [
+              {
+                "html": "<body class=\"wp-singular page-tem...\" data-elementor-devic...=\"mobile\">",
+                "target": [
+                  "body"
+                ]
+              }
+            ],
+            "impact": "serious",
+            "message": "Element has insufficient color contrast of 3.17 (foreground color: #5e6782, background color: #0e172d, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "serious",
+        "html": "<a href=\"#elementor-toc__heading-anchor-0\" class=\"elementor-toc__list-item-text\">\n\t\t\t\t\t\t\n\t\t\t\t\t\t\tWeb Application Development\t\t\t\t\t\t\n\t\t\t\t\t</a>",
+        "target": [
+          ".elementor-toc__list-item:nth-child(1) > .elementor-toc__list-item-text-wrapper > .elementor-toc__list-item-text"
+        ],
+        "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.17 (foreground color: #5e6782, background color: #0e172d, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+      },
+      {
+        "any": [
+          {
+            "id": "color-contrast",
+            "data": {
+              "fgColor": "#5e6782",
+              "bgColor": "#0e172d",
+              "contrastRatio": 3.17,
+              "fontSize": "13.5pt (18px)",
+              "fontWeight": "normal",
+              "messageKey": null,
+              "expectedContrastRatio": "4.5:1"
+            },
+            "relatedNodes": [
+              {
+                "html": "<body class=\"wp-singular page-tem...\" data-elementor-devic...=\"mobile\">",
+                "target": [
+                  "body"
+                ]
+              }
+            ],
+            "impact": "serious",
+            "message": "Element has insufficient color contrast of 3.17 (foreground color: #5e6782, background color: #0e172d, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "serious",
+        "html": "<a href=\"#elementor-toc__heading-anchor-1\" class=\"elementor-toc__list-item-text\">\n\t\t\t\t\t\t\n\t\t\t\t\t\t\tWebsite Design &amp; Development\t\t\t\t\t\t\n\t\t\t\t\t</a>",
+        "target": [
+          ".elementor-toc__list-item:nth-child(2) > .elementor-toc__list-item-text-wrapper > .elementor-toc__list-item-text"
+        ],
+        "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.17 (foreground color: #5e6782, background color: #0e172d, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+      },
+      {
+        "any": [
+          {
+            "id": "color-contrast",
+            "data": {
+              "fgColor": "#5e6782",
+              "bgColor": "#0e172d",
+              "contrastRatio": 3.17,
+              "fontSize": "13.5pt (18px)",
+              "fontWeight": "normal",
+              "messageKey": null,
+              "expectedContrastRatio": "4.5:1"
+            },
+            "relatedNodes": [
+              {
+                "html": "<body class=\"wp-singular page-tem...\" data-elementor-devic...=\"mobile\">",
+                "target": [
+                  "body"
+                ]
+              }
+            ],
+            "impact": "serious",
+            "message": "Element has insufficient color contrast of 3.17 (foreground color: #5e6782, background color: #0e172d, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "serious",
+        "html": "<a href=\"#elementor-toc__heading-anchor-2\" class=\"elementor-toc__list-item-text\">\n\t\t\t\t\t\t\n\t\t\t\t\t\t\tComputer Repair &amp; Installation\t\t\t\t\t\t\n\t\t\t\t\t</a>",
+        "target": [
+          ".elementor-toc__list-item:nth-child(3) > .elementor-toc__list-item-text-wrapper > .elementor-toc__list-item-text"
+        ],
+        "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.17 (foreground color: #5e6782, background color: #0e172d, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+      },
+      {
+        "any": [
+          {
+            "id": "color-contrast",
+            "data": {
+              "fgColor": "#5e6782",
+              "bgColor": "#0e172d",
+              "contrastRatio": 3.17,
+              "fontSize": "13.5pt (18px)",
+              "fontWeight": "normal",
+              "messageKey": null,
+              "expectedContrastRatio": "4.5:1"
+            },
+            "relatedNodes": [
+              {
+                "html": "<body class=\"wp-singular page-tem...\" data-elementor-devic...=\"mobile\">",
+                "target": [
+                  "body"
+                ]
+              }
+            ],
+            "impact": "serious",
+            "message": "Element has insufficient color contrast of 3.17 (foreground color: #5e6782, background color: #0e172d, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "serious",
+        "html": "<a href=\"#elementor-toc__heading-anchor-4\" class=\"elementor-toc__list-item-text\">\n\t\t\t\t\t\t\n\t\t\t\t\t\t\tHardware Services\t\t\t\t\t\t\n\t\t\t\t\t</a>",
+        "target": [
+          ".elementor-toc__list-item:nth-child(5) > .elementor-toc__list-item-text-wrapper > .elementor-toc__list-item-text"
+        ],
+        "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.17 (foreground color: #5e6782, background color: #0e172d, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+      },
+      {
+        "any": [
+          {
+            "id": "color-contrast",
+            "data": {
+              "fgColor": "#5e6782",
+              "bgColor": "#0e172d",
+              "contrastRatio": 3.17,
+              "fontSize": "13.5pt (18px)",
+              "fontWeight": "normal",
+              "messageKey": null,
+              "expectedContrastRatio": "4.5:1"
+            },
+            "relatedNodes": [
+              {
+                "html": "<body class=\"wp-singular page-tem...\" data-elementor-devic...=\"mobile\">",
+                "target": [
+                  "body"
+                ]
+              }
+            ],
+            "impact": "serious",
+            "message": "Element has insufficient color contrast of 3.17 (foreground color: #5e6782, background color: #0e172d, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "serious",
+        "html": "<a href=\"#elementor-toc__heading-anchor-5\" class=\"elementor-toc__list-item-text\">\n\t\t\t\t\t\t\n\t\t\t\t\t\t\tSoftware Services\t\t\t\t\t\t\n\t\t\t\t\t</a>",
+        "target": [
+          ".elementor-toc__list-item:nth-child(6) > .elementor-toc__list-item-text-wrapper > .elementor-toc__list-item-text"
+        ],
+        "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.17 (foreground color: #5e6782, background color: #0e172d, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+      },
+      {
+        "any": [
+          {
+            "id": "color-contrast",
+            "data": {
+              "fgColor": "#5e6782",
+              "bgColor": "#0e172d",
+              "contrastRatio": 3.17,
+              "fontSize": "13.5pt (18px)",
+              "fontWeight": "normal",
+              "messageKey": null,
+              "expectedContrastRatio": "4.5:1"
+            },
+            "relatedNodes": [
+              {
+                "html": "<body class=\"wp-singular page-tem...\" data-elementor-devic...=\"mobile\">",
+                "target": [
+                  "body"
+                ]
+              }
+            ],
+            "impact": "serious",
+            "message": "Element has insufficient color contrast of 3.17 (foreground color: #5e6782, background color: #0e172d, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "serious",
+        "html": "<a href=\"#elementor-toc__heading-anchor-6\" class=\"elementor-toc__list-item-text\">\n\t\t\t\t\t\t\n\t\t\t\t\t\t\tVirus &amp; Malware Removal\t\t\t\t\t\t\n\t\t\t\t\t</a>",
+        "target": [
+          ".elementor-toc__list-item:nth-child(7) > .elementor-toc__list-item-text-wrapper > .elementor-toc__list-item-text"
+        ],
+        "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.17 (foreground color: #5e6782, background color: #0e172d, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+      }
+    ]
+  },
+  {
+    "id": "heading-order",
+    "impact": "moderate",
+    "tags": [
+      "cat.semantics",
+      "best-practice"
+    ],
+    "description": "Ensure the order of headings is semantically correct",
+    "help": "Heading levels should only increase by one",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/heading-order?application=playwright",
+    "nodes": [
+      {
+        "any": [
+          {
+            "id": "heading-order",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Heading order invalid"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<h3 class=\"elementor-toc__header-title\">\n\t\t\t\tOur Services\t\t\t</h3>",
+        "target": [
+          ".elementor-toc__header-title"
+        ],
+        "failureSummary": "Fix any of the following:\n  Heading order invalid"
+      },
+      {
+        "any": [
+          {
+            "id": "heading-order",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Heading order invalid"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<h6 class=\"elementor-heading-title elementor-size-default\">Need Help With Your Technology?</h6>",
+        "target": [
+          "h6"
+        ],
+        "failureSummary": "Fix any of the following:\n  Heading order invalid"
+      }
+    ]
+  },
+  {
+    "id": "landmark-one-main",
+    "impact": "moderate",
+    "tags": [
+      "cat.semantics",
+      "best-practice"
+    ],
+    "description": "Ensure the document has a main landmark",
+    "help": "Document should have one main landmark",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/landmark-one-main?application=playwright",
+    "nodes": [
+      {
+        "any": [],
+        "all": [
+          {
+            "id": "page-has-main",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Document does not have a main landmark"
+          }
+        ],
+        "none": [],
+        "impact": "moderate",
+        "html": "<html lang=\"en-US\">",
+        "target": [
+          "html"
+        ],
+        "failureSummary": "Fix all of the following:\n  Document does not have a main landmark"
+      }
+    ]
+  },
+  {
+    "id": "link-name",
+    "impact": "serious",
+    "tags": [
+      "cat.name-role-value",
+      "wcag2a",
+      "wcag244",
+      "wcag412",
+      "section508",
+      "section508.22.a",
+      "TTv5",
+      "TT6.a",
+      "EN-301-549",
+      "EN-9.2.4.4",
+      "EN-9.4.1.2",
+      "ACT",
+      "RGAAv4",
+      "RGAA-6.2.1"
+    ],
+    "description": "Ensure links have discernible text",
+    "help": "Links must have discernible text",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/link-name?application=playwright",
+    "nodes": [
+      {
+        "any": [
+          {
+            "id": "has-visible-text",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "Element does not have text that is visible to screen readers"
+          },
+          {
+            "id": "aria-label",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "aria-label attribute does not exist or is empty"
+          },
+          {
+            "id": "aria-labelledby",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+          },
+          {
+            "id": "non-empty-title",
+            "data": {
+              "messageKey": "noAttr"
+            },
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "Element has no title attribute"
+          }
+        ],
+        "all": [],
+        "none": [
+          {
+            "id": "focusable-no-name",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "Element is in tab order and does not have accessible text"
+          }
+        ],
+        "impact": "serious",
+        "html": "<a href=\"https://bigbrain-solutions.com\">",
+        "target": [
+          ".elementor-sticky--active > .e-con-inner > .elementor-element-7a27f5c6.e-con-full[data-id=\"7a27f5c6\"] > .elementor-element-69eb968.elementor-widget-theme-site-logo[data-id=\"69eb968\"] > a[href$=\"bigbrain-solutions.com\"]"
+        ],
+        "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+      },
+      {
+        "any": [
+          {
+            "id": "has-visible-text",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "Element does not have text that is visible to screen readers"
+          },
+          {
+            "id": "aria-label",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "aria-label attribute does not exist or is empty"
+          },
+          {
+            "id": "aria-labelledby",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+          },
+          {
+            "id": "non-empty-title",
+            "data": {
+              "messageKey": "noAttr"
+            },
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "Element has no title attribute"
+          }
+        ],
+        "all": [],
+        "none": [
+          {
+            "id": "focusable-no-name",
+            "data": null,
+            "relatedNodes": [],
+            "impact": "serious",
+            "message": "Element is in tab order and does not have accessible text"
+          }
+        ],
+        "impact": "serious",
+        "html": "<a href=\"https://bigbrain-solutions.com\">",
+        "target": [
+          ".elementor-element-35cd4347 > a[href$=\"bigbrain-solutions.com\"]"
+        ],
+        "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+      }
+    ]
+  },
+  {
+    "id": "region",
+    "impact": "moderate",
+    "tags": [
+      "cat.keyboard",
+      "best-practice",
+      "RGAAv4",
+      "RGAA-9.2.1"
+    ],
+    "description": "Ensure all page content is contained by landmarks",
+    "help": "All page content should be contained by landmarks",
+    "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/region?application=playwright",
+    "nodes": [
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<div class=\"elementor-element elementor-element-57963ad7 elementor-widget elementor-widget-heading\" data-id=\"57963ad7\" data-element_type=\"widget\" data-e-type=\"widget\" data-widget_type=\"heading.default\">",
+        "target": [
+          ".elementor-element-57963ad7"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<div class=\"elementor-element elementor-element-3ef30ca3 elementor-widget elementor-widget-text-editor\" data-id=\"3ef30ca3\" data-element_type=\"widget\" data-e-type=\"widget\" data-widget_type=\"text-editor.default\">",
+        "target": [
+          ".elementor-element-3ef30ca3"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<div class=\"elementor-toc__header\">\n\t\t\t\t\t\t<h3 class=\"elementor-toc__header-title\">\n\t\t\t\tOur Services\t\t\t</h3>\n\t\t\t\t\t\t\t\t</div>",
+        "target": [
+          ".elementor-toc__header"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<a href=\"#elementor-toc__heading-anchor-0\" class=\"elementor-toc__list-item-text\">\n\t\t\t\t\t\t\n\t\t\t\t\t\t\tWeb Application Development\t\t\t\t\t\t\n\t\t\t\t\t</a>",
+        "target": [
+          ".elementor-toc__list-item:nth-child(1) > .elementor-toc__list-item-text-wrapper > .elementor-toc__list-item-text"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<a href=\"#elementor-toc__heading-anchor-1\" class=\"elementor-toc__list-item-text\">\n\t\t\t\t\t\t\n\t\t\t\t\t\t\tWebsite Design &amp; Development\t\t\t\t\t\t\n\t\t\t\t\t</a>",
+        "target": [
+          ".elementor-toc__list-item:nth-child(2) > .elementor-toc__list-item-text-wrapper > .elementor-toc__list-item-text"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<a href=\"#elementor-toc__heading-anchor-2\" class=\"elementor-toc__list-item-text\">\n\t\t\t\t\t\t\n\t\t\t\t\t\t\tComputer Repair &amp; Installation\t\t\t\t\t\t\n\t\t\t\t\t</a>",
+        "target": [
+          ".elementor-toc__list-item:nth-child(3) > .elementor-toc__list-item-text-wrapper > .elementor-toc__list-item-text"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<a href=\"#elementor-toc__heading-anchor-3\" class=\"elementor-toc__list-item-text elementor-item-active\">\n\t\t\t\t\t\t\n\t\t\t\t\t\t\tNetwork Setup &amp; Support\t\t\t\t\t\t\n\t\t\t\t\t</a>",
+        "target": [
+          ".elementor-item-active.elementor-toc__list-item-text"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<a href=\"#elementor-toc__heading-anchor-4\" class=\"elementor-toc__list-item-text\">\n\t\t\t\t\t\t\n\t\t\t\t\t\t\tHardware Services\t\t\t\t\t\t\n\t\t\t\t\t</a>",
+        "target": [
+          ".elementor-toc__list-item:nth-child(5) > .elementor-toc__list-item-text-wrapper > .elementor-toc__list-item-text"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<a href=\"#elementor-toc__heading-anchor-5\" class=\"elementor-toc__list-item-text\">\n\t\t\t\t\t\t\n\t\t\t\t\t\t\tSoftware Services\t\t\t\t\t\t\n\t\t\t\t\t</a>",
+        "target": [
+          ".elementor-toc__list-item:nth-child(6) > .elementor-toc__list-item-text-wrapper > .elementor-toc__list-item-text"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<a href=\"#elementor-toc__heading-anchor-6\" class=\"elementor-toc__list-item-text\">\n\t\t\t\t\t\t\n\t\t\t\t\t\t\tVirus &amp; Malware Removal\t\t\t\t\t\t\n\t\t\t\t\t</a>",
+        "target": [
+          ".elementor-toc__list-item:nth-child(7) > .elementor-toc__list-item-text-wrapper > .elementor-toc__list-item-text"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<div class=\"elementor-icon-box-content\">",
+        "target": [
+          ".elementor-element-6f82ec4 > .elementor-icon-box-wrapper > .elementor-icon-box-content"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<div class=\"elementor-element elementor-element-124662bf elementor-widget elementor-widget-text-editor\" data-id=\"124662bf\" data-element_type=\"widget\" data-e-type=\"widget\" data-widget_type=\"text-editor.default\">",
+        "target": [
+          ".elementor-element-124662bf"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<div class=\"elementor-icon-box-content\">",
+        "target": [
+          ".elementor-element-14dc0ac6 > .elementor-icon-box-wrapper > .elementor-icon-box-content"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<div class=\"elementor-element elementor-element-41c3a604 elementor-widget elementor-widget-text-editor\" data-id=\"41c3a604\" data-element_type=\"widget\" data-e-type=\"widget\" data-widget_type=\"text-editor.default\">",
+        "target": [
+          ".elementor-element-41c3a604"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<div class=\"elementor-icon-box-content\">",
+        "target": [
+          ".elementor-element-7118ad75 > .elementor-icon-box-wrapper > .elementor-icon-box-content"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<div class=\"elementor-element elementor-element-2ee3c647 elementor-widget elementor-widget-text-editor\" data-id=\"2ee3c647\" data-element_type=\"widget\" data-e-type=\"widget\" data-widget_type=\"text-editor.default\">",
+        "target": [
+          ".elementor-element-2ee3c647"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<div class=\"elementor-icon-box-content\">",
+        "target": [
+          ".elementor-element-7f2f6127 > .elementor-icon-box-wrapper > .elementor-icon-box-content"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<div class=\"elementor-element elementor-element-785e684e elementor-widget elementor-widget-text-editor\" data-id=\"785e684e\" data-element_type=\"widget\" data-e-type=\"widget\" data-widget_type=\"text-editor.default\">",
+        "target": [
+          ".elementor-element-785e684e"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<div class=\"elementor-icon-box-content\">",
+        "target": [
+          ".elementor-element-235f439 > .elementor-icon-box-wrapper > .elementor-icon-box-content"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<div class=\"elementor-element elementor-element-778d47bf elementor-widget elementor-widget-text-editor\" data-id=\"778d47bf\" data-element_type=\"widget\" data-e-type=\"widget\" data-widget_type=\"text-editor.default\">",
+        "target": [
+          ".elementor-element-778d47bf"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<div class=\"elementor-icon-box-content\">",
+        "target": [
+          ".elementor-element-46356ee2 > .elementor-icon-box-wrapper > .elementor-icon-box-content"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<div class=\"elementor-element elementor-element-13555893 elementor-widget elementor-widget-text-editor\" data-id=\"13555893\" data-element_type=\"widget\" data-e-type=\"widget\" data-widget_type=\"text-editor.default\">",
+        "target": [
+          ".elementor-element-13555893"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<div class=\"elementor-icon-box-content\">",
+        "target": [
+          ".elementor-element-5fb55b1b > .elementor-icon-box-wrapper > .elementor-icon-box-content"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<div class=\"elementor-element elementor-element-4fd6425c elementor-widget elementor-widget-text-editor\" data-id=\"4fd6425c\" data-element_type=\"widget\" data-e-type=\"widget\" data-widget_type=\"text-editor.default\">",
+        "target": [
+          ".elementor-element-4fd6425c"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      },
+      {
+        "any": [
+          {
+            "id": "region",
+            "data": {
+              "isIframe": false
+            },
+            "relatedNodes": [],
+            "impact": "moderate",
+            "message": "Some page content is not contained by landmarks"
+          }
+        ],
+        "all": [],
+        "none": [],
+        "impact": "moderate",
+        "html": "<div class=\"elementor-element elementor-element-9974bea e-flex e-con-boxed e-con e-parent\" data-id=\"9974bea\" data-element_type=\"container\" data-e-type=\"container\">",
+        "target": [
+          ".elementor-element-9974bea"
+        ],
+        "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+      }
+    ]
+  }
+]
