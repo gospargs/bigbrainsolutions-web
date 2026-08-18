@@ -1,7 +1,12 @@
 ---
 // A restrained nod to falling 0s/1s -- the idea of it, not a literal Matrix screensaver.
-// Opacity 4-8%, muted-text token, sparse slow columns, canvas capped ~15fps.
+// Muted-text token, sparse slow columns, canvas capped ~15fps.
 // Disabled under prefers-reduced-motion and on mobile viewports (<768px).
+//
+// BUGFIX-004: the original 4-8% opacity range (implemented at 6%) was confirmed via raw
+// canvas pixel sampling to be drawing correctly (no rendering bug -- correct z-index,
+// correct canvas sizing, zero console errors, correct alpha), but was imperceptible on a
+// real screen. Raised to 12% -- same density, same speed, just visible now.
 ---
 
 <canvas class="bb-digital-rain" aria-hidden="true"></canvas>
@@ -45,7 +50,7 @@
     const styles = getComputedStyle(document.documentElement);
     const charColor = styles.getPropertyValue('--color-muted').trim() || '#9A9A9F';
 
-    const fontSize = 13;
+    const fontSize = 14;
     const columnGap = 42; // sparse: one column per ~42px
     const rowHeight = fontSize * 1.6;
     const chars = '01';
@@ -89,7 +94,7 @@
       ctx!.clearRect(0, 0, width, height);
       ctx!.font = `${fontSize}px ui-monospace, "SF Mono", Menlo, Consolas, monospace`;
       ctx!.fillStyle = charColor;
-      ctx!.globalAlpha = 0.06; // 6% -- middle of the restrained 4-8% range
+      ctx!.globalAlpha = 0.12; // perceptible-but-subtle -- see BUGFIX-004 note above
 
       for (const col of columns) {
         const char = chars[Math.floor(Math.random() * chars.length)];
