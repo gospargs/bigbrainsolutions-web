@@ -65,7 +65,7 @@ const { value, suffix = '', label, class: className } = Astro.props;
       const progress = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
       const current = Math.round(target * eased);
-      valueEl.textContent = `${current}${suffix}`;
+      (valueEl as HTMLElement).textContent = `${current}${suffix}`;
       if (progress < 1) requestAnimationFrame(tick);
     }
 

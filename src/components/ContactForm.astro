@@ -1,0 +1,193 @@
+---
+interface Props {
+  services: { value: string; label: string }[];
+  turnstileSiteKey: string;
+  labels: {
+    name: string;
+    email: string;
+    clientType: string;
+    clientTypeIndividual: string;
+    clientTypeBusiness: string;
+    service: string;
+    message: string;
+    submit: string;
+    submitting: string;
+    success: string;
+    error: string;
+  };
+  selectedService?: string;
+}
+
+const { services, labels, selectedService, turnstileSiteKey } = Astro.props;
+---
+
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<form id="contact-form" class="space-y-5" novalidate data-selected-service={selectedService}>
+  <div>
+    <label for="cf-name" class="mb-1 block text-sm font-medium">{labels.name}</label>
+    <input
+      id="cf-name"
+      name="name"
+      type="text"
+      required
+      autocomplete="name"
+      class="w-full rounded-card border border-border bg-background px-4 py-2.5 outline-none focus-visible:border-primary"
+      aria-describedby="cf-name-error"
+    />
+    <p id="cf-name-error" class="mt-1 text-caption text-error-fg" role="alert" hidden></p>
+  </div>
+
+  <div>
+    <label for="cf-email" class="mb-1 block text-sm font-medium">{labels.email}</label>
+    <input
+      id="cf-email"
+      name="email"
+      type="email"
+      required
+      autocomplete="email"
+      class="w-full rounded-card border border-border bg-background px-4 py-2.5 outline-none focus-visible:border-primary"
+      aria-describedby="cf-email-error"
+    />
+    <p id="cf-email-error" class="mt-1 text-caption text-error-fg" role="alert" hidden></p>
+  </div>
+
+  <fieldset>
+    <legend class="mb-1 block text-sm font-medium">{labels.clientType}</legend>
+    <div class="flex gap-4">
+      <label class="flex items-center gap-2">
+        <input type="radio" name="clientType" value="individual" checked />
+        {labels.clientTypeIndividual}
+      </label>
+      <label class="flex items-center gap-2">
+        <input type="radio" name="clientType" value="business" />
+        {labels.clientTypeBusiness}
+      </label>
+    </div>
+  </fieldset>
+
+  <div>
+    <label for="cf-service" class="mb-1 block text-sm font-medium">{labels.service}</label>
+    <select
+      id="cf-service"
+      name="service"
+      required
+      class="w-full rounded-card border border-border bg-background px-4 py-2.5 outline-none focus-visible:border-primary"
+    >
+      {services.map((s) => (
+        <option value={s.value} selected={s.value === selectedService}>{s.label}</option>
+      ))}
+    </select>
+  </div>
+
+  <div>
+    <label for="cf-message" class="mb-1 block text-sm font-medium">{labels.message}</label>
+    <textarea
+      id="cf-message"
+      name="message"
+      required
+      rows="5"
+      class="w-full rounded-card border border-border bg-background px-4 py-2.5 outline-none focus-visible:border-primary"
+      aria-describedby="cf-message-error"
+    ></textarea>
+    <p id="cf-message-error" class="mt-1 text-caption text-error-fg" role="alert" hidden></p>
+  </div>
+
+  <div class="cf-turnstile" data-sitekey={turnstileSiteKey}></div>
+
+  <button
+    type="submit"
+    id="cf-submit"
+    class="bb-button bb-button--primary"
+  >
+    {labels.submit}
+  </button>
+
+  <p id="cf-status" class="text-caption" role="status" aria-live="polite"></p>
+</form>
+
+<script is:inline define:vars={{ labels }}>
+  const form = document.getElementById('contact-form');
+  const submitBtn = document.getElementById('cf-submit');
+  const status = document.getElementById('cf-status');
+
+  function setFieldError(id, message) {
+    const el = document.getElementById(`${id}-error`);
+    if (!el) return;
+    if (message) {
+      el.textContent = message;
+      el.hidden = false;
+    } else {
+      el.hidden = true;
+    }
+  }
+
+  function validate() {
+    let valid = true;
+    const name = form.querySelector('#cf-name');
+    const email = form.querySelector('#cf-email');
+    const message = form.querySelector('#cf-message');
+
+    if (!name.value.trim()) {
+      setFieldError('cf-name', 'Please enter your name.');
+      valid = false;
+    } else {
+      setFieldError('cf-name', '');
+    }
+
+    if (!email.value.trim() || !email.validity.valid) {
+      setFieldError('cf-email', 'Please enter a valid email address.');
+      valid = false;
+    } else {
+      setFieldError('cf-email', '');
+    }
+
+    if (!message.value.trim()) {
+      setFieldError('cf-message', 'Please enter a message.');
+      valid = false;
+    } else {
+      setFieldError('cf-message', '');
+    }
+
+    return valid;
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = labels.submitting;
+    status.textContent = '';
+    status.className = 'text-caption';
+
+    try {
+      const formData = new FormData(form);
+      const payload = Object.fromEntries(formData.entries());
+
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        status.textContent = labels.success;
+        status.classList.add('text-success-fg');
+        form.reset();
+        if (window.turnstile) window.turnstile.reset();
+      } else {
+        status.textContent = data.error || labels.error;
+        status.classList.add('text-error-fg');
+      }
+    } catch {
+      status.textContent = labels.error;
+      status.classList.add('text-error-fg');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = labels.submit;
+    }
+  });
+</script>

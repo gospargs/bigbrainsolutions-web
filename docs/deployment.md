@@ -18,3 +18,9 @@ Wrangler can create the Pages project and push manual deploys, but connecting it
 3. Select `main` as the production branch, build command `npm run build`, build output directory `dist`.
 
 Until that's done, every commit needs a manual `npx wrangler pages deploy dist --project-name bigbrainsolutions-web --branch main` to update the preview — which is exactly what's happening for now so the preview URL stays current with each Task ID's commit.
+
+## Secrets and bindings on the Pages project
+
+- `TURNSTILE_SECRET_KEY` — set as a Pages secret (production environment) via `wrangler pages secret put`. Not in the repo.
+- `CONTACT_TO_EMAIL` / `CONTACT_FROM_EMAIL` — **not yet set**. Setting these activates real email delivery from `functions/api/contact.ts`; intentionally left unset until the `bigbrain-solutions.com` domain is onboarded to Cloudflare Email Sending (a DNS change, deferred to `DEPLOY-001` — see `docs/decisions.md`).
+- `EMAIL` (send_email binding) and a rate-limit binding — Cloudflare Pages Functions don't support declaring these in `wrangler.jsonc` in the current Wrangler version; add both via the dashboard (**Settings → Functions → Bindings**) at the same time the email domain is onboarded.

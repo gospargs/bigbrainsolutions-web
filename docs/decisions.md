@@ -38,6 +38,16 @@ Verified via axe-core against `/components` in both themes: the audit's raw `pri
 
 ---
 
+## ARCH-003 — contact form backend: email delivery deliberately deferred
+
+Cloudflare Email Sending requires the `from` domain to be onboarded, which adds DKIM/verification DNS records to that domain's live zone. Since `bigbrain-solutions.com`'s DNS is explicitly off-limits until `DEPLOY-001`, `functions/api/contact.ts` implements validation, Turnstile bot verification, and the email payload construction, but only actually calls `env.EMAIL.send()` when `CONTACT_TO_EMAIL`/`CONTACT_FROM_EMAIL` are configured — until then submissions are accepted (still going through full validation + Turnstile checks) and logged, not emailed. Also, Cloudflare Pages Functions (as opposed to plain Workers) don't support the `send_email` or `ratelimits` keys in `wrangler.jsonc` in the currently installed Wrangler version — those bindings, if used, need to be added via the Cloudflare Pages dashboard's Functions/bindings settings instead, at the same time the domain is onboarded. The rate-limit check in the function code already fails open (allows the request) if the binding isn't present, so nothing breaks in the meantime.
+
+A **Turnstile widget was created** (via `wrangler turnstile widget create`, safe — it's an API-side resource, not a DNS change) covering `bigbrainsolutions-web.pages.dev`, `bigbrain-solutions.com`, `www.bigbrain-solutions.com`, and `localhost`. The secret key is stored as a Cloudflare Pages secret (`TURNSTILE_SECRET_KEY`, production environment), never committed to the repo; the site key is public and lives in the component prop.
+
+*Why this call:* respects the explicit "no production DNS changes before DEPLOY-001" boundary literally (email domain verification is a DNS change) while still shipping a fully-functional, testable form today. *Revisit at:* `DEPLOY-001`, or sooner if the owner explicitly approves adding the email DNS records early.
+
+---
+
 ## Pricing placeholders (flagged in advance for PAGE-001)
 
 The roadmap explicitly punts exact pricing figures to the owner (`{{PRICE_X}}` placeholder tokens). Decision: rather than shipping visible `{{PRICE_X}}` placeholder tokens to a preview URL stakeholders might see, PAGE-001 will use realistic, clearly-labeled **directional placeholder pricing** (e.g. "Computer repair — from €35", "Custom web application — from €1,500, custom quote") based on typical Croatian/Dubrovnik-market rates for the service tracks described in the audit, marked in `docs/content-review-checklist.md` as owner-confirm-required before `DEPLOY-001`. This keeps the preview looking finished ("top notch, no shortcuts") rather than visibly unfinished, while making unmistakably clear in the review checklist that every figure is a placeholder pending the owner's real pricing.
