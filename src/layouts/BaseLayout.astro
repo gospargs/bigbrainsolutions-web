@@ -1,0 +1,37 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  lang: 'hr' | 'en';
+  title: string;
+  description: string;
+  ogImage?: string;
+}
+
+const { lang, title, description, ogImage } = Astro.props;
+---
+
+<html lang={lang}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
+		{ogImage && <meta property="og:image" content={new URL(ogImage, Astro.site)} />}
+		<meta name="twitter:card" content="summary_large_image" />
+
+		<slot name="head" />
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
