@@ -72,6 +72,13 @@ const tracks = [
         description: 'Custom web applications, planned and built to be secure, scalable, and easy to use.',
         price: 'Custom quote',
       },
+      {
+        value: 'mobile-app-development',
+        title: 'Mobile App Development',
+        description: 'Mobile apps — from concept to launch. See HomeStock, our own shipped app.',
+        price: 'Custom quote',
+        href: '/en/homestock/',
+      },
     ],
   },
 ];
@@ -100,7 +107,7 @@ const tracks = [
 				<SectionHeading title={track.title} class="mb-6" />
 				<div class="bb-grid">
 					{track.services.map((s) => (
-						<Card variant="service" href={`/en/contact/?service=${s.value}`}>
+						<Card variant="service" href={s.href ?? `/en/contact/?service=${s.value}`}>
 							<Badge variant="accent" class="mb-3">{s.price}</Badge>
 							<h3 class="mb-2">{s.title}</h3>
 							<p class="text-muted">{s.description}</p>
