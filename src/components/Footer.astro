@@ -5,6 +5,7 @@ interface NavItem {
 }
 
 interface Props {
+  lang: 'hr' | 'en';
   nav: NavItem[];
   privacyHref: string;
   privacyLabel: string;
@@ -17,15 +18,16 @@ interface Props {
   };
 }
 
-const { nav, privacyHref, privacyLabel, labels } = Astro.props;
+const { lang, nav, privacyHref, privacyLabel, labels } = Astro.props;
 const year = new Date().getFullYear();
+const country = lang === 'hr' ? 'Hrvatska' : 'Croatia';
 ---
 
 <footer class="bb-footer">
   <div class="bb-footer__inner">
     <div class="bb-footer__brand">
       <p class="bb-footer__logo">Big Brain Solutions</p>
-      <p class="text-muted">{labels.address}: Riječka 15a, 20000 Dubrovnik, Croatia</p>
+      <p class="text-muted">{labels.address}: Riječka 15a, 20000 Dubrovnik, {country}</p>
       <p class="text-muted">{labels.contact}: <a href="mailto:info@bigbrain-solutions.com">info@bigbrain-solutions.com</a> · <a href="tel:+38599649274">+385 99 649 9274</a></p>
       <p class="text-muted">{labels.hours}: {labels.hoursValue}</p>
       <a href="https://hr.linkedin.com/company/bigbrain-solutions" class="bb-footer__linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a>
