@@ -111,6 +111,16 @@ const { services, labels, selectedService, turnstileSiteKey } = Astro.props;
   const submitBtn = document.getElementById('cf-submit');
   const status = document.getElementById('cf-status');
 
+  // Deep-link support: /kontakt/?service=web-app pre-selects the matching option
+  // so Services page cards can link straight into a pre-filled form.
+  const requestedService = new URLSearchParams(window.location.search).get('service');
+  if (requestedService) {
+    const select = document.getElementById('cf-service');
+    if (select && [...select.options].some((o) => o.value === requestedService)) {
+      select.value = requestedService;
+    }
+  }
+
   function setFieldError(id, message) {
     const el = document.getElementById(`${id}-error`);
     if (!el) return;

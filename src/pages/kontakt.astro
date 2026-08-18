@@ -1,0 +1,208 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ContactForm from '../components/ContactForm.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const nav = [
+  { href: '/usluge/', label: 'Usluge' },
+  { href: '/o-nama/', label: 'O nama' },
+  { href: '/homestock/', label: 'HomeStock' },
+  { href: '/kontakt/', label: 'Kontakt' },
+];
+
+const services = [
+  { value: '', label: 'Odaberite vrstu usluge' },
+  { value: 'web-app-development', label: 'Razvoj web aplikacija' },
+  { value: 'website-design', label: 'Izrada web stranica' },
+  { value: 'computer-repair', label: 'Popravak i instalacija računala' },
+  { value: 'network-setup', label: 'Postavljanje i podrška mreže' },
+  { value: 'hardware-services', label: 'Hardverske usluge' },
+  { value: 'software-services', label: 'Softverske usluge' },
+  { value: 'virus-removal', label: 'Uklanjanje virusa i zlonamjernog softvera' },
+];
+
+const faqItems = [
+  { question: 'Koje usluge nudite?', answer: 'Nudimo cijeli spektar IT i tehničkih usluga, uključujući popravak računala, uklanjanje virusa, postavljanje hardvera i softvera, umrežavanje i podršku, te izradu web stranica i web aplikacija.' },
+  { question: 'Nudite li podršku na terenu ili samo u radionici?', answer: 'Nudimo oboje! Možete zakazati posjet kod vas, donijeti uređaj u našu radionicu ili zatražiti podršku na daljinu — ovisno o vašim potrebama.' },
+  { question: 'Koliko traje tipičan popravak ili postavljanje računala?', answer: 'Većina popravaka ili postavljanja završava se u nekoliko sati do jednog dana, ovisno o složenosti. Web ili aplikacijski projekti traju dulje i planiraju se prema opsegu projekta.' },
+  { question: 'Možete li pomoći s umrežavanjem i Wi-Fi pokrivenošću kod kuće ili u uredu?', answer: 'Apsolutno. Postavljamo routere, pristupne točke i konfiguriramo mreže radi jake Wi-Fi pokrivenosti i pouzdane povezanosti u cijelom prostoru.' },
+  { question: 'Nudite li jamstvo na svoje usluge?', answer: 'Da. Sve naše usluge dolaze s 60 dana jamstva kako bismo osigurali da vaši uređaji i projekti rade neprimjetno, uz našu predanost zadovoljstvu klijenata.' },
+  { question: 'Kako mogu zatražiti ponudu ili zakazati uslugu?', answer: 'Jednostavno zatražite ponudu putem gumba "Zatražite ponudu" na našoj stranici ili nas kontaktirajte izravno telefonom ili e-mailom.' },
+];
+---
+
+<BaseLayout
+	lang="hr"
+	title="Kontakt — Big Brain Solutions"
+	description="Kontaktirajte Big Brain Solutions u Dubrovniku za IT podršku, popravak računala ili razvoj web stranica i aplikacija. Odgovaramo isti dan."
+>
+	<Header lang="hr" nav={nav} altLangHref="/en/contact/" altLangLabel="English" />
+
+	<main>
+		<section class="bb-hero">
+			<div class="bb-hero__inner">
+				<h1 class="bb-hero__title">Potpuna tehnička rješenja za vaše poslovanje ili dom</h1>
+				<p class="bb-hero__subtitle">Od web stranica i aplikacija do IT podrške i popravaka — pokrivamo sve.</p>
+			</div>
+		</section>
+
+		<section class="bb-section bb-contact-grid">
+			<div class="bb-contact-info">
+				<div>
+					<h2 class="bb-contact-info__label">Adresa</h2>
+					<p>Riječka 15a, 20000 Dubrovnik, Hrvatska</p>
+				</div>
+				<div>
+					<h2 class="bb-contact-info__label">Kontakt</h2>
+					<p><a href="mailto:info@bigbrain-solutions.com">info@bigbrain-solutions.com</a></p>
+					<p><a href="tel:+38599649274">+385 99 649 9274</a></p>
+				</div>
+				<div>
+					<h2 class="bb-contact-info__label">Radno vrijeme</h2>
+					<p>Pon – Sub 6:00 – 18:00</p>
+					<p>Nedjelja zatvoreno</p>
+				</div>
+
+				<div id="bb-map" class="bb-map" data-map-lazy>
+					<button type="button" class="bb-map__load" id="bb-map-load">Prikaži kartu</button>
+				</div>
+			</div>
+
+			<div class="bb-contact-form">
+				<h2 class="mb-2">Pošaljite nam poruku za besplatnu konzultaciju!</h2>
+				<p class="text-muted mb-6">Ispunite obrazac i javit ćemo vam se što prije.</p>
+				<ContactForm
+					services={services}
+					turnstileSiteKey="0x4AAAAAAEUSYcUTL0MKoxT1"
+					labels={{
+						name: 'Ime i prezime',
+						email: 'E-mail',
+						clientType: 'Ste li privatna osoba ili tvrtka?',
+						clientTypeIndividual: 'Privatna osoba',
+						clientTypeBusiness: 'Tvrtka',
+						service: 'Odaberite vrstu usluge',
+						message: 'Kako vam možemo pomoći?',
+						submit: 'Pošalji',
+						submitting: 'Slanje...',
+						success: 'Hvala! Vaša poruka je primljena — javit ćemo se uskoro.',
+						error: 'Dogodila se pogreška. Pokušajte ponovno ili nas nazovite izravno.',
+					}}
+				/>
+			</div>
+		</section>
+
+		<section class="bb-section">
+			<SectionHeading title="Često postavljana pitanja" class="mb-6" />
+			<FAQAccordion items={faqItems} />
+		</section>
+	</main>
+
+	<Footer
+		nav={nav}
+		privacyHref="/privatnost-homestock/"
+		privacyLabel="Privatnost (HomeStock)"
+		labels={{
+			address: 'Adresa',
+			contact: 'Kontakt',
+			hours: 'Radno vrijeme',
+			hoursValue: 'Pon–Sub 6:00–18:00',
+			rights: 'Sva prava pridržana.',
+		}}
+	/>
+</BaseLayout>
+
+<script is:inline>
+  document.getElementById('bb-map-load')?.addEventListener('click', (e) => {
+    const container = e.currentTarget.closest('[data-map-lazy]');
+    if (!container) return;
+    container.innerHTML = '<iframe title="Map" src="https://www.google.com/maps?q=Rije%C4%8Dka+15a,+20000+Dubrovnik&output=embed" width="100%" height="300" style="border:0;border-radius:var(--radius-card)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+  });
+</script>
+
+<style>
+	.bb-hero {
+		padding: var(--spacing-section-mobile) 1.5rem 2rem;
+		text-align: center;
+	}
+
+	.bb-hero__inner {
+		max-width: 44rem;
+		margin-inline: auto;
+	}
+
+	.bb-hero__subtitle {
+		margin-top: 1rem;
+		color: var(--color-muted);
+		font-family: var(--font-body);
+	}
+
+	.bb-section {
+		padding: 2.5rem 1.5rem;
+		max-width: 80rem;
+		margin-inline: auto;
+	}
+
+	.bb-contact-grid {
+		display: grid;
+		gap: 2.5rem;
+		grid-template-columns: 1fr;
+	}
+
+	.bb-contact-info {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.bb-contact-info__label {
+		font-size: 1rem;
+		margin-bottom: 0.25rem;
+	}
+
+	.bb-contact-info p {
+		font-family: var(--font-body);
+		color: var(--color-muted);
+		margin: 0.125rem 0;
+	}
+
+	.bb-contact-info a {
+		color: var(--color-foreground);
+	}
+
+	.bb-map {
+		border-radius: var(--radius-card);
+		border: 1px solid var(--color-border);
+		background-color: var(--color-surface);
+		min-height: 200px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.bb-map__load {
+		background: none;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-pill);
+		padding: 0.5rem 1.25rem;
+		color: var(--color-primary-text);
+		font-family: var(--font-body);
+		font-weight: 500;
+		cursor: pointer;
+	}
+
+	.bb-contact-form {
+		background-color: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-panel);
+		padding: 2rem;
+	}
+
+	@media (min-width: 64rem) {
+		.bb-contact-grid {
+			grid-template-columns: 1fr 1.5fr;
+		}
+	}
+</style>

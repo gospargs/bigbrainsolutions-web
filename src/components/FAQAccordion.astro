@@ -1,0 +1,53 @@
+---
+interface Props {
+  items: { question: string; answer: string }[];
+  class?: string;
+}
+
+const { items, class: className } = Astro.props;
+---
+
+<div class:list={['bb-faq', className]}>
+  {items.map((item) => (
+    <details class="bb-faq__item">
+      <summary class="bb-faq__question">{item.question}</summary>
+      <p class="bb-faq__answer">{item.answer}</p>
+    </details>
+  ))}
+</div>
+
+<style>
+  .bb-faq__item {
+    border-bottom: 1px solid var(--color-border);
+    padding: 1.25rem 0;
+  }
+
+  .bb-faq__question {
+    font-family: var(--font-body);
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .bb-faq__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .bb-faq__question::after {
+    content: '+';
+    float: right;
+    font-weight: 400;
+    color: var(--color-muted);
+  }
+
+  details[open] > .bb-faq__question::after {
+    content: '−';
+  }
+
+  .bb-faq__answer {
+    font-family: var(--font-body);
+    color: var(--color-muted);
+    margin-top: 0.75rem;
+    line-height: 1.7;
+  }
+</style>

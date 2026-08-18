@@ -1,0 +1,208 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+
+const nav = [
+  { href: '/en/services/', label: 'Services' },
+  { href: '/en/about/', label: 'About' },
+  { href: '/en/homestock/', label: 'HomeStock' },
+  { href: '/en/contact/', label: 'Contact' },
+];
+
+const services = [
+  { value: '', label: 'Select service type' },
+  { value: 'web-app-development', label: 'Web Application Development' },
+  { value: 'website-design', label: 'Website Design & Development' },
+  { value: 'computer-repair', label: 'Computer Repair & Installation' },
+  { value: 'network-setup', label: 'Network Setup & Support' },
+  { value: 'hardware-services', label: 'Hardware Services' },
+  { value: 'software-services', label: 'Software Services' },
+  { value: 'virus-removal', label: 'Virus & Malware Removal' },
+];
+
+const faqItems = [
+  { question: 'What services do you offer?', answer: 'We provide a full range of IT and tech services, including computer repairs, virus removal, hardware and software setup, network installation and support, as well as website and web application development.' },
+  { question: 'Do you provide on-site support or only in-shop services?', answer: 'We offer both! You can schedule on-site visits at your home or office, drop off your device at our shop, or request remote support depending on your needs.' },
+  { question: 'How long does a typical computer repair or setup take?', answer: 'Most repairs or setups can be completed within a few hours to a day, depending on the complexity. Web or application projects take longer and are scheduled based on project requirements.' },
+  { question: 'Can you help with networking and Wi-Fi coverage at home or in the office?', answer: 'Absolutely. We install routers, access points, and configure networks to ensure strong Wi-Fi coverage and reliable connectivity throughout your space.' },
+  { question: 'Do you offer a warranty on your services?', answer: 'Yes. All our services come with a 60-day warranty to ensure your devices and projects are running smoothly, backed by our commitment to customer satisfaction.' },
+  { question: 'How do I get a quote or schedule a service?', answer: 'You can easily request an estimate using the "Request an Estimate" button on our website or contact us directly via phone or email.' },
+];
+---
+
+<BaseLayout
+	lang="en"
+	title="Contact — Big Brain Solutions"
+	description="Contact Big Brain Solutions in Dubrovnik for IT support, computer repair, or website and application development. We respond the same day."
+>
+	<Header lang="en" nav={nav} altLangHref="/kontakt/" altLangLabel="Hrvatski" />
+
+	<main>
+		<section class="bb-hero">
+			<div class="bb-hero__inner">
+				<h1 class="bb-hero__title">Complete technology solutions for your business or home</h1>
+				<p class="bb-hero__subtitle">From websites and apps to IT support and repairs — we've got you covered.</p>
+			</div>
+		</section>
+
+		<section class="bb-section bb-contact-grid">
+			<div class="bb-contact-info">
+				<div>
+					<h2 class="bb-contact-info__label">Address</h2>
+					<p>Riječka 15a, 20000 Dubrovnik, Croatia</p>
+				</div>
+				<div>
+					<h2 class="bb-contact-info__label">Contact</h2>
+					<p><a href="mailto:info@bigbrain-solutions.com">info@bigbrain-solutions.com</a></p>
+					<p><a href="tel:+38599649274">+385 99 649 9274</a></p>
+				</div>
+				<div>
+					<h2 class="bb-contact-info__label">Open Hours</h2>
+					<p>Mon – Sat 6am – 6pm</p>
+					<p>Sunday closed</p>
+				</div>
+
+				<div id="bb-map" class="bb-map" data-map-lazy>
+					<button type="button" class="bb-map__load" id="bb-map-load">Show map</button>
+				</div>
+			</div>
+
+			<div class="bb-contact-form">
+				<h2 class="mb-2">Send us a message for a free consultation!</h2>
+				<p class="text-muted mb-6">Please fill out the form and we'll contact you ASAP.</p>
+				<ContactForm
+					services={services}
+					turnstileSiteKey="0x4AAAAAAEUSYcUTL0MKoxT1"
+					labels={{
+						name: 'Full Name',
+						email: 'Email',
+						clientType: 'Are you an individual or a business?',
+						clientTypeIndividual: 'Individual',
+						clientTypeBusiness: 'Business',
+						service: 'Select Service Type',
+						message: 'How can we help you?',
+						submit: 'Submit',
+						submitting: 'Submitting...',
+						success: 'Thanks! Your message has been received — we\'ll be in touch shortly.',
+						error: 'Something went wrong. Please try again or call us directly.',
+					}}
+				/>
+			</div>
+		</section>
+
+		<section class="bb-section">
+			<SectionHeading title="Frequently Asked Questions" class="mb-6" />
+			<FAQAccordion items={faqItems} />
+		</section>
+	</main>
+
+	<Footer
+		nav={nav}
+		privacyHref="/en/homestock-privacy-policy/"
+		privacyLabel="Privacy (HomeStock)"
+		labels={{
+			address: 'Address',
+			contact: 'Contact',
+			hours: 'Hours',
+			hoursValue: 'Mon–Sat 6am–6pm',
+			rights: 'All rights reserved.',
+		}}
+	/>
+</BaseLayout>
+
+<script is:inline>
+  document.getElementById('bb-map-load')?.addEventListener('click', (e) => {
+    const container = e.currentTarget.closest('[data-map-lazy]');
+    if (!container) return;
+    container.innerHTML = '<iframe title="Map" src="https://www.google.com/maps?q=Rije%C4%8Dka+15a,+20000+Dubrovnik&output=embed" width="100%" height="300" style="border:0;border-radius:var(--radius-card)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+  });
+</script>
+
+<style>
+	.bb-hero {
+		padding: var(--spacing-section-mobile) 1.5rem 2rem;
+		text-align: center;
+	}
+
+	.bb-hero__inner {
+		max-width: 44rem;
+		margin-inline: auto;
+	}
+
+	.bb-hero__subtitle {
+		margin-top: 1rem;
+		color: var(--color-muted);
+		font-family: var(--font-body);
+	}
+
+	.bb-section {
+		padding: 2.5rem 1.5rem;
+		max-width: 80rem;
+		margin-inline: auto;
+	}
+
+	.bb-contact-grid {
+		display: grid;
+		gap: 2.5rem;
+		grid-template-columns: 1fr;
+	}
+
+	.bb-contact-info {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.bb-contact-info__label {
+		font-size: 1rem;
+		margin-bottom: 0.25rem;
+	}
+
+	.bb-contact-info p {
+		font-family: var(--font-body);
+		color: var(--color-muted);
+		margin: 0.125rem 0;
+	}
+
+	.bb-contact-info a {
+		color: var(--color-foreground);
+	}
+
+	.bb-map {
+		border-radius: var(--radius-card);
+		border: 1px solid var(--color-border);
+		background-color: var(--color-surface);
+		min-height: 200px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.bb-map__load {
+		background: none;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-pill);
+		padding: 0.5rem 1.25rem;
+		color: var(--color-primary-text);
+		font-family: var(--font-body);
+		font-weight: 500;
+		cursor: pointer;
+	}
+
+	.bb-contact-form {
+		background-color: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-panel);
+		padding: 2rem;
+	}
+
+	@media (min-width: 64rem) {
+		.bb-contact-grid {
+			grid-template-columns: 1fr 1.5fr;
+		}
+	}
+</style>
