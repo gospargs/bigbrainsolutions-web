@@ -1,0 +1,125 @@
+---
+import '../styles/global.css';
+
+const colors = [
+  { name: 'background', var: '--color-background' },
+  { name: 'surface', var: '--color-surface' },
+  { name: 'primary', var: '--color-primary' },
+  { name: 'accent', var: '--color-accent' },
+  { name: 'foreground', var: '--color-foreground' },
+  { name: 'muted', var: '--color-muted' },
+  { name: 'border', var: '--color-border' },
+  { name: 'success', var: '--color-success' },
+  { name: 'warning', var: '--color-warning' },
+  { name: 'error', var: '--color-error' },
+];
+
+const spacingSteps = [4, 8, 12, 16, 24, 32, 48, 64, 96, 128];
+const radii = [
+  { name: 'card (12px)', var: '--radius-card' },
+  { name: 'panel (24px)', var: '--radius-panel' },
+  { name: 'pill (999px)', var: '--radius-pill' },
+];
+---
+
+<html lang="en" data-theme="dark">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content="noindex, nofollow" />
+		<title>Design Tokens — internal preview</title>
+		<script is:inline>
+			// Apply persisted theme before paint to avoid a flash of the wrong theme.
+			const saved = localStorage.getItem('bb-theme');
+			if (saved === 'light' || saved === 'dark') {
+				document.documentElement.dataset.theme = saved;
+			}
+		</script>
+	</head>
+	<body class="p-8 font-body">
+		<div class="mx-auto max-w-5xl space-y-16">
+			<header class="flex items-center justify-between border-b border-border pb-6">
+				<div>
+					<h1 class="text-h2">Design Tokens</h1>
+					<p class="text-muted">Internal preview route — DESIGN-001. Not linked from the public site.</p>
+				</div>
+				<button
+					id="theme-toggle"
+					type="button"
+					class="rounded-pill border border-border px-4 py-2 text-sm font-medium hover:bg-surface"
+				>
+					Toggle theme
+				</button>
+			</header>
+
+			<section aria-labelledby="colors-heading">
+				<h2 id="colors-heading" class="mb-4">Color</h2>
+				<div class="grid grid-cols-2 gap-4 sm:grid-cols-5">
+					{colors.map((c) => (
+						<div class="space-y-2">
+							<div
+								class="h-20 rounded-card border border-border"
+								style={`background-color: var(${c.var})`}
+							></div>
+							<p class="text-caption">{c.name}</p>
+						</div>
+					))}
+				</div>
+			</section>
+
+			<section aria-labelledby="type-heading">
+				<h2 id="type-heading" class="mb-4">Type scale</h2>
+				<div class="space-y-3">
+					<p class="text-h1">H1 — Aa Čč Ćć Đđ Šš Žž</p>
+					<p class="text-h2">H2 — Aa Čč Ćć Đđ Šš Žž</p>
+					<p class="text-h3">H3 — Aa Čč Ćć Đđ Šš Žž</p>
+					<p class="font-body">Body — Aa Čč Ćć Đđ Šš Žž</p>
+					<p class="text-caption text-muted">Caption — Aa Čč Ćć Đđ Šš Žž</p>
+				</div>
+			</section>
+
+			<section aria-labelledby="spacing-heading">
+				<h2 id="spacing-heading" class="mb-4">Spacing scale (4px base)</h2>
+				<div class="space-y-2">
+					{spacingSteps.map((step) => (
+						<div class="flex items-center gap-4">
+							<span class="w-16 text-caption text-muted">{step}px</span>
+							<div class="h-4 bg-primary" style={`width: ${step}px`}></div>
+						</div>
+					))}
+				</div>
+			</section>
+
+			<section aria-labelledby="radii-heading">
+				<h2 id="radii-heading" class="mb-4">Radii</h2>
+				<div class="flex gap-6">
+					{radii.map((r) => (
+						<div
+							class="flex h-20 w-20 items-center justify-center border border-border bg-surface text-center text-caption"
+							style={`border-radius: var(${r.var})`}
+						>
+							{r.name}
+						</div>
+					))}
+				</div>
+			</section>
+
+			<section aria-labelledby="shadow-heading">
+				<h2 id="shadow-heading" class="mb-4">Shadow</h2>
+				<div
+					class="h-24 w-48 rounded-card bg-surface"
+					style="box-shadow: var(--shadow-ambient)"
+				></div>
+			</section>
+		</div>
+
+		<script is:inline>
+			const btn = document.getElementById('theme-toggle');
+			btn.addEventListener('click', () => {
+				const current = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+				document.documentElement.dataset.theme = current;
+				localStorage.setItem('bb-theme', current);
+			});
+		</script>
+	</body>
+</html>

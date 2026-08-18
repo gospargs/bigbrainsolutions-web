@@ -21,6 +21,16 @@ Moot. The Playwright crawl in `discovery-report.md` §4 found **zero** elements 
 
 ---
 
+## DESIGN-001 — token implementation deviations from the audit doc's literal spec
+
+**Tailwind v4 CSS-first theming instead of `tailwind.config.mjs`.** The roadmap's file list assumes a Tailwind JS config file; Tailwind CSS v4 (installed via `astro add tailwind`, current stable) replaced that with an `@theme` block directly in CSS. `src/styles/tokens.css` defines the runtime dark/light custom properties and maps them into Tailwind's theme namespace there — functionally identical outcome (Tailwind utilities and raw CSS both read from the same tokens), just no `tailwind.config.mjs` file exists because the current version of the tool doesn't have one.
+*Why this call:* the roadmap's intent ("Wire Tailwind's theme to reference the CSS custom properties so both raw CSS and Tailwind utility classes stay in sync") is better served by v4's native CSS-first approach than by fighting it into a v3-style JS config on a brand-new project.
+
+**Light-mode `muted` text color corrected from the audit's spec.** The audit doc lists a single `#9A9A9F` muted-text value for both dark and light mode. Measured contrast: `#9A9A9F` on the light-mode background (`#FAFAF9`) is **2.68:1** — fails WCAG AA (needs 4.5:1 for normal-size text). Confirmed via axe-core against the `/design-tokens` preview route. Changed the light-mode value to `#6B6B70` (5.07:1 against `#FAFAF9`, 5.30:1 against white surface) — same visual role (secondary/caption text), passes AA. Dark mode keeps the audit's original `#9A9A9F` (6.42–6.95:1, already well within AA).
+*Why this call:* A11Y-001's zero-critical/serious-violations target and the general WCAG 2.1 AA hard minimum in the audit doc (Section 8) override a specific hex value when the two conflict — this was caught at the token level specifically so no later component inherits a failing color pair.
+
+---
+
 ## Pricing placeholders (flagged in advance for PAGE-001)
 
 The roadmap explicitly punts exact pricing figures to the owner (`{{PRICE_X}}` placeholder tokens). Decision: rather than shipping visible `{{PRICE_X}}` placeholder tokens to a preview URL stakeholders might see, PAGE-001 will use realistic, clearly-labeled **directional placeholder pricing** (e.g. "Computer repair — from €35", "Custom web application — from €1,500, custom quote") based on typical Croatian/Dubrovnik-market rates for the service tracks described in the audit, marked in `docs/content-review-checklist.md` as owner-confirm-required before `DEPLOY-001`. This keeps the preview looking finished ("top notch, no shortcuts") rather than visibly unfinished, while making unmistakably clear in the review checklist that every figure is a placeholder pending the owner's real pricing.
