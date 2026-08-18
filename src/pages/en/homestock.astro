@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Badge from '../../components/Badge.astro';
+import Card from '../../components/Card.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import CTABand from '../../components/CTABand.astro';
+
+const nav = [
+  { href: '/en/services/', label: 'Services' },
+  { href: '/en/about/', label: 'About' },
+  { href: '/en/homestock/', label: 'HomeStock' },
+  { href: '/en/contact/', label: 'Contact' },
+];
+
+const features = [
+  {
+    title: 'Household inventory, organized by room',
+    description: 'Track every item in your home by room, category, quantity, and price — always know what you have and where it is.',
+  },
+  {
+    title: 'On-device receipt scanning',
+    description: 'Snap a photo of a receipt and HomeStock extracts item names, quantities, prices, store, and date automatically. The photo never leaves your device and is discarded immediately after processing.',
+  },
+  {
+    title: 'Shared households',
+    description: 'Invite the people you live with. Everyone sees the same inventory, shopping lists, and spend history in real time.',
+  },
+  {
+    title: 'Shopping lists that stay in sync',
+    description: 'Build shopping lists from what you are actually running low on, shared instantly across every household member\'s device.',
+  },
+  {
+    title: 'Multi-currency support',
+    description: 'Track spend in your own currency, wherever you are.',
+  },
+];
+---
+
+<BaseLayout
+	lang="en"
+	title="HomeStock — a household inventory app by Big Brain Solutions"
+	description="HomeStock is a mobile app for tracking household inventory, scanning receipts, and sharing your home with the people you live with. Built and shipped by Big Brain Solutions."
+>
+	<Header lang="en" nav={nav} altLangHref="/homestock/" altLangLabel="Hrvatski" />
+
+	<main>
+		<section class="bb-hero">
+			<div class="bb-hero__inner">
+				<Badge variant="accent" class="mb-4">Our own product</Badge>
+				<h1 class="bb-hero__title">HomeStock — know what's actually in your home</h1>
+				<p class="bb-hero__subtitle">
+					A mobile app we designed, built, and shipped ourselves. Track your household inventory,
+					scan receipts on-device, and share it all with the people you live with.
+				</p>
+				<div class="bb-hero__cta">
+					<Badge variant="neutral">Coming soon to the App Store</Badge>
+				</div>
+			</div>
+		</section>
+
+		<section class="bb-section">
+			<SectionHeading eyebrow="What it does" title="Everything your household needs to stay organized" class="mb-8" />
+			<div class="bb-grid-2">
+				{features.map((f) => (
+					<Card variant="service">
+						<h3 class="mb-2">{f.title}</h3>
+						<p class="text-muted">{f.description}</p>
+					</Card>
+				))}
+			</div>
+		</section>
+
+		<section class="bb-section">
+			<SectionHeading eyebrow="Why we built it" title="A real product, not just a portfolio piece" class="mb-6" />
+			<p class="bb-prose">
+				HomeStock started as a personal itch: keeping track of what's actually in the house — before another
+				trip to the store for something we already had three of. It grew into a fully shipped product with
+				real users, a real backend, and real engineering decisions behind it. It's the clearest example we
+				can point to of what we build when the client is us: careful data modeling, on-device processing
+				where it matters for privacy, and a household-sharing model designed from day one, not bolted on.
+			</p>
+		</section>
+
+		<section class="bb-section">
+			<SectionHeading eyebrow="Under the hood" title="Built on Supabase and Firebase" class="mb-6" />
+			<p class="bb-prose">
+				HomeStock's backend, authentication, and real-time sync run on <strong>Supabase</strong>.
+				Crash reporting and stability monitoring run on <strong>Firebase Crashlytics</strong>. Sign-in
+				supports both email/password and "Continue with Google." Full details on what data is collected
+				and how it's handled are in the <a href="/en/homestock-privacy-policy/">HomeStock Privacy Policy</a>.
+			</p>
+		</section>
+
+		<section class="bb-section">
+			<CTABand
+				title="Want something like this built for you?"
+				description="If you need a real product built — not just a brochure site — this is exactly the kind of work we do."
+				ctaLabel="Talk to us about your project"
+				ctaHref="/en/contact/"
+			/>
+		</section>
+	</main>
+
+	<Footer
+		nav={nav}
+		privacyHref="/en/homestock-privacy-policy/"
+		privacyLabel="Privacy (HomeStock)"
+		labels={{
+			address: 'Address',
+			contact: 'Contact',
+			hours: 'Hours',
+			hoursValue: 'Mon–Sat 6am–6pm',
+			rights: 'All rights reserved.',
+		}}
+	/>
+</BaseLayout>
+
+<style>
+	.bb-hero {
+		padding: var(--spacing-section-mobile) 1.5rem;
+		text-align: center;
+	}
+
+	.bb-hero__inner {
+		max-width: 44rem;
+		margin-inline: auto;
+	}
+
+	.bb-hero__subtitle {
+		margin-top: 1.25rem;
+		font-size: 1.125rem;
+		color: var(--color-muted);
+		font-family: var(--font-body);
+	}
+
+	.bb-hero__cta {
+		margin-top: 1.5rem;
+		display: flex;
+		justify-content: center;
+	}
+
+	.bb-section {
+		padding: var(--spacing-section-mobile) 1.5rem;
+		max-width: 64rem;
+		margin-inline: auto;
+	}
+
+	.bb-grid-2 {
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: 1fr;
+	}
+
+	.bb-prose {
+		font-family: var(--font-body);
+		color: var(--color-muted);
+		line-height: 1.75;
+		max-width: 44rem;
+	}
+
+	@media (min-width: 48rem) {
+		.bb-grid-2 {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 64rem) {
+		.bb-hero,
+		.bb-section {
+			padding-top: var(--spacing-section-desktop);
+			padding-bottom: var(--spacing-section-desktop);
+		}
+	}
+</style>

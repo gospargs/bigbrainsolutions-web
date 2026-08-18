@@ -1,0 +1,177 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Badge from '../components/Badge.astro';
+import Card from '../components/Card.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CTABand from '../components/CTABand.astro';
+
+const nav = [
+  { href: '/usluge/', label: 'Usluge' },
+  { href: '/o-nama/', label: 'O nama' },
+  { href: '/homestock/', label: 'HomeStock' },
+  { href: '/kontakt/', label: 'Kontakt' },
+];
+
+const features = [
+  {
+    title: 'Inventar kućanstva, organiziran po prostorijama',
+    description: 'Pratite svaki artikl u domu po prostoriji, kategoriji, količini i cijeni — uvijek znate što imate i gdje se nalazi.',
+  },
+  {
+    title: 'Skeniranje računa na uređaju',
+    description: 'Fotografirajte račun i HomeStock automatski izdvaja nazive artikala, količine, cijene, trgovinu i datum. Fotografija nikada ne napušta vaš uređaj i briše se odmah nakon obrade.',
+  },
+  {
+    title: 'Zajednička kućanstva',
+    description: 'Pozovite ukućane. Svi vide isti inventar, popise za kupovinu i povijest potrošnje u stvarnom vremenu.',
+  },
+  {
+    title: 'Popisi za kupovinu koji su uvijek sinkronizirani',
+    description: 'Sastavite popis za kupovinu na temelju onoga što vam zaista nedostaje, trenutno dostupan na uređajima svih članova kućanstva.',
+  },
+  {
+    title: 'Podrška za više valuta',
+    description: 'Pratite potrošnju u vlastitoj valuti, gdje god se nalazili.',
+  },
+];
+---
+
+<BaseLayout
+	lang="hr"
+	title="HomeStock — aplikacija za upravljanje kućanstvom, Big Brain Solutions"
+	description="HomeStock je mobilna aplikacija za praćenje inventara kućanstva, skeniranje računa i zajedničko korištenje doma s ukućanima. Razvio i objavio Big Brain Solutions."
+>
+	<Header lang="hr" nav={nav} altLangHref="/en/homestock/" altLangLabel="English" />
+
+	<main>
+		<section class="bb-hero">
+			<div class="bb-hero__inner">
+				<Badge variant="accent" class="mb-4">Naš vlastiti proizvod</Badge>
+				<h1 class="bb-hero__title">HomeStock — znajte što zaista imate u domu</h1>
+				<p class="bb-hero__subtitle">
+					Mobilna aplikacija koju smo osmislili, razvili i objavili vlastitim rukama. Pratite inventar
+					kućanstva, skenirajte račune na uređaju i sve to podijelite s ukućanima.
+				</p>
+				<div class="bb-hero__cta">
+					<Badge variant="neutral">Uskoro na App Storeu</Badge>
+				</div>
+			</div>
+		</section>
+
+		<section class="bb-section">
+			<SectionHeading eyebrow="Što radi" title="Sve što vašem kućanstvu treba za organizaciju" class="mb-8" />
+			<div class="bb-grid-2">
+				{features.map((f) => (
+					<Card variant="service">
+						<h3 class="mb-2">{f.title}</h3>
+						<p class="text-muted">{f.description}</p>
+					</Card>
+				))}
+			</div>
+		</section>
+
+		<section class="bb-section">
+			<SectionHeading eyebrow="Zašto smo je izradili" title="Stvaran proizvod, ne samo primjer u portfelju" class="mb-6" />
+			<p class="bb-prose">
+				HomeStock je počeo kao osobna potreba: znati što se zaista nalazi u kući — prije još jednog odlaska
+				u trgovinu po nešto čega već imamo tri komada. Razvio se u potpuno objavljen proizvod sa stvarnim
+				korisnicima, stvarnim backendom i stvarnim inženjerskim odlukama u pozadini. To je najbolji primjer
+				onoga što gradimo kada je klijent — mi sami: pažljivo modeliranje podataka, obrada na uređaju gdje
+				je to važno za privatnost, i model zajedničkog korištenja osmišljen od prvog dana, a ne dodan naknadno.
+			</p>
+		</section>
+
+		<section class="bb-section">
+			<SectionHeading eyebrow="Tehnologija u pozadini" title="Izgrađeno na Supabaseu i Firebaseu" class="mb-6" />
+			<p class="bb-prose">
+				Backend, autentifikacija i sinkronizacija u stvarnom vremenu za HomeStock rade na
+				<strong>Supabaseu</strong>. Praćenje padova i stabilnosti radi na <strong>Firebase Crashlyticsu</strong>.
+				Prijava je moguća putem e-mail adrese i lozinke ili putem opcije "Continue with Google". Sve detalje
+				o tome koji se podaci prikupljaju i kako se obrađuju pronaći ćete u
+				<a href="/privatnost-homestock/">Politici privatnosti aplikacije HomeStock</a>.
+			</p>
+		</section>
+
+		<section class="bb-section">
+			<CTABand
+				title="Želite da vam izradimo nešto slično?"
+				description="Ako trebate stvaran proizvod, a ne samo prezentacijsku web stranicu — ovo je upravo posao kojim se bavimo."
+				ctaLabel="Razgovarajte s nama o svom projektu"
+				ctaHref="/kontakt/"
+			/>
+		</section>
+	</main>
+
+	<Footer
+		nav={nav}
+		privacyHref="/privatnost-homestock/"
+		privacyLabel="Privatnost (HomeStock)"
+		labels={{
+			address: 'Adresa',
+			contact: 'Kontakt',
+			hours: 'Radno vrijeme',
+			hoursValue: 'Pon–Sub 6:00–18:00',
+			rights: 'Sva prava pridržana.',
+		}}
+	/>
+</BaseLayout>
+
+<style>
+	.bb-hero {
+		padding: var(--spacing-section-mobile) 1.5rem;
+		text-align: center;
+	}
+
+	.bb-hero__inner {
+		max-width: 44rem;
+		margin-inline: auto;
+	}
+
+	.bb-hero__subtitle {
+		margin-top: 1.25rem;
+		font-size: 1.125rem;
+		color: var(--color-muted);
+		font-family: var(--font-body);
+	}
+
+	.bb-hero__cta {
+		margin-top: 1.5rem;
+		display: flex;
+		justify-content: center;
+	}
+
+	.bb-section {
+		padding: var(--spacing-section-mobile) 1.5rem;
+		max-width: 64rem;
+		margin-inline: auto;
+	}
+
+	.bb-grid-2 {
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: 1fr;
+	}
+
+	.bb-prose {
+		font-family: var(--font-body);
+		color: var(--color-muted);
+		line-height: 1.75;
+		max-width: 44rem;
+	}
+
+	@media (min-width: 48rem) {
+		.bb-grid-2 {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 64rem) {
+		.bb-hero,
+		.bb-section {
+			padding-top: var(--spacing-section-desktop);
+			padding-bottom: var(--spacing-section-desktop);
+		}
+	}
+</style>
