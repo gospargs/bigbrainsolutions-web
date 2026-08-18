@@ -1,0 +1,170 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Card from '../components/Card.astro';
+import Badge from '../components/Badge.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const nav = [
+  { href: '/usluge/', label: 'Usluge' },
+  { href: '/o-nama/', label: 'O nama' },
+  { href: '/homestock/', label: 'HomeStock' },
+  { href: '/kontakt/', label: 'Kontakt' },
+];
+
+const tracks = [
+  {
+    key: 'dom',
+    title: 'Za vaš dom',
+    services: [
+      {
+        value: 'computer-repair',
+        title: 'Popravak i instalacija računala',
+        description: 'Dijagnostika kvarova, ugradnja novih komponenti i sređivanje sustava — za kućne korisnike i male tvrtke.',
+        price: 'od 35 €',
+      },
+      {
+        value: 'virus-removal',
+        title: 'Uklanjanje virusa i zlonamjernog softvera',
+        description: 'Otkrivanje i uklanjanje prijetnji te savjeti kako spriječiti buduće infekcije.',
+        price: 'od 30 €',
+      },
+    ],
+  },
+  {
+    key: 'posao',
+    title: 'Za vaše poslovanje',
+    services: [
+      {
+        value: 'network-setup',
+        title: 'Postavljanje i podrška mreže',
+        description: 'Konfiguracija routera i preklopnika, Wi-Fi pokrivenost i sigurnost mreže, uz kontinuiranu podršku.',
+        price: 'od 45 €',
+      },
+      {
+        value: 'hardware-services',
+        title: 'Hardverske usluge',
+        description: 'Instalacija, nadogradnja i održavanje računala, servera i periferije.',
+        price: 'od 25 €',
+      },
+      {
+        value: 'software-services',
+        title: 'Softverske usluge',
+        description: 'Instalacija, konfiguracija i podrška za poslovne i produktivne alate.',
+        price: 'od 20 €',
+      },
+    ],
+  },
+  {
+    key: 'razvoj',
+    title: 'Web i softver',
+    services: [
+      {
+        value: 'website-design',
+        title: 'Izrada web stranica',
+        description: 'Responzivne, brze web stranice prilagođene vašem brendu — od poslovnih stranica do portfolija.',
+        price: 'od 800 €',
+      },
+      {
+        value: 'web-app-development',
+        title: 'Razvoj web aplikacija',
+        description: 'Prilagođene web aplikacije, planirane i razvijene tako da budu sigurne, skalabilne i jednostavne za korištenje.',
+        price: 'Individualna ponuda',
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout
+	lang="hr"
+	title="Usluge — Big Brain Solutions"
+	description="Popravak računala, umrežavanje, hardverske i softverske usluge, izrada web stranica i aplikacija u Dubrovniku. Pogledajte cijene i zatražite ponudu."
+>
+	<Header lang="hr" nav={nav} altLangHref="/en/services/" altLangLabel="English" />
+
+	<main>
+		<section class="bb-hero">
+			<div class="bb-hero__inner">
+				<h1 class="bb-hero__title">Kompletna IT i web rješenja za dom ili poslovanje</h1>
+				<p class="bb-hero__subtitle">
+					Od izrade web stranica i aplikacija do popravka računala, umrežavanja, hardverske i softverske podrške
+					te uklanjanja virusa — stručne usluge koje održavaju vašu tehnologiju u pogonu.
+				</p>
+			</div>
+		</section>
+
+		{tracks.map((track) => (
+			<section class="bb-section" id={track.key}>
+				<SectionHeading title={track.title} class="mb-6" />
+				<div class="bb-grid">
+					{track.services.map((s) => (
+						<Card variant="service" href={`/kontakt/?service=${s.value}`}>
+							<Badge variant="accent" class="mb-3">{s.price}</Badge>
+							<h3 class="mb-2">{s.title}</h3>
+							<p class="text-muted">{s.description}</p>
+						</Card>
+					))}
+				</div>
+			</section>
+		))}
+	</main>
+
+	<Footer
+		nav={nav}
+		privacyHref="/privatnost-homestock/"
+		privacyLabel="Privatnost (HomeStock)"
+		labels={{
+			address: 'Adresa',
+			contact: 'Kontakt',
+			hours: 'Radno vrijeme',
+			hoursValue: 'Pon–Sub 6:00–18:00',
+			rights: 'Sva prava pridržana.',
+		}}
+	/>
+</BaseLayout>
+
+<style>
+	.bb-hero {
+		padding: var(--spacing-section-mobile) 1.5rem;
+		text-align: center;
+	}
+
+	.bb-hero__inner {
+		max-width: 44rem;
+		margin-inline: auto;
+	}
+
+	.bb-hero__subtitle {
+		margin-top: 1.25rem;
+		font-size: 1.125rem;
+		color: var(--color-muted);
+		font-family: var(--font-body);
+	}
+
+	.bb-section {
+		padding: 2.5rem 1.5rem;
+		max-width: 80rem;
+		margin-inline: auto;
+	}
+
+	.bb-grid {
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: 1fr;
+	}
+
+	@media (min-width: 48rem) {
+		.bb-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 64rem) {
+		.bb-hero {
+			padding-top: var(--spacing-section-desktop);
+			padding-bottom: var(--spacing-section-desktop);
+		}
+	}
+</style>

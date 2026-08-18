@@ -1,0 +1,170 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Card from '../../components/Card.astro';
+import Badge from '../../components/Badge.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+
+const nav = [
+  { href: '/en/services/', label: 'Services' },
+  { href: '/en/about/', label: 'About' },
+  { href: '/en/homestock/', label: 'HomeStock' },
+  { href: '/en/contact/', label: 'Contact' },
+];
+
+const tracks = [
+  {
+    key: 'home',
+    title: 'For your home',
+    services: [
+      {
+        value: 'computer-repair',
+        title: 'Computer Repair & Installation',
+        description: 'Hardware diagnostics, new component installation, and system clean-ups — for home users and small businesses.',
+        price: 'from €35',
+      },
+      {
+        value: 'virus-removal',
+        title: 'Virus & Malware Removal',
+        description: 'Threat detection and removal, plus advice on preventing future infections.',
+        price: 'from €30',
+      },
+    ],
+  },
+  {
+    key: 'business',
+    title: 'For your business',
+    services: [
+      {
+        value: 'network-setup',
+        title: 'Network Setup & Support',
+        description: 'Router and switch configuration, Wi-Fi coverage, and network security, with ongoing support.',
+        price: 'from €45',
+      },
+      {
+        value: 'hardware-services',
+        title: 'Hardware Services',
+        description: 'Installation, upgrades, and maintenance for computers, servers, and peripherals.',
+        price: 'from €25',
+      },
+      {
+        value: 'software-services',
+        title: 'Software Services',
+        description: 'Installation, configuration, and support for business and productivity tools.',
+        price: 'from €20',
+      },
+    ],
+  },
+  {
+    key: 'dev',
+    title: 'Web & software',
+    services: [
+      {
+        value: 'website-design',
+        title: 'Website Design & Development',
+        description: 'Responsive, fast websites tailored to your brand — from business sites to portfolios.',
+        price: 'from €800',
+      },
+      {
+        value: 'web-app-development',
+        title: 'Web Application Development',
+        description: 'Custom web applications, planned and built to be secure, scalable, and easy to use.',
+        price: 'Custom quote',
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout
+	lang="en"
+	title="Services — Big Brain Solutions"
+	description="Computer repair, networking, hardware and software services, website and application development in Dubrovnik. See pricing and request an estimate."
+>
+	<Header lang="en" nav={nav} altLangHref="/usluge/" altLangLabel="Hrvatski" />
+
+	<main>
+		<section class="bb-hero">
+			<div class="bb-hero__inner">
+				<h1 class="bb-hero__title">Complete IT & web solutions for your home or business</h1>
+				<p class="bb-hero__subtitle">
+					From website and application development to computer repair, networking, hardware and software
+					support, and virus removal — expert services that keep your technology running.
+				</p>
+			</div>
+		</section>
+
+		{tracks.map((track) => (
+			<section class="bb-section" id={track.key}>
+				<SectionHeading title={track.title} class="mb-6" />
+				<div class="bb-grid">
+					{track.services.map((s) => (
+						<Card variant="service" href={`/en/contact/?service=${s.value}`}>
+							<Badge variant="accent" class="mb-3">{s.price}</Badge>
+							<h3 class="mb-2">{s.title}</h3>
+							<p class="text-muted">{s.description}</p>
+						</Card>
+					))}
+				</div>
+			</section>
+		))}
+	</main>
+
+	<Footer
+		nav={nav}
+		privacyHref="/en/homestock-privacy-policy/"
+		privacyLabel="Privacy (HomeStock)"
+		labels={{
+			address: 'Address',
+			contact: 'Contact',
+			hours: 'Hours',
+			hoursValue: 'Mon–Sat 6am–6pm',
+			rights: 'All rights reserved.',
+		}}
+	/>
+</BaseLayout>
+
+<style>
+	.bb-hero {
+		padding: var(--spacing-section-mobile) 1.5rem;
+		text-align: center;
+	}
+
+	.bb-hero__inner {
+		max-width: 44rem;
+		margin-inline: auto;
+	}
+
+	.bb-hero__subtitle {
+		margin-top: 1.25rem;
+		font-size: 1.125rem;
+		color: var(--color-muted);
+		font-family: var(--font-body);
+	}
+
+	.bb-section {
+		padding: 2.5rem 1.5rem;
+		max-width: 80rem;
+		margin-inline: auto;
+	}
+
+	.bb-grid {
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: 1fr;
+	}
+
+	@media (min-width: 48rem) {
+		.bb-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 64rem) {
+		.bb-hero {
+			padding-top: var(--spacing-section-desktop);
+			padding-bottom: var(--spacing-section-desktop);
+		}
+	}
+</style>
