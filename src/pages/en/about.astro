@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Button from '../../components/Button.astro';
+
+const nav = [
+  { href: '/en/services/', label: 'Services' },
+  { href: '/en/about/', label: 'About' },
+  { href: '/en/homestock/', label: 'HomeStock' },
+  { href: '/en/contact/', label: 'Contact' },
+];
+---
+
+<BaseLayout
+	lang="en"
+	title="About — Big Brain Solutions"
+	description="Meet Gordan Sentić, founder of Big Brain Solutions — an IT and web company in Dubrovnik with 6+ years of experience in software development and IT support."
+>
+	<Header lang="en" nav={nav} altLangHref="/o-nama/" altLangLabel="Hrvatski" />
+
+	<main class="bb-about">
+		<h1>Professional IT & Web Services Company</h1>
+		<p class="bb-lead">
+			Big Brain Solutions, led by Gordan, provides expert IT support, computer repairs, network solutions, and
+			web/application development for home users and small businesses. With years of experience in software
+			development, system administration, and IT management, we focus on delivering reliable, tailored
+			technology solutions and outstanding customer support.
+		</p>
+
+		<h2>Your trusted partner for IT, web, and computer solutions</h2>
+		<p>
+			From computer repairs and virus removal to network setup, IT support, and web/application development,
+			we provide fast, reliable, and professional solutions. Whether it's at home, in your office, or online,
+			our goal is to make technology work seamlessly for you.
+		</p>
+
+		<div class="bb-founder">
+			<h3>Gordan Sentić, Founder & Lead Application Developer</h3>
+			<p>
+				With a degree in Information Technology and specialized training in software development and
+				network administration, I've spent over 6 years building web applications and supporting IT
+				systems for businesses and individuals. I founded Big Brain Solutions to provide trusted,
+				high-quality tech services with a personal touch.
+			</p>
+		</div>
+
+		<h2>Committed to exceptional service and getting the job done right</h2>
+		<p>
+			At Big Brain Solutions, we provide fast, professional IT support, computer repairs, network setup, and
+			web development tailored to your needs.
+		</p>
+
+		<div class="bb-about-cta">
+			<h2>Having computer issues?</h2>
+			<p class="text-muted">
+				Schedule an onsite appointment at your home or business office and we'll help you with all of your
+				computer issues and needs.
+			</p>
+			<Button href="/en/contact/" variant="primary">Request an estimate</Button>
+		</div>
+	</main>
+
+	<Footer
+		nav={nav}
+		privacyHref="/en/homestock-privacy-policy/"
+		privacyLabel="Privacy (HomeStock)"
+		labels={{
+			address: 'Address',
+			contact: 'Contact',
+			hours: 'Hours',
+			hoursValue: 'Mon–Sat 6am–6pm',
+			rights: 'All rights reserved.',
+		}}
+	/>
+</BaseLayout>
+
+<style>
+	.bb-about {
+		max-width: 42rem;
+		margin-inline: auto;
+		padding: var(--spacing-section-mobile) 1.5rem;
+	}
+
+	.bb-lead {
+		font-size: 1.125rem;
+		color: var(--color-muted);
+		font-family: var(--font-body);
+		margin-top: 1.25rem;
+	}
+
+	.bb-about p {
+		font-family: var(--font-body);
+		line-height: 1.75;
+		margin-top: 1rem;
+	}
+
+	.bb-about h2 {
+		margin-top: 2.5rem;
+	}
+
+	.bb-founder {
+		margin-top: 2.5rem;
+		padding: 1.75rem;
+		border-radius: var(--radius-card);
+		border: 1px solid var(--color-border);
+		background-color: var(--color-surface);
+	}
+
+	.bb-about-cta {
+		margin-top: 3rem;
+		padding: 2.5rem;
+		border-radius: var(--radius-panel);
+		border: 1px solid var(--color-border);
+		background-color: var(--color-surface);
+		text-align: center;
+	}
+
+	.bb-about-cta p {
+		margin-bottom: 1.5rem;
+	}
+</style>

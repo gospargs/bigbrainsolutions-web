@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+
+const nav = [
+  { href: '/usluge/', label: 'Usluge' },
+  { href: '/o-nama/', label: 'O nama' },
+  { href: '/homestock/', label: 'HomeStock' },
+  { href: '/kontakt/', label: 'Kontakt' },
+];
+---
+
+<BaseLayout
+	lang="hr"
+	title="O nama — Big Brain Solutions"
+	description="Upoznajte Gordana Sentića, osnivača Big Brain Solutionsa — IT i web tvrtke iz Dubrovnika s više od 6 godina iskustva u razvoju softvera i IT podršci."
+>
+	<Header lang="hr" nav={nav} altLangHref="/en/about/" altLangLabel="English" />
+
+	<main class="bb-about">
+		<h1>Profesionalna tvrtka za IT i web usluge</h1>
+		<p class="bb-lead">
+			Big Brain Solutions, koji vodi Gordan, pruža stručnu IT podršku, popravke računala, mrežna rješenja te
+			razvoj web stranica i aplikacija za kućne korisnike i male tvrtke. S dugogodišnjim iskustvom u razvoju
+			softvera, administraciji sustava i upravljanju IT-om, fokusirani smo na pouzdana, prilagođena tehnička
+			rješenja i vrhunsku korisničku podršku.
+		</p>
+
+		<h2>Vaš pouzdani partner za IT, web i računalna rješenja</h2>
+		<p>
+			Od popravka računala i uklanjanja virusa do postavljanja mreže, IT podrške i razvoja web
+			stranica/aplikacija — nudimo brza, pouzdana i profesionalna rješenja. Bilo kod kuće, u vašem uredu ili
+			online, naš cilj je da tehnologija za vas radi neprimjetno.
+		</p>
+
+		<div class="bb-founder">
+			<h3>Gordan Sentić, osnivač i vodeći razvojni inženjer</h3>
+			<p>
+				S diplomom iz informacijske tehnologije i specijaliziranom izobrazbom iz razvoja softvera i
+				administracije mreža, već više od 6 godina razvijam web aplikacije i podržavam IT sustave tvrtki i
+				pojedinaca. Osnovao sam Big Brain Solutions da bih pružio pouzdane, kvalitetne tehničke usluge s
+				osobnim pristupom.
+			</p>
+		</div>
+
+		<h2>Predani izvrsnoj usluzi i dobro obavljenom poslu</h2>
+		<p>
+			U Big Brain Solutionsu pružamo brzu, profesionalnu IT podršku, popravke računala, postavljanje mreže i
+			web razvoj prilagođen vašim potrebama.
+		</p>
+
+		<div class="bb-about-cta">
+			<h2>Imate problema s računalom?</h2>
+			<p class="text-muted">
+				Zakažite posjet kod vas ili u vašem poslovnom prostoru i pomoći ćemo vam sa svim potrebama vezanim za
+				računala.
+			</p>
+			<Button href="/kontakt/" variant="primary">Zatražite ponudu</Button>
+		</div>
+	</main>
+
+	<Footer
+		nav={nav}
+		privacyHref="/privatnost-homestock/"
+		privacyLabel="Privatnost (HomeStock)"
+		labels={{
+			address: 'Adresa',
+			contact: 'Kontakt',
+			hours: 'Radno vrijeme',
+			hoursValue: 'Pon–Sub 6:00–18:00',
+			rights: 'Sva prava pridržana.',
+		}}
+	/>
+</BaseLayout>
+
+<style>
+	.bb-about {
+		max-width: 42rem;
+		margin-inline: auto;
+		padding: var(--spacing-section-mobile) 1.5rem;
+	}
+
+	.bb-lead {
+		font-size: 1.125rem;
+		color: var(--color-muted);
+		font-family: var(--font-body);
+		margin-top: 1.25rem;
+	}
+
+	.bb-about p {
+		font-family: var(--font-body);
+		line-height: 1.75;
+		margin-top: 1rem;
+	}
+
+	.bb-about h2 {
+		margin-top: 2.5rem;
+	}
+
+	.bb-founder {
+		margin-top: 2.5rem;
+		padding: 1.75rem;
+		border-radius: var(--radius-card);
+		border: 1px solid var(--color-border);
+		background-color: var(--color-surface);
+	}
+
+	.bb-about-cta {
+		margin-top: 3rem;
+		padding: 2.5rem;
+		border-radius: var(--radius-panel);
+		border: 1px solid var(--color-border);
+		background-color: var(--color-surface);
+		text-align: center;
+	}
+
+	.bb-about-cta p {
+		margin-bottom: 1.5rem;
+	}
+</style>
