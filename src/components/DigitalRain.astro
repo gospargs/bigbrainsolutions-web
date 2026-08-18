@@ -1,0 +1,128 @@
+---
+// A restrained nod to falling 0s/1s -- the idea of it, not a literal Matrix screensaver.
+// Opacity 4-8%, muted-text token, sparse slow columns, canvas capped ~15fps.
+// Disabled under prefers-reduced-motion and on mobile viewports (<768px).
+---
+
+<canvas class="bb-digital-rain" aria-hidden="true"></canvas>
+
+<style>
+  .bb-digital-rain {
+    display: none;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (min-width: 48rem) {
+    .bb-digital-rain {
+      display: block;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bb-digital-rain {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  function initDigitalRain() {
+    const canvas = document.querySelector<HTMLCanvasElement>('.bb-digital-rain');
+    if (!canvas) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = window.matchMedia('(max-width: 47.9375rem)').matches;
+    if (prefersReducedMotion || isMobile) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const styles = getComputedStyle(document.documentElement);
+    const charColor = styles.getPropertyValue('--color-muted').trim() || '#9A9A9F';
+
+    const fontSize = 13;
+    const columnGap = 42; // sparse: one column per ~42px
+    const rowHeight = fontSize * 1.6;
+    const chars = '01';
+
+    let width = 0;
+    let height = 0;
+    let columns: { x: number; y: number; speed: number; nextStep: number }[] = [];
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let running = true;
+    let lastFrame = 0;
+    const frameInterval = 1000 / 15; // capped ~15fps
+
+    function resize() {
+      const rect = canvas!.parentElement!.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+      canvas!.width = width * dpr;
+      canvas!.height = height * dpr;
+      canvas!.style.width = `${width}px`;
+      canvas!.style.height = `${height}px`;
+      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const columnCount = Math.max(1, Math.floor(width / columnGap));
+      columns = Array.from({ length: columnCount }, (_, i) => ({
+        x: i * columnGap + columnGap / 2,
+        // start already scattered through the visible area (not just above it) so the
+        // effect is present immediately on load instead of taking ~10s to trickle in
+        y: Math.random() * height * 1.4 - height * 0.4,
+        speed: 1.4 + Math.random() * 1.4, // slow fall: ~15-30s to cross a typical hero height
+        nextStep: 0,
+      }));
+    }
+
+    function draw(time: number) {
+      if (!running) return;
+      requestAnimationFrame(draw);
+
+      if (time - lastFrame < frameInterval) return;
+      lastFrame = time;
+
+      ctx!.clearRect(0, 0, width, height);
+      ctx!.font = `${fontSize}px ui-monospace, "SF Mono", Menlo, Consolas, monospace`;
+      ctx!.fillStyle = charColor;
+      ctx!.globalAlpha = 0.06; // 6% -- middle of the restrained 4-8% range
+
+      for (const col of columns) {
+        const char = chars[Math.floor(Math.random() * chars.length)];
+        ctx!.fillText(char, col.x, col.y);
+        col.y += col.speed;
+        if (col.y > height + rowHeight) {
+          col.y = -rowHeight - Math.random() * height * 0.5; // organic, staggered restart
+        }
+      }
+    }
+
+    resize();
+    requestAnimationFrame(draw);
+
+    const ro = new ResizeObserver(() => resize());
+    ro.observe(canvas.parentElement!);
+
+    // Stop entirely if the viewport crosses into mobile or reduced-motion is toggled live.
+    const mobileQuery = window.matchMedia('(max-width: 47.9375rem)');
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const checkShouldStop = () => {
+      if (mobileQuery.matches || motionQuery.matches) {
+        running = false;
+        ctx!.clearRect(0, 0, width, height);
+      }
+    };
+    mobileQuery.addEventListener('change', checkShouldStop);
+    motionQuery.addEventListener('change', checkShouldStop);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDigitalRain);
+  } else {
+    initDigitalRain();
+  }
+</script>
