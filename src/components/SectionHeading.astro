@@ -1,0 +1,50 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  align?: 'left' | 'center';
+  class?: string;
+}
+
+const { eyebrow, title, description, align = 'left', class: className } = Astro.props;
+---
+
+<div class:list={['bb-section-heading', `bb-section-heading--${align}`, className]} data-reveal>
+  {eyebrow && <p class="bb-section-heading__eyebrow">{eyebrow}</p>}
+  <h2 class="bb-section-heading__title">{title}</h2>
+  {description && <p class="bb-section-heading__description">{description}</p>}
+</div>
+
+<style>
+  .bb-section-heading {
+    max-width: 42rem;
+  }
+
+  .bb-section-heading--center {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .bb-section-heading__eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary-text);
+    margin-bottom: 0.5rem;
+  }
+
+  .bb-section-heading__title {
+    margin: 0;
+  }
+
+  .bb-section-heading__description {
+    margin-top: 0.75rem;
+    color: var(--color-muted);
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+</style>

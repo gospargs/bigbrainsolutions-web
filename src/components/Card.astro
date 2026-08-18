@@ -1,0 +1,42 @@
+---
+interface Props {
+  variant?: 'service' | 'case-study';
+  href?: string;
+  class?: string;
+}
+
+const { variant = 'service', href, class: className } = Astro.props;
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag
+  class:list={['bb-card', `bb-card--${variant}`, className]}
+  href={href}
+  data-reveal
+>
+  <slot />
+</Tag>
+
+<style>
+  .bb-card {
+    display: block;
+    border-radius: var(--radius-card);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    color: inherit;
+    text-decoration: none;
+    padding: 1.5rem;
+    transition: transform 200ms ease-out, box-shadow 200ms ease-out, border-color 200ms ease-out;
+  }
+
+  a.bb-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-ambient);
+    border-color: color-mix(in srgb, var(--color-primary) 40%, var(--color-border));
+  }
+
+  .bb-card--case-study {
+    padding: 2rem;
+    border-radius: var(--radius-panel);
+  }
+</style>

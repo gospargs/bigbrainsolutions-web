@@ -24,6 +24,15 @@
   --muted: #9a9a9f;
   --border-color: #22262b;
   --shadow-ambient-value: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  /* Text-safe variants: the vivid brand/semantic hues above read fine as large
+     graphics/backgrounds/borders in both themes, but several fail WCAG AA as small
+     *text* against one theme's surfaces. These are for text specifically. */
+  --primary-text-value: #6280ff; /* 3b5bff fails AA on dark bg/surface (3.5-3.8:1); this passes (5.2-5.6:1) */
+  --success-fg-value: #22c55e;
+  --warning-fg-value: #f59e0b;
+  --error-fg-value: #ef4444;
+  --accent-fg-value: #00e5a0;
 }
 
 @media (prefers-color-scheme: light) {
@@ -34,6 +43,12 @@
     --muted: #6b6b70;
     --border-color: #e7e5e4;
     --shadow-ambient-value: 0 4px 16px rgba(0, 0, 0, 0.08);
+
+    --primary-text-value: #3b5bff; /* passes AA on light bg/surface (5.1:1); the base brand blue */
+    --success-fg-value: #166534;
+    --warning-fg-value: #92400e;
+    --error-fg-value: #b91c1c;
+    --accent-fg-value: #047857;
   }
 }
 
@@ -44,6 +59,12 @@
   --muted: #6b6b70;
   --border-color: #e7e5e4;
   --shadow-ambient-value: 0 4px 16px rgba(0, 0, 0, 0.08);
+
+  --primary-text-value: #3b5bff;
+  --success-fg-value: #166534;
+  --warning-fg-value: #92400e;
+  --error-fg-value: #b91c1c;
+  --accent-fg-value: #047857;
 }
 
 @theme {
@@ -58,6 +79,13 @@
   --color-success: #22c55e;
   --color-warning: #f59e0b;
   --color-error: #ef4444;
+
+  /* Text-safe counterparts — use these for any small text on a tinted/solid surface. */
+  --color-primary-text: var(--primary-text-value);
+  --color-success-fg: var(--success-fg-value);
+  --color-warning-fg: var(--warning-fg-value);
+  --color-error-fg: var(--error-fg-value);
+  --color-accent-fg: var(--accent-fg-value);
 
   /* Typography */
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;

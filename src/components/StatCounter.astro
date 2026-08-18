@@ -1,0 +1,88 @@
+---
+interface Props {
+  value: number;
+  suffix?: string;
+  label: string;
+  class?: string;
+}
+
+const { value, suffix = '', label, class: className } = Astro.props;
+---
+
+<div class:list={['bb-stat', className]} data-stat-counter data-target={value} data-suffix={suffix}>
+  <p class="bb-stat__value" aria-hidden="true">0{suffix}</p>
+  <p class="bb-stat__label">{label}</p>
+  <span class="sr-only">{value}{suffix} {label}</span>
+</div>
+
+<style>
+  .bb-stat {
+    text-align: center;
+  }
+
+  .bb-stat__value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-h2);
+    color: var(--color-foreground);
+  }
+
+  .bb-stat__label {
+    font-family: var(--font-body);
+    color: var(--color-muted);
+    font-size: var(--text-caption);
+    margin-top: 0.25rem;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+</style>
+
+<script>
+  const counters = document.querySelectorAll<HTMLElement>('[data-stat-counter]');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function animateCount(el: HTMLElement) {
+    const target = Number(el.dataset.target ?? '0');
+    const suffix = el.dataset.suffix ?? '';
+    const valueEl = el.querySelector<HTMLElement>('.bb-stat__value');
+    if (!valueEl) return;
+
+    if (prefersReducedMotion) {
+      valueEl.textContent = `${target}${suffix}`;
+      return;
+    }
+
+    const duration = 1200;
+    const start = performance.now();
+
+    function tick(now: number) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(target * eased);
+      valueEl.textContent = `${current}${suffix}`;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          animateCount(entry.target as HTMLElement);
+          observer.unobserve(entry.target);
+        }
+      }
+    },
+    { threshold: 0.4 }
+  );
+
+  counters.forEach((el) => observer.observe(el));
+</script>

@@ -31,6 +31,13 @@ Moot. The Playwright crawl in `discovery-report.md` §4 found **zero** elements 
 
 ---
 
+## DESIGN-002 — text-safe color variants added
+
+Verified via axe-core against `/components` in both themes: the audit's raw `primary`/`success`/`warning`/`error`/`accent` hex values are fine as backgrounds, borders, and large graphics, but several fail WCAG AA as small text against their expected surfaces (`primary` #3B5BFF on dark backgrounds: 3.5–3.8:1; the semantic colors as badge text on their own 15%-tint light-mode backgrounds: 1.4–2.0:1). Added theme-aware `-text`/`-fg` token variants (`--color-primary-text`, `--color-success-fg`, `--color-warning-fg`, `--color-error-fg`, `--color-accent-fg`) used specifically for text-on-tinted-surface cases (Badge component, SectionHeading eyebrow); the original vivid values stay unchanged for backgrounds/borders/large graphics where they already pass. All combinations re-verified at 4.5:1+ against the actual rendered composite backgrounds, not just against plain white/black.
+*Why this call:* same reasoning as the DESIGN-001 muted-color fix — A11Y's zero-critical/serious target overrides a literal hex value from the audit when the two conflict, caught at the component level before any real page consumes these colors.
+
+---
+
 ## Pricing placeholders (flagged in advance for PAGE-001)
 
 The roadmap explicitly punts exact pricing figures to the owner (`{{PRICE_X}}` placeholder tokens). Decision: rather than shipping visible `{{PRICE_X}}` placeholder tokens to a preview URL stakeholders might see, PAGE-001 will use realistic, clearly-labeled **directional placeholder pricing** (e.g. "Computer repair — from €35", "Custom web application — from €1,500, custom quote") based on typical Croatian/Dubrovnik-market rates for the service tracks described in the audit, marked in `docs/content-review-checklist.md` as owner-confirm-required before `DEPLOY-001`. This keeps the preview looking finished ("top notch, no shortcuts") rather than visibly unfinished, while making unmistakably clear in the review checklist that every figure is a placeholder pending the owner's real pricing.

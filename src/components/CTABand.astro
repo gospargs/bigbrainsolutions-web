@@ -1,0 +1,54 @@
+---
+import Button from './Button.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  ctaLabel: string;
+  ctaHref: string;
+  class?: string;
+}
+
+const { title, description, ctaLabel, ctaHref, class: className } = Astro.props;
+---
+
+<div class:list={['bb-cta-band', className]} data-reveal>
+  <div class="bb-cta-band__copy">
+    <h2 class="bb-cta-band__title">{title}</h2>
+    {description && <p class="bb-cta-band__description">{description}</p>}
+  </div>
+  <Button href={ctaHref} variant="primary">{ctaLabel}</Button>
+</div>
+
+<style>
+  .bb-cta-band {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    border-radius: var(--radius-panel);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    padding: 3rem 2rem;
+  }
+
+  @media (min-width: 48rem) {
+    .bb-cta-band {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 3rem;
+    }
+  }
+
+  .bb-cta-band__title {
+    margin: 0;
+    font-size: var(--text-h3);
+  }
+
+  .bb-cta-band__description {
+    margin-top: 0.5rem;
+    color: var(--color-muted);
+    font-family: var(--font-body);
+  }
+</style>

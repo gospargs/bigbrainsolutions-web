@@ -1,0 +1,104 @@
+---
+import '../styles/global.css';
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+import Badge from '../components/Badge.astro';
+import StatCounter from '../components/StatCounter.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CTABand from '../components/CTABand.astro';
+---
+
+<html lang="en" data-theme="dark">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content="noindex, nofollow" />
+		<title>Components — internal preview</title>
+	</head>
+	<body class="p-8 font-body">
+		<div class="mx-auto max-w-5xl space-y-16">
+			<header class="border-b border-border pb-6">
+				<h1 class="text-h2">Component Library</h1>
+				<p class="text-muted">Internal preview route — DESIGN-002. Tab through to verify keyboard focus on every interactive element.</p>
+			</header>
+
+			<section aria-labelledby="buttons-heading">
+				<h2 id="buttons-heading" class="mb-4">Buttons</h2>
+				<div class="flex flex-wrap items-center gap-4">
+					<Button variant="primary">Primary</Button>
+					<Button variant="secondary">Secondary</Button>
+					<Button variant="ghost">Ghost</Button>
+					<Button variant="primary" disabled>Primary disabled</Button>
+					<Button variant="primary" href="#buttons-heading">Primary as link</Button>
+				</div>
+			</section>
+
+			<section aria-labelledby="badges-heading">
+				<h2 id="badges-heading" class="mb-4">Badges</h2>
+				<div class="flex flex-wrap gap-3">
+					<Badge variant="neutral">Neutral</Badge>
+					<Badge variant="accent">From &euro;35</Badge>
+					<Badge variant="success">Available</Badge>
+					<Badge variant="warning">Limited slots</Badge>
+					<Badge variant="error">Fully booked</Badge>
+				</div>
+			</section>
+
+			<section aria-labelledby="cards-heading">
+				<h2 id="cards-heading" class="mb-4">Cards</h2>
+				<div class="grid gap-6 sm:grid-cols-2">
+					<Card variant="service" href="#cards-heading">
+						<Badge variant="accent" class="mb-3">From &euro;35</Badge>
+						<h3 class="mb-2">Computer Repair</h3>
+						<p class="text-muted">Hardware diagnostics, virus removal, and same-day fixes with a 60-day warranty.</p>
+					</Card>
+					<Card variant="case-study" href="#cards-heading">
+						<p class="text-caption text-primary-text mb-2 font-semibold uppercase tracking-wide">Case study</p>
+						<h3 class="mb-2">Ubique Safety Consultants</h3>
+						<p class="text-muted">A 3-year enterprise web application engagement — challenge, stack, and outcome.</p>
+					</Card>
+				</div>
+			</section>
+
+			<section aria-labelledby="stats-heading">
+				<h2 id="stats-heading" class="mb-4">Stat counters</h2>
+				<div class="grid grid-cols-3 gap-6">
+					<StatCounter value={6} suffix="+" label="Years experience" />
+					<StatCounter value={60} suffix=" days" label="Warranty" />
+					<StatCounter value={5} label="Star reviews" />
+				</div>
+			</section>
+
+			<section aria-labelledby="testimonial-heading">
+				<h2 id="testimonial-heading" class="mb-4">Testimonial card</h2>
+				<div class="max-w-sm">
+					<TestimonialCard
+						quote="Gordan fixed our office network and web app issues faster than we thought possible."
+						name="Example Client"
+						role="Business owner, Dubrovnik"
+					/>
+				</div>
+			</section>
+
+			<section aria-labelledby="heading-heading">
+				<h2 id="heading-heading" class="mb-4">Section heading</h2>
+				<SectionHeading
+					eyebrow="Services"
+					title="Everything your business needs, one call away"
+					description="From same-day repairs to full web application builds, backed by a 60-day warranty."
+				/>
+			</section>
+
+			<section aria-labelledby="cta-heading">
+				<h2 id="cta-heading" class="mb-4">CTA band</h2>
+				<CTABand
+					title="Ready to get started?"
+					description="Tell us what you need — most requests get a same-day response."
+					ctaLabel="Request an estimate"
+					ctaHref="#cta-heading"
+				/>
+			</section>
+		</div>
+	</body>
+</html>

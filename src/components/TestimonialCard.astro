@@ -1,0 +1,57 @@
+---
+interface Props {
+  quote: string;
+  name: string;
+  role?: string;
+  class?: string;
+}
+
+const { quote, name, role, class: className } = Astro.props;
+---
+
+<figure class:list={['bb-testimonial', className]}>
+  <blockquote class="bb-testimonial__quote">
+    <p>&ldquo;{quote}&rdquo;</p>
+  </blockquote>
+  <figcaption class="bb-testimonial__caption">
+    <span class="bb-testimonial__name">{name}</span>
+    {role && <span class="bb-testimonial__role">{role}</span>}
+  </figcaption>
+</figure>
+
+<style>
+  .bb-testimonial {
+    border-radius: var(--radius-card);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    padding: 1.75rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .bb-testimonial__quote p {
+    font-family: var(--font-body);
+    color: var(--color-foreground);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .bb-testimonial__caption {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-body);
+  }
+
+  .bb-testimonial__name {
+    font-weight: 600;
+    color: var(--color-foreground);
+  }
+
+  .bb-testimonial__role {
+    color: var(--color-muted);
+    font-size: var(--text-caption);
+  }
+</style>
