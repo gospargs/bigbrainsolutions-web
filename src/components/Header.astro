@@ -1,4 +1,8 @@
 ---
+import { Image } from 'astro:assets';
+import logoFull from '../assets/logo-full.png';
+import logoIcon from '../assets/logo-icon.png';
+
 interface NavItem {
   href: string;
   label: string;
@@ -17,7 +21,10 @@ const homeHref = lang === 'hr' ? '/' : '/en/';
 
 <header class="bb-header">
   <div class="bb-header__inner">
-    <a href={homeHref} class="bb-header__logo">Big Brain Solutions</a>
+    <a href={homeHref} class="bb-header__logo" aria-label="Big Brain Solutions">
+      <Image src={logoFull} alt="Big Brain Solutions" class="bb-header__logo-full" height={36} widths={[248, 496]} sizes="248px" />
+      <Image src={logoIcon} alt="Big Brain Solutions" class="bb-header__logo-icon" width={36} height={36} />
+    </a>
 
     <nav class="bb-header__nav" aria-label="Primary">
       <ul>
@@ -74,11 +81,18 @@ const homeHref = lang === 'hr' ? '/' : '/en/';
   }
 
   .bb-header__logo {
-    font-family: var(--font-display);
-    font-weight: 700;
-    color: var(--color-foreground);
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    font-size: 1.125rem;
+  }
+
+  .bb-header__logo-full {
+    display: none;
+    width: auto;
+  }
+
+  .bb-header__logo-icon {
+    display: block;
   }
 
   .bb-header__nav {
@@ -179,6 +193,14 @@ const homeHref = lang === 'hr' ? '/' : '/en/';
     }
 
     .bb-header__menu-toggle {
+      display: none;
+    }
+
+    .bb-header__logo-full {
+      display: block;
+    }
+
+    .bb-header__logo-icon {
       display: none;
     }
   }
