@@ -1,13 +1,285 @@
 ---
-import { getEntry, render } from 'astro:content';
+import { getEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Button from '../../components/Button.astro';
+import Card from '../../components/Card.astro';
+import Badge from '../../components/Badge.astro';
+import StatCounter from '../../components/StatCounter.astro';
+import TestimonialCard from '../../components/TestimonialCard.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import CTABand from '../../components/CTABand.astro';
 
 const entry = await getEntry('pages', 'en/home');
 if (!entry) throw new Error('Missing content entry: pages/en/home');
 const { title, description, ogImage } = entry.data;
-const { Content } = await render(entry);
+
+const nav = [
+  { href: '/en/services/', label: 'Services' },
+  { href: '/en/about/', label: 'About' },
+  { href: '/en/homestock/', label: 'HomeStock' },
+  { href: '/en/contact/', label: 'Contact' },
+];
+
+const testimonials = [
+  {
+    quote: 'Gordan from Big Brain Solutions set up our apartment’s Wi-Fi perfectly. He installed additional access points, configured everything, and even helped us change the Wi-Fi name and password. The whole process was smooth and hassle-free.',
+    name: 'Mario Cvinar',
+    role: 'Client',
+  },
+  {
+    quote: 'We worked on a web application project for three years. Gordan was very helpful, friendly, and provided support whenever we needed it. We’re very satisfied with the collaboration.',
+    name: 'John Walkden',
+    role: 'Managing Director, Ubique Safety Consultants',
+  },
+  {
+    quote: 'I worked with Gordan from Big Brain Solutions and couldn’t be happier. He was always supportive, approachable, and guided us whenever we had questions during our website project.',
+    name: 'Siniša Kalinić',
+    role: 'Client',
+  },
+  {
+    quote: 'Working with Gordan from Big Brain Solutions was a great experience. He made the process smooth, answered all our questions, and gave us the support we needed along the way.',
+    name: 'Marina Franić',
+    role: 'Client',
+  },
+  {
+    quote: 'Gordan helped set up my new laptop with Windows 11, Office, and all the necessary programs. He was very professional, patient, and made sure everything was ready to use without any hassle.',
+    name: 'Leo Raguž',
+    role: 'Client',
+  },
+];
 ---
 
 <BaseLayout lang="en" title={title} description={description} ogImage={ogImage}>
-	<Content />
+	<Header lang="en" nav={nav} altLangHref="/" altLangLabel="Hrvatski" />
+
+	<main>
+		<!-- Hero -->
+		<section class="bb-hero">
+			<div class="bb-hero__inner">
+				<h1 class="bb-hero__title">Technology that works for you — at home and at work</h1>
+				<p class="bb-hero__subtitle">
+					From computer repairs and IT support to website development, networking, and software solutions —
+					reliable technical help from Dubrovnik, tailored to your needs.
+				</p>
+				<div class="bb-hero__cta">
+					<Button href="/en/contact/" variant="primary">Request an estimate</Button>
+				</div>
+				<div class="bb-hero__chips">
+					<a href="#home" class="bb-hero__chip">For your home</a>
+					<a href="#business" class="bb-hero__chip">For your business</a>
+					<a href="#dev" class="bb-hero__chip">Web &amp; software</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Audience blocks -->
+		<section class="bb-section">
+			<div class="bb-grid-3">
+				<div id="business" class="bb-anchor-target">
+					<Card variant="service" href="/en/about/">
+						<Badge variant="accent" class="mb-3">For businesses</Badge>
+						<h3 class="mb-2">IT &amp; web support for your business</h3>
+						<p class="text-muted">Reliable IT, network, and web solutions that keep your business running smoothly — without unplanned downtime.</p>
+					</Card>
+				</div>
+				<div id="home" class="bb-anchor-target">
+					<Card variant="service" href="/en/services/">
+						<Badge variant="accent" class="mb-3">For your home</Badge>
+						<h3 class="mb-2">Home &amp; personal tech support</h3>
+						<p class="text-muted">Slow computer, software issues, or network problems? Fast, reliable repairs, upgrades, and virus removal — at home or in our shop.</p>
+					</Card>
+				</div>
+				<div id="dev" class="bb-anchor-target">
+					<Card variant="service" href="/en/services/">
+						<Badge variant="accent" class="mb-3">Web &amp; software</Badge>
+						<h3 class="mb-2">Websites &amp; application development</h3>
+						<p class="text-muted">From planning and design to development and long-term support — we build websites and applications that grow with your business.</p>
+					</Card>
+				</div>
+			</div>
+		</section>
+
+		<!-- Warranty -->
+		<section class="bb-section">
+			<div class="bb-warranty">
+				<Badge variant="success" class="mb-4">60-day warranty</Badge>
+				<h2 class="mb-3">60-day warranty on all services</h2>
+				<p class="text-muted max-w-2xl">
+					We stand behind the quality of our work. All computer repairs, IT support, hardware and software
+					services, and web/application development projects come with a 60-day warranty. If any issues
+					arise during this period, we'll address them promptly to keep your technology running reliably.
+				</p>
+			</div>
+		</section>
+
+		<!-- Stats -->
+		<section class="bb-section">
+			<div class="bb-grid-3">
+				<StatCounter value={6} suffix="+" label="years of experience" />
+				<StatCounter value={60} label="day warranty" />
+				<StatCounter value={5} label="real client testimonials" />
+			</div>
+		</section>
+
+		<!-- Testimonials -->
+		<section class="bb-section">
+			<SectionHeading eyebrow="Client experiences" title="What our clients say" align="center" class="mb-8" />
+			<div class="bb-testimonial-scroll">
+				{testimonials.map((t) => (
+					<div class="bb-testimonial-scroll__item">
+						<TestimonialCard quote={t.quote} name={t.name} role={t.role} />
+					</div>
+				))}
+			</div>
+		</section>
+
+		<!-- Case study + HomeStock spotlight -->
+		<section class="bb-section">
+			<div class="bb-grid-2">
+				<Card variant="case-study" href="/en/contact/">
+					<p class="text-caption text-primary-text mb-2 font-semibold uppercase tracking-wide">Case study</p>
+					<h3 class="mb-2">Web application for Ubique Safety Consultants</h3>
+					<p class="text-muted">Three years of development and support for a safety consulting firm — a reliable partnership from day one.</p>
+				</Card>
+				<Card variant="case-study" href="/en/homestock/">
+					<p class="text-caption text-primary-text mb-2 font-semibold uppercase tracking-wide">Our product</p>
+					<h3 class="mb-2">HomeStock — a household inventory app</h3>
+					<p class="text-muted">A mobile app we designed, built, and shipped ourselves — track your household inventory, scan receipts, and share with the people you live with.</p>
+				</Card>
+			</div>
+		</section>
+
+		<!-- Final CTA -->
+		<section class="bb-section">
+			<CTABand
+				title="Ready to upgrade your technology?"
+				description="From computer repairs and IT support to web and application development, we provide expert solutions for your home or business."
+				ctaLabel="Request an estimate"
+				ctaHref="/en/contact/"
+			/>
+		</section>
+	</main>
+
+	<Footer
+		nav={nav}
+		privacyHref="/en/homestock-privacy-policy/"
+		privacyLabel="Privacy (HomeStock)"
+		labels={{
+			address: 'Address',
+			contact: 'Contact',
+			hours: 'Hours',
+			hoursValue: 'Mon–Sat 6am–6pm',
+			rights: 'All rights reserved.',
+		}}
+	/>
 </BaseLayout>
+
+<style>
+	.bb-hero {
+		padding: var(--spacing-section-mobile) 1.5rem;
+		text-align: center;
+	}
+
+	.bb-hero__inner {
+		max-width: 48rem;
+		margin-inline: auto;
+	}
+
+	.bb-hero__subtitle {
+		margin-top: 1.25rem;
+		font-size: 1.125rem;
+		color: var(--color-muted);
+		font-family: var(--font-body);
+	}
+
+	.bb-hero__cta {
+		margin-top: 2rem;
+	}
+
+	.bb-hero__chips {
+		margin-top: 1.5rem;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.75rem;
+	}
+
+	.bb-hero__chip {
+		font-family: var(--font-body);
+		font-size: var(--text-caption);
+		font-weight: 500;
+		color: var(--color-muted);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-pill);
+		padding: 0.5rem 1rem;
+		text-decoration: none;
+		transition: border-color 150ms ease-out, color 150ms ease-out;
+	}
+
+	.bb-hero__chip:hover {
+		border-color: var(--color-primary);
+		color: var(--color-primary-text);
+	}
+
+	.bb-section {
+		padding: var(--spacing-section-mobile) 1.5rem;
+		max-width: 80rem;
+		margin-inline: auto;
+	}
+
+	.bb-grid-3 {
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: 1fr;
+	}
+
+	.bb-anchor-target {
+		scroll-margin-top: 5rem;
+	}
+
+	.bb-grid-2 {
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: 1fr;
+	}
+
+	.bb-warranty {
+		border-radius: var(--radius-panel);
+		border: 1px solid var(--color-border);
+		background-color: var(--color-surface);
+		padding: 2.5rem;
+	}
+
+	.bb-testimonial-scroll {
+		display: flex;
+		gap: 1.5rem;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		padding-bottom: 0.5rem;
+	}
+
+	.bb-testimonial-scroll__item {
+		flex: 0 0 min(20rem, 85vw);
+		scroll-snap-align: start;
+	}
+
+	@media (min-width: 48rem) {
+		.bb-grid-3 {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		.bb-grid-2 {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 64rem) {
+		.bb-hero,
+		.bb-section {
+			padding-top: var(--spacing-section-desktop);
+			padding-bottom: var(--spacing-section-desktop);
+		}
+	}
+</style>

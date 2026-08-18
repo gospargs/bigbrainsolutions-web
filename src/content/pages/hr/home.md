@@ -1,6 +1,4 @@
 ---
 title: "Big Brain Solutions — IT, web i softverska rješenja u Dubrovniku"
-description: "Placeholder sadržaj za ARCH-001 — zamijenit će se punim tekstom u HOME-001/CONTENT-001."
+description: "Popravci računala, IT podrška, umrežavanje i izrada web stranica i aplikacija u Dubrovniku. 60 dana jamstva na sve usluge. Zatražite besplatnu procjenu."
 ---
-
-Placeholder homepage content. Real content lands in HOME-001 / CONTENT-001.

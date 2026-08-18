@@ -1,6 +1,4 @@
 ---
 title: "Big Brain Solutions — IT, Web & Software Services in Dubrovnik"
-description: "Placeholder content for ARCH-001 — replaced with full copy in HOME-001/CONTENT-001."
+description: "Computer repairs, IT support, networking, and web/application development in Dubrovnik, Croatia. 60-day warranty on all services. Request a free estimate."
 ---
-
-Placeholder homepage content. Real content lands in HOME-001 / CONTENT-001.

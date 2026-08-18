@@ -1,13 +1,285 @@
 ---
-import { getEntry, render } from 'astro:content';
+import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+import Badge from '../components/Badge.astro';
+import StatCounter from '../components/StatCounter.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CTABand from '../components/CTABand.astro';
 
 const entry = await getEntry('pages', 'hr/home');
 if (!entry) throw new Error('Missing content entry: pages/hr/home');
 const { title, description, ogImage } = entry.data;
-const { Content } = await render(entry);
+
+const nav = [
+  { href: '/usluge/', label: 'Usluge' },
+  { href: '/o-nama/', label: 'O nama' },
+  { href: '/homestock/', label: 'HomeStock' },
+  { href: '/kontakt/', label: 'Kontakt' },
+];
+
+const testimonials = [
+  {
+    quote: 'Gordan iz Big Brain Solutionsa savršeno je postavio Wi-Fi u našem apartmanu. Instalirao je dodatne pristupne točke, sve konfigurirao i pomogao nam promijeniti naziv i lozinku mreže. Cijeli proces bio je jednostavan i bez glavobolje.',
+    name: 'Mario Cvinar',
+    role: 'Klijent',
+  },
+  {
+    quote: 'Tri godine surađivali smo na projektu web aplikacije. Gordan je bio vrlo koristan, prijateljski nastrojen i pružao je podršku kad god je bilo potrebno. Iznimno smo zadovoljni suradnjom.',
+    name: 'John Walkden',
+    role: 'Direktor, Ubique Safety Consultants',
+  },
+  {
+    quote: 'Radio sam s Gordanom iz Big Brain Solutionsa i ne mogu biti zadovoljniji. Uvijek je bio podržavajući, pristupačan i vodio nas kroz sva pitanja tijekom izrade web stranice.',
+    name: 'Siniša Kalinić',
+    role: 'Klijent',
+  },
+  {
+    quote: 'Suradnja s Gordanom iz Big Brain Solutionsa bila je izvrsno iskustvo. Cijeli proces učinio je jednostavnim, odgovorio je na sva naša pitanja i pružio podršku kad nam je bila potrebna.',
+    name: 'Marina Franić',
+    role: 'Klijentica',
+  },
+  {
+    quote: 'Gordan mi je postavio novo prijenosno računalo s Windowsom 11, Officeom i svim potrebnim programima. Bio je vrlo profesionalan, strpljiv i pobrinuo se da sve bude spremno za korištenje bez ikakvih problema.',
+    name: 'Leo Raguž',
+    role: 'Klijent',
+  },
+];
 ---
 
 <BaseLayout lang="hr" title={title} description={description} ogImage={ogImage}>
-	<Content />
+	<Header lang="hr" nav={nav} altLangHref="/en/" altLangLabel="English" />
+
+	<main>
+		<!-- Hero -->
+		<section class="bb-hero">
+			<div class="bb-hero__inner">
+				<h1 class="bb-hero__title">Tehnologija koja radi za vas — kod kuće i na poslu</h1>
+				<p class="bb-hero__subtitle">
+					Od popravka računala i IT podrške do izrade web stranica, umrežavanja i softverskih rješenja —
+					pouzdana tehnička rješenja iz Dubrovnika, prilagođena vašim potrebama.
+				</p>
+				<div class="bb-hero__cta">
+					<Button href="/kontakt/" variant="primary">Zatražite ponudu</Button>
+				</div>
+				<div class="bb-hero__chips">
+					<a href="#dom" class="bb-hero__chip">Za vaš dom</a>
+					<a href="#posao" class="bb-hero__chip">Za vaše poslovanje</a>
+					<a href="#razvoj" class="bb-hero__chip">Web i softver</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Audience blocks -->
+		<section class="bb-section">
+			<div class="bb-grid-3">
+				<div id="posao" class="bb-anchor-target">
+					<Card variant="service" href="/o-nama/">
+						<Badge variant="accent" class="mb-3">Za tvrtke</Badge>
+						<h3 class="mb-2">IT i web podrška za poslovanje</h3>
+						<p class="text-muted">Pouzdana IT, mrežna i web rješenja koja održavaju vaše poslovanje u pogonu — bez neplaniranih prekida.</p>
+					</Card>
+				</div>
+				<div id="dom" class="bb-anchor-target">
+					<Card variant="service" href="/usluge/">
+						<Badge variant="accent" class="mb-3">Za dom</Badge>
+						<h3 class="mb-2">Tehnička podrška za dom</h3>
+						<p class="text-muted">Sporo računalo, softverski problemi ili mrežni kvarovi? Brzi i pouzdani popravci, nadogradnje i uklanjanje virusa — kod vas ili u našoj radionici.</p>
+					</Card>
+				</div>
+				<div id="razvoj" class="bb-anchor-target">
+					<Card variant="service" href="/usluge/">
+						<Badge variant="accent" class="mb-3">Web i softver</Badge>
+						<h3 class="mb-2">Izrada web stranica i aplikacija</h3>
+						<p class="text-muted">Od planiranja i dizajna do razvoja i održavanja — gradimo web stranice i aplikacije koje rastu s vašim poslovanjem.</p>
+					</Card>
+				</div>
+			</div>
+		</section>
+
+		<!-- Warranty -->
+		<section class="bb-section">
+			<div class="bb-warranty">
+				<Badge variant="success" class="mb-4">60 dana jamstva</Badge>
+				<h2 class="mb-3">60 dana jamstva na sve usluge</h2>
+				<p class="text-muted max-w-2xl">
+					Stojimo iza kvalitete svog rada. Svi popravci računala, IT podrška, hardverske i softverske usluge te
+					web/aplikacijski projekti dolaze s 60 dana jamstva. Ako se u tom razdoblju pojavi problem, brzo ćemo
+					ga riješiti kako bi vaša tehnologija radila pouzdano.
+				</p>
+			</div>
+		</section>
+
+		<!-- Stats -->
+		<section class="bb-section">
+			<div class="bb-grid-3">
+				<StatCounter value={6} suffix="+" label="godina iskustva" />
+				<StatCounter value={60} label="dana jamstva" />
+				<StatCounter value={5} label="istinitih recenzija klijenata" />
+			</div>
+		</section>
+
+		<!-- Testimonials -->
+		<section class="bb-section">
+			<SectionHeading eyebrow="Iskustva klijenata" title="Što kažu naši klijenti" align="center" class="mb-8" />
+			<div class="bb-testimonial-scroll">
+				{testimonials.map((t) => (
+					<div class="bb-testimonial-scroll__item">
+						<TestimonialCard quote={t.quote} name={t.name} role={t.role} />
+					</div>
+				))}
+			</div>
+		</section>
+
+		<!-- Case study + HomeStock spotlight -->
+		<section class="bb-section">
+			<div class="bb-grid-2">
+				<Card variant="case-study" href="/kontakt/">
+					<p class="text-caption text-primary-text mb-2 font-semibold uppercase tracking-wide">Studija slučaja</p>
+					<h3 class="mb-2">Web aplikacija za Ubique Safety Consultants</h3>
+					<p class="text-muted">Tri godine razvoja i podrške za tvrtku za sigurnosno savjetovanje — pouzdana suradnja od početka do danas.</p>
+				</Card>
+				<Card variant="case-study" href="/homestock/">
+					<p class="text-caption text-primary-text mb-2 font-semibold uppercase tracking-wide">Naš proizvod</p>
+					<h3 class="mb-2">HomeStock — aplikacija za upravljanje domaćinstvom</h3>
+					<p class="text-muted">Vlastita mobilna aplikacija koju smo osmislili, razvili i objavili — pratite popis namirnica, skenirajte račune i podijelite kućanstvo s ukućanima.</p>
+				</Card>
+			</div>
+		</section>
+
+		<!-- Final CTA -->
+		<section class="bb-section">
+			<CTABand
+				title="Spremni ste unaprijediti svoju tehnologiju?"
+				description="Od popravka računala i IT podrške do web i aplikacijskog razvoja — pružamo stručna rješenja za vaš dom ili poslovanje."
+				ctaLabel="Zatražite ponudu"
+				ctaHref="/kontakt/"
+			/>
+		</section>
+	</main>
+
+	<Footer
+		nav={nav}
+		privacyHref="/privatnost-homestock/"
+		privacyLabel="Privatnost (HomeStock)"
+		labels={{
+			address: 'Adresa',
+			contact: 'Kontakt',
+			hours: 'Radno vrijeme',
+			hoursValue: 'Pon–Sub 6:00–18:00',
+			rights: 'Sva prava pridržana.',
+		}}
+	/>
 </BaseLayout>
+
+<style>
+	.bb-hero {
+		padding: var(--spacing-section-mobile) 1.5rem;
+		text-align: center;
+	}
+
+	.bb-hero__inner {
+		max-width: 48rem;
+		margin-inline: auto;
+	}
+
+	.bb-hero__subtitle {
+		margin-top: 1.25rem;
+		font-size: 1.125rem;
+		color: var(--color-muted);
+		font-family: var(--font-body);
+	}
+
+	.bb-hero__cta {
+		margin-top: 2rem;
+	}
+
+	.bb-hero__chips {
+		margin-top: 1.5rem;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.75rem;
+	}
+
+	.bb-hero__chip {
+		font-family: var(--font-body);
+		font-size: var(--text-caption);
+		font-weight: 500;
+		color: var(--color-muted);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-pill);
+		padding: 0.5rem 1rem;
+		text-decoration: none;
+		transition: border-color 150ms ease-out, color 150ms ease-out;
+	}
+
+	.bb-hero__chip:hover {
+		border-color: var(--color-primary);
+		color: var(--color-primary-text);
+	}
+
+	.bb-section {
+		padding: var(--spacing-section-mobile) 1.5rem;
+		max-width: 80rem;
+		margin-inline: auto;
+	}
+
+	.bb-grid-3 {
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: 1fr;
+	}
+
+	.bb-anchor-target {
+		scroll-margin-top: 5rem;
+	}
+
+	.bb-grid-2 {
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: 1fr;
+	}
+
+	.bb-warranty {
+		border-radius: var(--radius-panel);
+		border: 1px solid var(--color-border);
+		background-color: var(--color-surface);
+		padding: 2.5rem;
+	}
+
+	.bb-testimonial-scroll {
+		display: flex;
+		gap: 1.5rem;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		padding-bottom: 0.5rem;
+	}
+
+	.bb-testimonial-scroll__item {
+		flex: 0 0 min(20rem, 85vw);
+		scroll-snap-align: start;
+	}
+
+	@media (min-width: 48rem) {
+		.bb-grid-3 {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		.bb-grid-2 {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 64rem) {
+		.bb-hero,
+		.bb-section {
+			padding-top: var(--spacing-section-desktop);
+			padding-bottom: var(--spacing-section-desktop);
+		}
+	}
+</style>

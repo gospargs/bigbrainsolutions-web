@@ -1,0 +1,118 @@
+---
+interface NavItem {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  nav: NavItem[];
+  privacyHref: string;
+  privacyLabel: string;
+  labels: {
+    address: string;
+    contact: string;
+    hours: string;
+    hoursValue: string;
+    rights: string;
+  };
+}
+
+const { nav, privacyHref, privacyLabel, labels } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="bb-footer">
+  <div class="bb-footer__inner">
+    <div class="bb-footer__brand">
+      <p class="bb-footer__logo">Big Brain Solutions</p>
+      <p class="text-muted">{labels.address}: Riječka 15a, 20000 Dubrovnik, Croatia</p>
+      <p class="text-muted">{labels.contact}: <a href="mailto:info@bigbrain-solutions.com">info@bigbrain-solutions.com</a> · <a href="tel:+38599649274">+385 99 649 9274</a></p>
+      <p class="text-muted">{labels.hours}: {labels.hoursValue}</p>
+      <a href="https://hr.linkedin.com/company/bigbrain-solutions" class="bb-footer__linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+
+    <nav class="bb-footer__nav" aria-label="Footer">
+      <ul>
+        {nav.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+        <li><a href={privacyHref}>{privacyLabel}</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <p class="bb-footer__rights">&copy;{year}, {labels.rights}</p>
+</footer>
+
+<style>
+  .bb-footer {
+    border-top: 1px solid var(--color-border);
+    padding: 3rem 1.5rem 2rem;
+    margin-top: 4rem;
+  }
+
+  .bb-footer__inner {
+    max-width: 80rem;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: space-between;
+  }
+
+  .bb-footer__logo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .bb-footer__brand p {
+    font-family: var(--font-body);
+    margin: 0.25rem 0;
+  }
+
+  .bb-footer__brand a {
+    color: var(--color-foreground);
+  }
+
+  .bb-footer__linkedin {
+    display: inline-block;
+    margin-top: 0.75rem;
+    color: var(--color-primary-text);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .bb-footer__nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .bb-footer__nav a {
+    font-family: var(--font-body);
+    color: var(--color-muted);
+    text-decoration: none;
+  }
+
+  .bb-footer__nav a:hover {
+    color: var(--color-foreground);
+  }
+
+  .bb-footer__rights {
+    max-width: 80rem;
+    margin: 2rem auto 0;
+    font-family: var(--font-body);
+    font-size: var(--text-caption);
+    color: var(--color-muted);
+  }
+
+  @media (min-width: 48rem) {
+    .bb-footer__inner {
+      flex-direction: row;
+    }
+  }
+</style>
