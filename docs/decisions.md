@@ -303,3 +303,22 @@ All within the requested +25–30% range (mobile slightly under due to integer f
 - `astro check`: 0 errors. Full-site regression (`audit-site.mjs`): 0 axe violations, 0 broken links.
 
 No scaling-down of the lockup was needed — even at 320px there was ample clearance, so the existing 52px logo height (set in BUGFIX-008) was kept as-is.
+
+## CONTENT-008 — De-templated Croatian copy (About, Contact, HomeStock)
+
+**Request:** Owner-reviewed finding that the same generic "od popravka računala do izrade web stranica" service list appeared near-verbatim on the homepage, services, about, and contact pages, and the About page stacked four headings all restating "reliable and professional" without specifics. Seven exact literal find-and-replace strings were supplied — no rewriting or paraphrasing on my part, applied as-is.
+
+**Applied verbatim:**
+- `/o-nama/`: opening lead paragraph replaced (drops the templated "pouzdana, prilagođena tehnička rješenja" phrasing for a specific "one person, one point of contact" framing).
+- `/o-nama/`: entire "Vaš pouzdani partner za IT, web i računalna rješenja" heading+paragraph block deleted outright (was pure restatement, no new information).
+- `/o-nama/`: founder bio paragraph replaced with a version explicitly naming HBOR and framing the company as bringing production-grade experience to local clients. **This supersedes the CONTENT-007 edit** (which had appended a shorter HBOR sentence to the old bio) — the old bio text CONTENT-007 modified no longer exists on the page; this task's version is the current one.
+- `/o-nama/`: "Predani izvrsnoj usluzi..." heading+paragraph replaced with "Zašto 60 dana jamstva" — a concrete, specific claim instead of a generic restatement.
+- `/kontakt/`: hero subtitle replaced (was "covers everything" boilerplate, now a specific response-time promise).
+- `/homestock/`: "portfelju" → "portfoliju" (case-grammar fix) in the section heading.
+- `/homestock/`: "stvarnim korisnicima, stvarnim backendom i stvarnim inženjerskim odlukama u pozadini" → "stvarnim korisnicima i pravom produkcijskom infrastrukturom iza sebe — a ne demo primjer za portfolio" (the live sentence had an extra "u pozadini" clause not present in the task's OLD snippet; folded it into the replacement per the task's own instruction to "find the sentence containing..." rather than require a brittle exact match).
+
+**Explicitly left untouched, per acceptance criteria:** homepage, services page, FAQ section, en locale (all versions of the service list there are contextually appropriate).
+
+**Note:** CONTENT-007 (broader grep for the "portfelj/portfolio" pattern site-wide, plus the "besplatna konzultacija" case-grammar issue) is still outstanding per the task's own note and should be run as a follow-up.
+
+**Verification:** `astro check` (0 errors), `astro build` (16 pages). `git diff --stat` confirmed only the three intended files changed. Playwright: confirmed all seven old strings are absent and all seven new strings are present on the rendered pages (`innerText` checks), full-page screenshots of all three pages show no layout breakage from the paragraph-length changes. Full-site regression (`audit-site.mjs`): 0 axe violations, 0 broken links.
