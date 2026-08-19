@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import { getImage } from 'astro:assets';
 import ogDefault from '../assets/og/og-default.png';
+import DigitalRain from '../components/DigitalRain.astro';
 
 interface Props {
   lang: 'hr' | 'en';
@@ -44,6 +45,7 @@ const ogImageUrl = ogImage
 		<slot name="head" />
 	</head>
 	<body>
+		<DigitalRain />
 		<slot />
 	</body>
 </html>

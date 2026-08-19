@@ -1,15 +1,23 @@
 ---
 // A restrained nod to falling 0s/1s -- the idea of it, not a literal Matrix screensaver.
-// Sparse slow columns, canvas capped ~15fps.
+// Sparse slow columns, canvas capped ~15fps. Mounted once at the layout level (BaseLayout)
+// so it appears at the top of every page, confined to a fixed-height band -- not stretching
+// down the full scroll length of longer pages.
 // Disabled under prefers-reduced-motion and on mobile viewports (<768px).
 //
-// Tuning history (density/speed unchanged throughout -- only visibility moved):
+// Tuning history (density/speed unchanged throughout -- only visibility/placement moved):
 // BUGFIX-004: original 4-8% range (shipped at 6%, muted-text color) confirmed via raw
 //   canvas pixel sampling to be drawing correctly -- no rendering bug -- but imperceptible
 //   on a real screen. Raised to 12%.
 // BUGFIX-006: 12% still wasn't enough on a real screen (confirmed the deployed build was
 //   current, not a stale-cache issue, before retuning). Decisive jump to 22% and switched
-//   from muted-text to the accent token (mint, #00E5A0) for more presence.
+//   from muted-text to the accent token (mint, #00E5A0) for more presence in dark theme.
+// BUGFIX-009: was homepage-hero-only and dark-theme-only. Moved to a shared layout-level
+//   top band on every page, and made theme-aware using the exact same light/dark detection
+//   already driving the logo's CSS-mask swap (BUGFIX-007) -- dark theme keeps the accent
+//   color at 22%, light theme switches to the muted-text token (which already resolves to
+//   its own correct dark-on-light value via the token system) at a separately-tuned 16%,
+//   since contrast math against a light background isn't the same as against dark.
 ---
 
 <canvas class="bb-digital-rain" aria-hidden="true"></canvas>
@@ -18,11 +26,12 @@
   .bb-digital-rain {
     display: none;
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 31.25rem; /* ~500px top band -- roughly a typical hero height, not the full page */
     z-index: 0;
     pointer-events: none;
-    width: 100%;
-    height: 100%;
   }
 
   @media (min-width: 48rem) {
@@ -50,8 +59,28 @@
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const styles = getComputedStyle(document.documentElement);
-    const charColor = styles.getPropertyValue('--color-accent').trim() || '#00E5A0';
+    // Same light/dark detection as the logo's CSS-mask swap (BUGFIX-007) -- one source of
+    // truth for "is this page currently in light theme", not a second detection mechanism.
+    function isLightTheme() {
+      const theme = document.documentElement.dataset.theme;
+      if (theme === 'dark') return false;
+      if (theme === 'light') return true;
+      return window.matchMedia('(prefers-color-scheme: light)').matches;
+    }
+
+    function currentStyle() {
+      const styles = getComputedStyle(document.documentElement);
+      if (isLightTheme()) {
+        return {
+          color: styles.getPropertyValue('--color-muted').trim() || '#6B6B70',
+          alpha: 0.16, // tuned separately from dark mode -- gray-on-light needs less to register
+        };
+      }
+      return {
+        color: styles.getPropertyValue('--color-accent').trim() || '#00E5A0',
+        alpha: 0.22, // BUGFIX-006 dark-theme tuning
+      };
+    }
 
     const fontSize = 14;
     const columnGap = 42; // sparse: one column per ~42px
@@ -67,7 +96,7 @@
     const frameInterval = 1000 / 15; // capped ~15fps
 
     function resize() {
-      const rect = canvas!.parentElement!.getBoundingClientRect();
+      const rect = canvas!.getBoundingClientRect();
       width = rect.width;
       height = rect.height;
       canvas!.width = width * dpr;
@@ -82,7 +111,7 @@
         // start already scattered through the visible area (not just above it) so the
         // effect is present immediately on load instead of taking ~10s to trickle in
         y: Math.random() * height * 1.4 - height * 0.4,
-        speed: 1.4 + Math.random() * 1.4, // slow fall: ~15-30s to cross a typical hero height
+        speed: 1.4 + Math.random() * 1.4, // slow fall: ~15-30s to cross the band height
         nextStep: 0,
       }));
     }
@@ -94,10 +123,12 @@
       if (time - lastFrame < frameInterval) return;
       lastFrame = time;
 
+      const style = currentStyle();
+
       ctx!.clearRect(0, 0, width, height);
       ctx!.font = `${fontSize}px ui-monospace, "SF Mono", Menlo, Consolas, monospace`;
-      ctx!.fillStyle = charColor;
-      ctx!.globalAlpha = 0.22; // decisive jump per BUGFIX-006 -- see note above
+      ctx!.fillStyle = style.color;
+      ctx!.globalAlpha = style.alpha;
 
       for (const col of columns) {
         const char = chars[Math.floor(Math.random() * chars.length)];
@@ -113,7 +144,7 @@
     requestAnimationFrame(draw);
 
     const ro = new ResizeObserver(() => resize());
-    ro.observe(canvas.parentElement!);
+    ro.observe(canvas);
 
     // Stop entirely if the viewport crosses into mobile or reduced-motion is toggled live.
     const mobileQuery = window.matchMedia('(max-width: 47.9375rem)');

@@ -10,7 +10,6 @@ import StatCounter from '../../components/StatCounter.astro';
 import TestimonialCard from '../../components/TestimonialCard.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import CTABand from '../../components/CTABand.astro';
-import DigitalRain from '../../components/DigitalRain.astro';
 
 const entry = await getEntry('pages', 'en/home');
 if (!entry) throw new Error('Missing content entry: pages/en/home');
@@ -58,7 +57,6 @@ const testimonials = [
 	<main>
 		<!-- Hero -->
 		<section class="bb-hero">
-			<DigitalRain />
 			<div class="bb-hero__inner">
 				<h1 class="bb-hero__title">Technology that works for you — at home and at work</h1>
 				<p class="bb-hero__subtitle">
