@@ -146,3 +146,9 @@ Moved `<DigitalRain />` from being mounted per-page inside `.bb-hero` (homepage 
 **Theme detection reuses the exact same logic as the logo's CSS-mask swap (`BUGFIX-007`)** -- `data-theme` attribute first, `prefers-color-scheme` as fallback -- implemented once as a small helper and called each frame, not a second/separate detection mechanism. Dark theme keeps the `BUGFIX-006` tuning (accent mint, 22%). Light theme switches to the `--color-muted` token (which already resolves to its own correct light-mode value, `#6B6B70`, via the existing token system -- no new color needed) at a separately-tuned 16%, verified visually rather than assumed to be the same number, since gray-on-white and mint-on-near-black have different contrast math.
 
 **Performance note, addressed by the implementation rather than needing a follow-up:** the canvas is a fixed 500px band regardless of page length, and the animation loop doesn't hook into scroll at all (no scroll listeners, same capped-15fps `requestAnimationFrame` loop as before) -- so extending it sitewide doesn't scale with page length or introduce any new scroll-driven work. Nothing to flag here.
+
+---
+
+## POLISH-001 — digital rain: light-theme color darkened one more notch
+
+`--color-muted` (#6B6B70) at 16% still read as too washed-out on a fresh look, per direct feedback. Moved to `--color-foreground` (the site's actual light-mode body-text color, #111114 -- already theme-aware via the existing token system, no new value needed) at 20% opacity -- both the color and the opacity moved together rather than just pushing opacity further on a lighter base color. Dark-theme value (accent mint, 22%) left untouched, confirmed via pixel sampling still exactly 22% after this change. Verified visually across 4 pages (including the Privacy Policy page, which has no hero section) and both locales: clearly darker/more present at a fresh glance, headings unaffected.

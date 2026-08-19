@@ -72,8 +72,11 @@
       const styles = getComputedStyle(document.documentElement);
       if (isLightTheme()) {
         return {
-          color: styles.getPropertyValue('--color-muted').trim() || '#6B6B70',
-          alpha: 0.16, // tuned separately from dark mode -- gray-on-light needs less to register
+          // POLISH-001: shifted from --color-muted (#6B6B70) to --color-foreground
+          // (#111114, the actual body-text color) plus a higher alpha -- muted-gray alone
+          // wasn't dark enough even at 16%.
+          color: styles.getPropertyValue('--color-foreground').trim() || '#111114',
+          alpha: 0.2,
         };
       }
       return {
