@@ -11,7 +11,7 @@ All Croatian copy below was drafted by Claude Code per `docs/decisions.md` (DISC
 
 ## Services (`/usluge/`)
 - [ ] Section titles and service descriptions (7 services, 3 tracks)
-- [ ] ⚠️ **All prices are directional placeholders, not your real rates** — from €35 (repair) to €800 (website) to "custom quote" (web apps). See `docs/decisions.md` for the full list. Replace with real figures before launch.
+- [ ] ⚠️ **All prices are directional placeholders, not your real rates** — from €35 (repair) to €500 (website) to "custom quote" (web apps). See `docs/decisions.md` for the full list. Replace with real figures before launch.
 
 ## About (`/o-nama/`)
 - [ ] Founder bio paragraph (translated from the original English "I founded Big Brain Solutions..." bio)
