@@ -253,3 +253,16 @@ All within the requested +25–30% range (mobile slightly under due to integer f
 - Band height: untouched (500px desktop / 100dvh mobile)
 
 **Verification:** Playwright checks across desktop (1440×900) and mobile (390×844) viewports, both hr and en locales, both dark and light themes — 5 combinations screenshotted and column-counted. Full-site regression (`audit-site.mjs`): 0 axe violations, 0 broken links. Visual result on a fresh look: effect reads as more present/noticeable in both themes while still restrained, not a dense wall of characters — matches acceptance criteria.
+
+## CONTENT-007 — HBOR credential added to About page founder bio
+
+**Request:** Add a credibility line to the About page noting the founder also works full-time as a software specialist at HBOR (Hrvatska banka za obnovu i razvoj), framed as reinforcing enterprise-grade credibility rather than as an availability caveat.
+
+**Implementation:** Appended one sentence to the existing founder-bio paragraph on both /o-nama/ and /en/about/ (not a separate callout — same `<p>`, continuing the first-person narrative already used in that paragraph, e.g. "Osnovao sam Big Brain Solutions..." / "I founded Big Brain Solutions..."):
+
+- HR: "Paralelno radim i kao specijalist za softver u HBOR-u (Hrvatska banka za obnovu i razvoj), gdje iskustvo rada na velikim, institucionalnim sustavima donosim u svaki projekt Big Brain Solutionsa."
+- EN: "I also work full-time as a software specialist at HBOR (Croatian Bank for Reconstruction and Development), bringing enterprise-grade, institutional software experience into every Big Brain Solutions project."
+
+**Judgment call:** The user's suggested framing was third-person ("Gordan također radi..."), but the surrounding bio paragraph is written entirely in first person ("razvijam", "Osnovao sam" / "I've spent", "I founded"). Rewrote in first person to match the existing voice, per the task's own instruction to read the paragraph first and land as the same person talking, not a bolted-on line. Used "Paralelno" (in parallel) / "also work full-time" rather than any framing implying reduced availability, per the explicit requirement to avoid an "is he too busy for me" impression.
+
+**Verification:** `astro check` (0 errors), `astro build` (16 pages), preview server grep-confirmed the HBOR sentence renders on both /o-nama/ and /en/about/, full-site regression (0 axe violations, 0 broken links).
