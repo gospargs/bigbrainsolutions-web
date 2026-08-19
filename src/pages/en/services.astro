@@ -71,6 +71,12 @@ const tracks = [
         title: 'Web Application Development',
         description: 'Custom web applications, planned and built to be secure, scalable, and easy to use.',
         price: 'Custom quote',
+        proofPoint: {
+          before: 'See',
+          linkText: 'DubrovnikFlow',
+          after: ', our crowd-forecasting tool for Dubrovnik.',
+          url: 'https://www.dubrovnikflow.com/',
+        },
       },
       {
         value: 'mobile-app-development',
@@ -107,11 +113,18 @@ const tracks = [
 				<SectionHeading title={track.title} class="mb-6" />
 				<div class="bb-grid">
 					{track.services.map((s) => (
-						<Card variant="service" href={s.href ?? `/en/contact/?service=${s.value}`}>
-							<Badge variant="accent" class="mb-3">{s.price}</Badge>
-							<h3 class="mb-2">{s.title}</h3>
-							<p class="text-muted">{s.description}</p>
-						</Card>
+						<div>
+							<Card variant="service" href={s.href ?? `/en/contact/?service=${s.value}`}>
+								<Badge variant="accent" class="mb-3">{s.price}</Badge>
+								<h3 class="mb-2">{s.title}</h3>
+								<p class="text-muted">{s.description}</p>
+							</Card>
+							{s.proofPoint && (
+								<p class="bb-track-note bb-track-note--card">
+									{s.proofPoint.before} <a href={s.proofPoint.url} target="_blank" rel="noopener noreferrer">{s.proofPoint.linkText}</a>{s.proofPoint.after}
+								</p>
+							)}
+						</div>
 					))}
 				</div>
 				{track.key === 'dev' && (
@@ -178,6 +191,12 @@ const tracks = [
 
 	.bb-track-note a {
 		color: var(--color-primary-text);
+	}
+
+	/* CONTENT-005: sits directly under one card (not the whole grid), so it needs a
+	   smaller top margin than the grid-level note above. */
+	.bb-track-note--card {
+		margin-top: 0.75rem;
 	}
 
 	@media (min-width: 48rem) {
