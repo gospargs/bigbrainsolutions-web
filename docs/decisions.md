@@ -170,3 +170,41 @@ Code-only prep, no DNS/dashboard changes made (per explicit instruction) -- this
 **Verification performed exactly as asked:** full production build, `grep -rn "pages\.dev" dist/` → zero matches (also checked `www.bigbrain-solutions` → zero matches), manually inspected `sitemap-0.xml` and a page's `<head>` (canonical + all `og:*` tags confirmed on the apex domain, no `www`, no `pages.dev`).
 
 **Known remaining gap, not in this task's scope:** per-page `<link rel="alternate" hreflang="...">` tags in each page's own `<head>` (as opposed to the sitemap's `xhtml:link` entries, which are done) are still missing -- that's the rest of the roadmap's `I18N-001`, not something `DEPLOY-001`'s acceptance criteria asked for. Flagging so it isn't mistaken for finished.
+
+---
+
+## BUGFIX-010(1) / POLISH-002 — digital rain: mobile re-enabled, full-viewport height, performance verified
+
+Mobile was deliberately disabled at launch for battery/performance reasons. Owner has since seen the live site on a real phone and wants it there too -- overrides that earlier constraint. Re-enabled (removed the `isMobile` gate from both CSS and JS, kept `prefers-reduced-motion` gating fully intact) and, per the same-message follow-up (`POLISH-002`), sized to fill the full visible viewport height on mobile (`100dvh`, with a `100vh` fallback for older browsers) instead of the fixed desktop band -- desktop keeps its existing 500px band unchanged. Positioned with `position: absolute`, not `fixed`, so it scrolls away normally with the page after the first screen rather than staying pinned or covering the full length of long pages.
+
+**Performance verified with real numbers, not assumption**, as both tasks explicitly required: ran Lighthouse mobile (4x CPU throttling, simulated network) against the homepage twice -- once with the effect mounted, once with the mount temporarily replaced by `{false && <DigitalRain />}` to get a genuine apples-to-apples baseline, then restored.
+
+| | Performance score | LCP | CLS | TBT | Main-thread work |
+|---|---|---|---|---|---|
+| Effect ON | 90 | 3.0s | 0.002 | 0ms | 0.9s |
+| Effect OFF | 90 | 3.0s | 0.003 | 0ms | 0.4s |
+
+**Score is identical (90 vs 90); every Core Web Vital is unchanged.** Main-thread work roughly doubles (0.4s → 0.9s, attributable to the canvas animation loop), but stays far short of anything that shows up in TBT (0ms in both runs) or the overall score. Given this measured result, no separate lightweight mobile variant (fewer columns, lower fps cap) was built -- the existing implementation already performs fine once un-gated, and adding complexity to solve a problem the data says doesn't exist would be the over-engineering the task explicitly warned against. Column density already scales down naturally on mobile too (column count is `floor(width / 42px)`, so a 390px-wide phone gets ~9 columns vs desktop's ~34 at 1440px) -- part of why this stayed cheap.
+
+Verified visually on real mobile viewports (390×844) in both themes and both locales: canvas height matches the full viewport height exactly, correct color per theme, `prefers-reduced-motion` still fully disables it.
+
+## BUGFIX-010(2) — full contrast audit of the live production domain: zero violations found
+
+Ran an automated WCAG AA contrast scan (axe-core, the same tool used throughout this project) against **the live production domain** (`www.bigbrain-solutions.com`, not the `.pages.dev` preview) across all 14 pages, both locales, both light and dark theme (28 page/theme combinations total) -- **zero violations found.**
+
+This doesn't mean nothing was worth checking manually, so here's what was specifically looked at beyond the automated pass, per the request to check button/link states, form fields, and icons, not just body text:
+- **Hover/focus/visited link and button states** -- checked the actual CSS: focus uses the global `:focus-visible` outline (`2px solid var(--color-primary)`) established at the token level in `DESIGN-001`, applied uniformly with no per-component overrides that could regress it; hover states use border/color tokens already verified for contrast in `DESIGN-002`; no `:visited` styling exists (intentional -- the site has no content where visited-vs-unvisited state carries meaning, e.g. no blog/article index).
+- **Form field borders and placeholder text** -- `ContactForm.astro`'s inputs use `border border-border` (the border token, not a contrast-dependent element) and rely on the browser's native placeholder styling rather than a custom low-contrast placeholder color, so there's no custom placeholder-contrast risk introduced.
+- **Icons** -- the logo mark's own light/dark contrast was already resolved in `BRAND-001`/`BUGFIX-005`/`BUGFIX-007`; no other custom icons exist on the site (the mobile menu toggle uses a plain "☰" text character sized via `font-size`, not an SVG needing separate contrast treatment).
+
+**Direct answer to "does it need any color anywhere?": no.** Nothing found reading as invisible or near-invisible against its background on the real production domain, in either theme, on any page.
+
+## BUGFIX-010(3) — Contact page horizontal scroll on mobile: two real, distinct causes
+
+Found via direct measurement (`document.documentElement.scrollWidth` vs `window.innerWidth`), not guessing at a CSS fix -- traced down through the DOM tree to isolate the actual overflowing element at each breakpoint rather than reaching for `overflow-x: hidden` on a parent, which the task correctly flagged as hiding the symptom rather than fixing the layout bug.
+
+**Cause 1 (375px and up): classic CSS Grid `min-width: auto` overflow.** `.bb-contact-grid`'s two children (`.bb-contact-info`, `.bb-contact-form`) share a single `1fr` column track in the mobile single-column layout. Grid items default to `min-width: auto`, meaning a track won't shrink below its widest participant's *min-content* size -- and the service `<select>`'s longest option text ("Uklanjanje virusa i zlonamjernog softvera") was contributing a min-content width wider than the viewport, forcing the whole shared column (and everything in it, including short text like "Adresa") 15-70px past the edge. Fixed with `min-width: 0` on both grid items -- the standard, correct fix for this exact category of bug, not a workaround.
+
+**Cause 2 (320px specifically, survived the fix above): Cloudflare's own Turnstile widget has a fixed ~300px minimum render width.** At the narrowest tested width, available space inside the form (206px) was well under Turnstile's default "normal" size, which doesn't shrink to fit. This is third-party embedded content, not something adjustable via CSS on our side -- fixed via Turnstile's own official `data-size="compact"` attribute (~150px), which comfortably fits down to 320px and is a legitimate, supported sizing option rather than a hack.
+
+Verified 0px overflow at 320px, 375px, and 414px, on both `/kontakt/` and `/en/contact/`, with the Turnstile widget fully rendered (not just before it loaded). Screenshot at 375px confirms a clean fit with no horizontal scroll.

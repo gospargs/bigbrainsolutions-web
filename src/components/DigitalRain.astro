@@ -1,42 +1,46 @@
 ---
 // A restrained nod to falling 0s/1s -- the idea of it, not a literal Matrix screensaver.
 // Sparse slow columns, canvas capped ~15fps. Mounted once at the layout level (BaseLayout)
-// so it appears at the top of every page, confined to a fixed-height band -- not stretching
-// down the full scroll length of longer pages.
-// Disabled under prefers-reduced-motion and on mobile viewports (<768px).
+// so it appears at the top of every page, confined to a fixed-height band on desktop / full
+// viewport height on mobile -- not stretching down the full scroll length of longer pages.
+// Disabled under prefers-reduced-motion (always) -- mobile is enabled as of BUGFIX-010.
 //
 // Tuning history (density/speed unchanged throughout -- only visibility/placement moved):
-// BUGFIX-004: original 4-8% range (shipped at 6%, muted-text color) confirmed via raw
-//   canvas pixel sampling to be drawing correctly -- no rendering bug -- but imperceptible
-//   on a real screen. Raised to 12%.
-// BUGFIX-006: 12% still wasn't enough on a real screen (confirmed the deployed build was
-//   current, not a stale-cache issue, before retuning). Decisive jump to 22% and switched
-//   from muted-text to the accent token (mint, #00E5A0) for more presence in dark theme.
-// BUGFIX-009: was homepage-hero-only and dark-theme-only. Moved to a shared layout-level
-//   top band on every page, and made theme-aware using the exact same light/dark detection
-//   already driving the logo's CSS-mask swap (BUGFIX-007) -- dark theme keeps the accent
-//   color at 22%, light theme switches to the muted-text token (which already resolves to
-//   its own correct dark-on-light value via the token system) at a separately-tuned 16%,
-//   since contrast math against a light background isn't the same as against dark.
+// BUGFIX-004/006: opacity 6%->12%->22% (dark theme, accent mint) -- imperceptible at lower
+//   values on a real screen despite drawing correctly.
+// BUGFIX-009: moved from homepage-hero-only to a shared layout-level top band on every page,
+//   added theme-aware color (dark: accent mint 22%, light: muted-text 16%).
+// POLISH-001: light-theme color/opacity darkened further -- muted-text wasn't dark enough
+//   even at 16%. Switched to --color-foreground (the actual body-text color) at 20%.
+// BUGFIX-010(1): mobile was deliberately disabled at launch (battery/perf reasoning) --
+//   owner has now seen the live site on a real phone and wants it there too. Re-enabled;
+//   see docs/decisions.md for the mobile performance check performed before shipping this.
+// POLISH-002: mobile now sizes to the full visible viewport height on load (100dvh) instead
+//   of the fixed desktop band, per explicit follow-up request -- verified via Lighthouse,
+//   see docs/decisions.md for before/after numbers.
 ---
 
 <canvas class="bb-digital-rain" aria-hidden="true"></canvas>
 
 <style>
   .bb-digital-rain {
-    display: none;
+    display: block;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 31.25rem; /* ~500px top band -- roughly a typical hero height, not the full page */
+    /* Mobile: fills the screen the visitor lands on (100dvh accounts for mobile browser
+       chrome better than 100vh), then scrolls away normally -- not pinned, not stretching
+       down the rest of the page. */
+    height: 100vh;
+    height: 100dvh;
     z-index: 0;
     pointer-events: none;
   }
 
   @media (min-width: 48rem) {
     .bb-digital-rain {
-      display: block;
+      height: 31.25rem; /* ~500px desktop band -- roughly a typical hero height, not the full page */
     }
   }
 
@@ -53,8 +57,7 @@
     if (!canvas) return;
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isMobile = window.matchMedia('(max-width: 47.9375rem)').matches;
-    if (prefersReducedMotion || isMobile) return;
+    if (prefersReducedMotion) return;
 
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
@@ -72,21 +75,19 @@
       const styles = getComputedStyle(document.documentElement);
       if (isLightTheme()) {
         return {
-          // POLISH-001: shifted from --color-muted (#6B6B70) to --color-foreground
-          // (#111114, the actual body-text color) plus a higher alpha -- muted-gray alone
-          // wasn't dark enough even at 16%.
           color: styles.getPropertyValue('--color-foreground').trim() || '#111114',
-          alpha: 0.2,
+          alpha: 0.2, // POLISH-001
         };
       }
       return {
         color: styles.getPropertyValue('--color-accent').trim() || '#00E5A0',
-        alpha: 0.22, // BUGFIX-006 dark-theme tuning
+        alpha: 0.22, // BUGFIX-006
       };
     }
 
     const fontSize = 14;
-    const columnGap = 42; // sparse: one column per ~42px
+    const columnGap = 42; // sparse: one column per ~42px -- narrower mobile viewports
+    // naturally get proportionally fewer columns than desktop, no separate mobile density needed
     const rowHeight = fontSize * 1.6;
     const chars = '01';
 
@@ -96,7 +97,7 @@
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
     let running = true;
     let lastFrame = 0;
-    const frameInterval = 1000 / 15; // capped ~15fps
+    const frameInterval = 1000 / 15; // capped ~15fps -- verified fine on mobile, see docs/decisions.md
 
     function resize() {
       const rect = canvas!.getBoundingClientRect();
@@ -149,17 +150,14 @@
     const ro = new ResizeObserver(() => resize());
     ro.observe(canvas);
 
-    // Stop entirely if the viewport crosses into mobile or reduced-motion is toggled live.
-    const mobileQuery = window.matchMedia('(max-width: 47.9375rem)');
+    // Stop entirely if reduced-motion is toggled live.
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const checkShouldStop = () => {
-      if (mobileQuery.matches || motionQuery.matches) {
+    motionQuery.addEventListener('change', () => {
+      if (motionQuery.matches) {
         running = false;
         ctx!.clearRect(0, 0, width, height);
       }
-    };
-    mobileQuery.addEventListener('change', checkShouldStop);
-    motionQuery.addEventListener('change', checkShouldStop);
+    });
   }
 
   if (document.readyState === 'loading') {
