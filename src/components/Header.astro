@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import logoFull from '../assets/logo-full.png';
 import logoIcon from '../assets/logo-icon.png';
 
@@ -17,13 +17,28 @@ interface Props {
 
 const { lang, nav, altLangHref, altLangLabel } = Astro.props;
 const homeHref = lang === 'hr' ? '/' : '/en/';
+
+// Optimized URLs for the two logo assets, used as CSS mask-image sources (BUGFIX-007):
+// there's no dark-colored export of the logo, and the source art is a flattened raster,
+// not an editable vector, so a dark-on-light variant is derived on demand via CSS mask
+// rather than sourced as a second file.
+const logoFullOptimized = await getImage({ src: logoFull });
+const logoIconOptimized = await getImage({ src: logoIcon });
+const logoFullMaskUrl = `url(${logoFullOptimized.src})`;
+const logoIconMaskUrl = `url(${logoIconOptimized.src})`;
 ---
 
 <header class="bb-header">
   <div class="bb-header__inner">
     <a href={homeHref} class="bb-header__logo" aria-label="Big Brain Solutions">
-      <Image src={logoFull} alt="Big Brain Solutions" class="bb-header__logo-full" height={36} widths={[248, 496]} sizes="248px" />
-      <Image src={logoIcon} alt="Big Brain Solutions" class="bb-header__logo-icon" width={36} height={36} />
+      <span class="bb-logo-slot bb-logo-slot--full">
+        <Image src={logoFull} alt="Big Brain Solutions" class="bb-logo-render" />
+        <span class="bb-logo-render bb-logo-render--mask bb-logo-render--mask-full" aria-hidden="true"></span>
+      </span>
+      <span class="bb-logo-slot bb-logo-slot--icon">
+        <Image src={logoIcon} alt="Big Brain Solutions" class="bb-logo-render" />
+        <span class="bb-logo-render bb-logo-render--mask bb-logo-render--mask-icon" aria-hidden="true"></span>
+      </span>
     </a>
 
     <nav class="bb-header__nav" aria-label="Primary">
@@ -61,8 +76,14 @@ const homeHref = lang === 'hr' ? '/' : '/en/';
   </div>
 </header>
 
-<style>
+<style define:vars={{ logoFullMaskUrl, logoIconMaskUrl }}>
+  /*
+    Header height token: 72px (--header-height below), independent of whatever logo asset
+    is inside it -- see docs/decisions.md BUGFIX-005. Logo is always rendered at a fixed
+    32px height with width:auto/object-fit:contain, never a forced square.
+  */
   .bb-header {
+    --header-height: 4.5rem;
     position: sticky;
     top: 0;
     z-index: 50;
@@ -77,7 +98,8 @@ const homeHref = lang === 'hr' ? '/' : '/en/';
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 1.5rem;
+    min-height: var(--header-height);
+    padding: 0 1.5rem;
   }
 
   .bb-header__logo {
@@ -86,12 +108,75 @@ const homeHref = lang === 'hr' ? '/' : '/en/';
     text-decoration: none;
   }
 
-  .bb-header__logo-full {
+  .bb-logo-slot {
     display: none;
+    align-items: center;
+    position: relative;
+  }
+
+  .bb-logo-slot--icon {
+    display: flex;
+  }
+
+  .bb-logo-slot--full .bb-logo-render {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .bb-logo-slot--icon .bb-logo-render {
+    height: 32px;
+    width: 32px;
+    object-fit: contain;
+  }
+
+  /* Colorful original PNG -- correct, best-looking rendering. Default (dark theme). */
+  img.bb-logo-render {
+    display: block;
+  }
+
+  /* CSS-mask dark recolor for light-theme contexts (BUGFIX-007) -- hidden by default. */
+  .bb-logo-render--mask {
+    display: none;
+    background-color: var(--color-foreground);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: left center;
+    mask-position: left center;
+  }
+
+  .bb-logo-render--mask-full {
+    -webkit-mask-image: var(--logoFullMaskUrl);
+    mask-image: var(--logoFullMaskUrl);
+    /* an empty <span> has no intrinsic size for width:auto to derive from (unlike <img>,
+       which sizes from the image's natural dimensions) -- aspect-ratio fixes that so the
+       masked version matches the colorful <img> version's proportions exactly. */
+    aspect-ratio: 1413 / 622;
     width: auto;
   }
 
-  .bb-header__logo-icon {
+  .bb-logo-render--mask-icon {
+    -webkit-mask-image: var(--logoIconMaskUrl);
+    mask-image: var(--logoIconMaskUrl);
+  }
+
+  /* Light theme: swap the colorful <img> for the flat dark-masked version in both slots. */
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) img.bb-logo-render {
+      display: none;
+    }
+    :root:not([data-theme="dark"]) .bb-logo-render--mask {
+      display: block;
+    }
+  }
+
+  :root[data-theme="light"] img.bb-logo-render {
+    display: none;
+  }
+
+  :root[data-theme="light"] .bb-logo-render--mask {
     display: block;
   }
 
@@ -196,11 +281,11 @@ const homeHref = lang === 'hr' ? '/' : '/en/';
       display: none;
     }
 
-    .bb-header__logo-full {
-      display: block;
+    .bb-logo-slot--full {
+      display: flex;
     }
 
-    .bb-header__logo-icon {
+    .bb-logo-slot--icon {
       display: none;
     }
   }
