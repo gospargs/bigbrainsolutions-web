@@ -230,3 +230,26 @@ The obvious reuse of the existing HomeStock pattern (`Card href` pointing the wh
 Restructured just this one card: wrapped each service's `Card` in a plain `<div>` grid cell (harmless -- `.bb-grid`'s CSS doesn't depend on `Card` being a direct grid child) so a sibling proof-point paragraph can sit directly below the card without nesting inside its anchor. Added a `proofPoint` field to the `web-app-development` entry only (`before`/`linkText`/`after`/`url`, so the link text itself -- "DubrovnikFlow" -- is the clickable part, matching how the existing Ubique case-study note treats its own link). Styled with the same `.bb-track-note` class already used for that Ubique note, just a tighter top margin (`.bb-track-note--card`) since it's anchored to one card instead of the whole grid.
 
 Verified: the DubrovnikFlow link has `target="_blank" rel="noopener noreferrer"` and the correct URL on both locales; the card's own `/kontakt/?service=web-app-development` link is completely unaffected (checked all 5 links in the dev track resolve to their correct, distinct destinations); zero axe violations, zero broken links sitewide.
+
+## POLISH-004 — Digital-rain column density increase
+
+**Request:** Slightly increase digital-rain column density ("kapljicu više" — a touch more) so the effect catches the eye a bit more, without becoming a busier effect overall. Density-only change: opacity, fall speed, font size, frame-rate cap, and viewport sizing (500px desktop band / 100dvh mobile) must stay untouched.
+
+**Change:** `columnGap` in `src/components/DigitalRain.astro` reduced from 42px to 33px (one column every ~33px instead of ~42px).
+
+**Measured column-count impact (Playwright, canvas rect width / 33):**
+- 1440px desktop: 34 → 43 columns (+26.5%)
+- 768px tablet breakpoint: 18 → 23 columns (+27.8%)
+- 390px mobile: 9 → 11 columns (+22.2%)
+
+All within the requested +25–30% range (mobile slightly under due to integer floor rounding at narrow widths, which is expected and fine).
+
+**Confirmed unchanged (measured via canvas pixel sampling, same script):**
+- Dark theme alpha: still 22% (accent mint)
+- Light theme alpha: still 20% (foreground color)
+- Fall speed formula: untouched
+- Font size: untouched (14px)
+- Frame cap: untouched (~15fps)
+- Band height: untouched (500px desktop / 100dvh mobile)
+
+**Verification:** Playwright checks across desktop (1440×900) and mobile (390×844) viewports, both hr and en locales, both dark and light themes — 5 combinations screenshotted and column-counted. Full-site regression (`audit-site.mjs`): 0 axe violations, 0 broken links. Visual result on a fresh look: effect reads as more present/noticeable in both themes while still restrained, not a dense wall of characters — matches acceptance criteria.

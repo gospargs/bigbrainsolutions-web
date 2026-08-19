@@ -86,8 +86,11 @@
     }
 
     const fontSize = 14;
-    const columnGap = 42; // sparse: one column per ~42px -- narrower mobile viewports
-    // naturally get proportionally fewer columns than desktop, no separate mobile density needed
+    // POLISH-004: 42 -> 33 gives roughly +25-30% more columns at every viewport width
+    // tested (1440px: 34->43, 768px: 18->23, 390px: 9->11) -- density-only change, opacity/
+    // speed/font-size/frame-cap/band-height all untouched. Narrower mobile viewports still
+    // naturally get proportionally fewer columns than desktop, no separate mobile density needed.
+    const columnGap = 33;
     const rowHeight = fontSize * 1.6;
     const chars = '01';
 
