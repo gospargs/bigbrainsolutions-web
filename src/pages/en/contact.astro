@@ -153,6 +153,17 @@ const faqItems = [
 		grid-template-columns: 1fr;
 	}
 
+	/*
+		BUGFIX-010(3): grid items default to min-width: auto, so a wide descendant (here,
+		the service <select>'s longest option text) was forcing the shared 1fr column
+		track wider than the viewport instead of respecting the grid's own width -- classic
+		CSS Grid overflow cause. min-width: 0 lets both items actually shrink to fit.
+	*/
+	.bb-contact-info,
+	.bb-contact-form {
+		min-width: 0;
+	}
+
 	.bb-contact-info {
 		display: flex;
 		flex-direction: column;

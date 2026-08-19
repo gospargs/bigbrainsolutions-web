@@ -72,7 +72,7 @@ const { services, labels, selectedService, turnstileSiteKey } = Astro.props;
       id="cf-service"
       name="service"
       required
-      class="w-full rounded-card border border-border bg-background px-4 py-2.5 outline-none focus-visible:border-primary"
+      class="w-full min-w-0 rounded-card border border-border bg-background px-4 py-2.5 outline-none focus-visible:border-primary"
     >
       {services.map((s) => (
         <option value={s.value} selected={s.value === selectedService}>{s.label}</option>
@@ -93,7 +93,10 @@ const { services, labels, selectedService, turnstileSiteKey } = Astro.props;
     <p id="cf-message-error" class="mt-1 text-caption text-error-fg" role="alert" hidden></p>
   </div>
 
-  <div class="cf-turnstile" data-sitekey={turnstileSiteKey}></div>
+  {/* BUGFIX-010(3): Turnstile's default "normal" size has a fixed ~300px minimum render
+      width -- wider than the available space at narrow mobile widths (206px at a 320px
+      viewport), causing horizontal overflow. "compact" (~150px) fits everywhere. */}
+  <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-size="compact"></div>
 
   <button
     type="submit"
