@@ -15,9 +15,15 @@
 // BUGFIX-010(1): mobile was deliberately disabled at launch (battery/perf reasoning) --
 //   owner has now seen the live site on a real phone and wants it there too. Re-enabled;
 //   see docs/decisions.md for the mobile performance check performed before shipping this.
-// POLISH-002: mobile now sizes to the full visible viewport height on load (100dvh) instead
-//   of the fixed desktop band, per explicit follow-up request -- verified via Lighthouse,
-//   see docs/decisions.md for before/after numbers.
+// POLISH-002 (mobile-height): mobile now sizes to the full visible viewport height on load
+//   (100dvh) instead of the fixed desktop band, per explicit follow-up request -- verified via
+//   Lighthouse, see docs/decisions.md for before/after numbers.
+// POLISH-002 (contrast, later follow-up reusing the same task ID): opacity-only tuning had
+//   diminishing returns -- even at 22%/20% the digits still barely separated in luminance from
+//   the near-black/near-white background on a real phone. Raised dark to 32%; light needed two
+//   passes (28% was still too faint against #FAFAF9 on an actual screenshot) before landing at
+//   36%. Colors (accent mint / --color-foreground) were already correct from BUGFIX-006/POLISH-001,
+//   this was purely an opacity increase. See docs/decisions.md for the before/after screenshots.
 ---
 
 <canvas class="bb-digital-rain" aria-hidden="true"></canvas>
@@ -76,12 +82,12 @@
       if (isLightTheme()) {
         return {
           color: styles.getPropertyValue('--color-foreground').trim() || '#111114',
-          alpha: 0.2, // POLISH-001
+          alpha: 0.36, // POLISH-002: 0.2 and 0.28 both still too faint against #FAFAF9 on a real phone
         };
       }
       return {
         color: styles.getPropertyValue('--color-accent').trim() || '#00E5A0',
-        alpha: 0.22, // BUGFIX-006
+        alpha: 0.32, // POLISH-002: 0.22 still didn't separate from #0B0D10 on a real phone
       };
     }
 

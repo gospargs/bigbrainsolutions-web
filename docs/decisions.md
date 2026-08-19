@@ -266,3 +266,24 @@ All within the requested +25–30% range (mobile slightly under due to integer f
 **Judgment call:** The user's suggested framing was third-person ("Gordan također radi..."), but the surrounding bio paragraph is written entirely in first person ("razvijam", "Osnovao sam" / "I've spent", "I founded"). Rewrote in first person to match the existing voice, per the task's own instruction to read the paragraph first and land as the same person talking, not a bolted-on line. Used "Paralelno" (in parallel) / "also work full-time" rather than any framing implying reduced availability, per the explicit requirement to avoid an "is he too busy for me" impression.
 
 **Verification:** `astro check` (0 errors), `astro build` (16 pages), preview server grep-confirmed the HBOR sentence renders on both /o-nama/ and /en/about/, full-site regression (0 axe violations, 0 broken links).
+
+## POLISH-002 (contrast follow-up) — Digital-rain digit visibility fix
+
+**Note on Task ID:** This request arrived labeled `POLISH-002`, which was already used earlier for the mobile full-viewport-height change (see `## BUGFIX-010(1) / POLISH-002` above). Proceeded under the same ID as given rather than stalling to ask, but flagging the collision here so the two entries aren't confused — this section covers the later, unrelated contrast fix.
+
+**Request:** Owner still couldn't read the digits on a real phone against the dark theme, even after two prior opacity-only rounds (6%→12%→22% dark, 16%→20% light). Hypothesis: opacity alone had diminishing returns — the real lever was color/luminance contrast, not alpha.
+
+**Investigation:** Colors were already correct going in — dark theme used `--color-accent` (mint `#00E5A0`) and light theme used `--color-foreground` (`#111114`), both changed in earlier rounds (BUGFIX-006, POLISH-001). So the fix here was purely opacity, verified visually at each step rather than guessed blindly:
+
+1. Took real Playwright screenshots (375×812, both themes) of the *current* shipped state before touching anything — confirmed the complaint was legitimate: digits were present but barely perceptible, especially in light theme (only one faint digit visible in the crop).
+2. First pass: dark 22%→32%, light 20%→28%. Rebuilt, re-screenshotted. Dark theme now read clearly (mint digits clearly visible against `#0B0D10`). Light theme was still too faint — only one barely-visible digit in the same crop region, confirmed across two different timepoints to rule out random column placement being the cause.
+3. Second pass: light 28%→36% (outside the originally suggested 25–30% range, but the acceptance bar is "clearly readable," not a specific number). Rebuilt, re-screenshotted — now three distinct digits clearly visible in the same crop, comparable legibility to the dark theme.
+
+**Final values:** dark theme alpha 0.22 → 0.32 (`--color-accent`, unchanged color), light theme alpha 0.20 → 0.36 (`--color-foreground`, unchanged color).
+
+**Verified unchanged:** column density/gap, fall speed, font size, ~15fps frame cap, band height (500px desktop / 100dvh mobile), `prefers-reduced-motion` still fully hides the canvas (Playwright-confirmed: canvas `isVisible() === false` under `reducedMotion: 'reduce'`).
+
+**Verification:**
+- Playwright screenshots: mobile (375×812) and desktop (1440×900), hr and en, dark and light — all show clearly legible digits at a glance, no zooming needed.
+- Mobile Lighthouse (simulated throttling, 4x CPU slowdown, same methodology as the earlier POLISH-002 mobile-height check): performance score 90 — unchanged from the pre-existing baseline, matching the "~90" acceptance target.
+- `astro check`: 0 errors. Full-site regression (`audit-site.mjs`): 0 axe violations, 0 broken links.
