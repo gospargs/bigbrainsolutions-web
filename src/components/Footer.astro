@@ -15,6 +15,7 @@ interface Props {
     hours: string;
     hoursValue: string;
     rights: string;
+    legalLine: string;
   };
 }
 
@@ -44,6 +45,7 @@ const country = lang === 'hr' ? 'Hrvatska' : 'Croatia';
   </div>
 
   <p class="bb-footer__rights">&copy;{year}, {labels.rights}</p>
+  <p class="bb-footer__rights bb-footer__legal">{labels.legalLine}</p>
 </footer>
 
 <style>
@@ -110,6 +112,12 @@ const country = lang === 'hr' ? 'Hrvatska' : 'Croatia';
     font-family: var(--font-body);
     font-size: var(--text-caption);
     color: var(--color-muted);
+  }
+
+  /* LEGAL-001: sits directly under the copyright line, same styling, small gap between
+     the two rather than each getting the full 2rem separation meant for the block above. */
+  .bb-footer__legal {
+    margin-top: 0.375rem;
   }
 
   @media (min-width: 48rem) {
