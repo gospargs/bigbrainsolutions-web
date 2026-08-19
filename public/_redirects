@@ -1,0 +1,9 @@
+# Cloudflare Pages redirects -- DEPLOY-001
+# Preserves the 5 URLs indexed on the live WordPress site (confirmed via its sitemap)
+# so existing Google rankings and external links/bookmarks keep working after cutover.
+# Root / needs no entry -- it stays / and serves the new homepage directly.
+
+/contact/                     /kontakt/                 301
+/about/                       /o-nama/                  301
+/services/                    /usluge/                  301
+/homestock-privacy-policy/    /privatnost-homestock/    301

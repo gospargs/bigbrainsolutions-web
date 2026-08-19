@@ -152,3 +152,21 @@ Moved `<DigitalRain />` from being mounted per-page inside `.bb-hero` (homepage 
 ## POLISH-001 — digital rain: light-theme color darkened one more notch
 
 `--color-muted` (#6B6B70) at 16% still read as too washed-out on a fresh look, per direct feedback. Moved to `--color-foreground` (the site's actual light-mode body-text color, #111114 -- already theme-aware via the existing token system, no new value needed) at 20% opacity -- both the color and the opacity moved together rather than just pushing opacity further on a lighter base color. Dark-theme value (accent mint, 22%) left untouched, confirmed via pixel sampling still exactly 22% after this change. Verified visually across 4 pages (including the Privacy Policy page, which has no hero section) and both locales: clearly darker/more present at a fresh glance, headings unaffected.
+
+---
+
+## DEPLOY-001 — production cutover prep: domain, redirects, sitemap/robots
+
+Code-only prep, no DNS/dashboard changes made (per explicit instruction) -- this is committed and ready, waiting on the owner to confirm before anything points the live domain at Cloudflare Pages.
+
+**Domain: `site` in `astro.config.mjs` changed to `https://bigbrain-solutions.com`** (apex, no www) -- was `https://www.bigbrain-solutions.com` since `ARCH-001`. This matches `INFRA-001`'s finding exactly (the live WordPress site's actual canonical destination is the non-www apex; `www` redirects to it, not the reverse), so no conflict with earlier decisions, just now made consistent everywhere. Every canonical/OG/sitemap URL site-wide is generated from this single `Astro.site` value (verified: zero hardcoded domain strings anywhere in `src/`), so this one change propagates correctly everywhere.
+
+**`public/_redirects` created** with the 4 mappings for the WordPress site's real indexed URLs (confirmed via its own sitemap in `DISCOVERY-001`): `/contact/`, `/about/`, `/services/`, `/homestock-privacy-policy/` → their new slugs, all 301. Root `/` needs no entry. Verified all 4 redirect targets resolve 200 on a local build.
+
+**Sitemap and robots.txt didn't exist at all before this task** (the roadmap's `I18N-001`/`SEO-002` were never reached earlier in the build) -- added `@astrojs/sitemap` and a `public/robots.txt` referencing it, since `DEPLOY-001` explicitly needs them correct and a production cutover with no sitemap would be a real gap regardless. Building this sitemap for the first time surfaced two real defects, fixed before committing rather than shipped:
+1. **Internal QA-only routes were leaking into the sitemap** -- `/components/` and `/design-tokens/` (both already `noindex, nofollow`) were appearing as indexable URLs. Excluded via the integration's `filter` option.
+2. **Automatic hreflang pairing silently failed for every localized-slug page.** `@astrojs/sitemap`'s built-in `i18n` option pairs hr/en URLs by matching identical path suffixes -- that only works for the two pages that happen to share a slug across locales (`/` ↔ `/en/`, `/homestock/` ↔ `/en/homestock/`). Every other page uses a deliberately localized Croatian slug (`/usluge/` vs `/en/services/`, etc. -- see `DISCOVERY-002c`), so 5 of 7 page pairs got zero hreflang links with the automatic option. Replaced with an explicit `serialize()` lookup table pairing all 7 known hr/en slug pairs plus `x-default`, verified in the built `sitemap-0.xml`: all 14 URLs now carry correct alternate links.
+
+**Verification performed exactly as asked:** full production build, `grep -rn "pages\.dev" dist/` → zero matches (also checked `www.bigbrain-solutions` → zero matches), manually inspected `sitemap-0.xml` and a page's `<head>` (canonical + all `og:*` tags confirmed on the apex domain, no `www`, no `pages.dev`).
+
+**Known remaining gap, not in this task's scope:** per-page `<link rel="alternate" hreflang="...">` tags in each page's own `<head>` (as opposed to the sitemap's `xhtml:link` entries, which are done) are still missing -- that's the rest of the roadmap's `I18N-001`, not something `DEPLOY-001`'s acceptance criteria asked for. Flagging so it isn't mistaken for finished.
