@@ -1,12 +1,15 @@
 ---
 // A restrained nod to falling 0s/1s -- the idea of it, not a literal Matrix screensaver.
-// Muted-text token, sparse slow columns, canvas capped ~15fps.
+// Sparse slow columns, canvas capped ~15fps.
 // Disabled under prefers-reduced-motion and on mobile viewports (<768px).
 //
-// BUGFIX-004: the original 4-8% opacity range (implemented at 6%) was confirmed via raw
-// canvas pixel sampling to be drawing correctly (no rendering bug -- correct z-index,
-// correct canvas sizing, zero console errors, correct alpha), but was imperceptible on a
-// real screen. Raised to 12% -- same density, same speed, just visible now.
+// Tuning history (density/speed unchanged throughout -- only visibility moved):
+// BUGFIX-004: original 4-8% range (shipped at 6%, muted-text color) confirmed via raw
+//   canvas pixel sampling to be drawing correctly -- no rendering bug -- but imperceptible
+//   on a real screen. Raised to 12%.
+// BUGFIX-006: 12% still wasn't enough on a real screen (confirmed the deployed build was
+//   current, not a stale-cache issue, before retuning). Decisive jump to 22% and switched
+//   from muted-text to the accent token (mint, #00E5A0) for more presence.
 ---
 
 <canvas class="bb-digital-rain" aria-hidden="true"></canvas>
@@ -48,7 +51,7 @@
     if (!ctx) return;
 
     const styles = getComputedStyle(document.documentElement);
-    const charColor = styles.getPropertyValue('--color-muted').trim() || '#9A9A9F';
+    const charColor = styles.getPropertyValue('--color-accent').trim() || '#00E5A0';
 
     const fontSize = 14;
     const columnGap = 42; // sparse: one column per ~42px
@@ -94,7 +97,7 @@
       ctx!.clearRect(0, 0, width, height);
       ctx!.font = `${fontSize}px ui-monospace, "SF Mono", Menlo, Consolas, monospace`;
       ctx!.fillStyle = charColor;
-      ctx!.globalAlpha = 0.12; // perceptible-but-subtle -- see BUGFIX-004 note above
+      ctx!.globalAlpha = 0.22; // decisive jump per BUGFIX-006 -- see note above
 
       for (const col of columns) {
         const char = chars[Math.floor(Math.random() * chars.length)];

@@ -118,3 +118,15 @@ The roadmap explicitly punts exact pricing figures to the owner (`{{PRICE_X}}` p
 *Revisit if:* the owner has firm pricing ready sooner — trivial find/replace against the checklist.
 
 **Figures used (PAGE-001, both locales):** Computer Repair & Installation from €35 · Virus & Malware Removal from €30 · Network Setup & Support from €45 · Hardware Services from €25 · Software Services from €20 · Website Design & Development from €800 · Web Application Development: custom quote (too variable in scope for a "from" figure to be honest). All of these are directional estimates for the Dubrovnik market, not researched competitor pricing — every figure needs the owner's real sign-off before `DEPLOY-001`.
+
+---
+
+## BUGFIX-006 — digital rain: ruled out stale deployment first, then a decisive jump
+
+Checked deployment freshness before touching the opacity again, as instructed: fetched the live site's HTML directly and confirmed `globalAlpha=.12` (the exact value from the prior commit) was actually being served, with `Cache-Control: public, max-age=0, must-revalidate` on the response — no caching layer was hiding a stale build. The 12% value genuinely just wasn't enough on a real screen; two small nudges (6%→12%) weren't converging, so per the bug report's instruction this was a decisive jump, not another increment: 12%→22% opacity, and swapped the character color from the muted-text token to the accent token (mint, `#00E5A0`) for more presence. Density and fall speed untouched.
+
+Verified against the actual acceptance bar ("noticeable within 2-3 seconds without deliberately searching, still restrained") using a fresh, isolated Playwright context per check (no carried-over cache/state, matching incognito conditions) and screenshotting at ~2.5s post-load rather than after a longer settle time, so the test matches a real first-glance rather than a generous inspection window. Confirmed on both locales: individual green digits are now clearly noticeable at a glance without competing with the hero heading.
+
+## BUGFIX-007 — logo dark-recolor via CSS mask (implemented as part of BUGFIX-005)
+
+The CSS-mask technique for deriving a dark-colored logo from the single light-colored source asset (no second Canva export needed, ever) was implemented directly as the fix for `BUGFIX-005` Problem 2 — see that entry above for the full implementation (`background-color: var(--color-foreground)` masked by each PNG's alpha channel, swapped in for light-theme contexts only). Applied to exactly the two contexts that needed it (header full lockup + mobile icon, both light-theme states) and nowhere else, per the instruction to check what's actually needed before adding it in more places. The favicon files stay fixed the static-raster way (opaque background baked into the file, not CSS) since masking doesn't apply there. No dark wordmark variant was built, since there's no current use case for the wordmark on a light background beyond what the mask already covers.
