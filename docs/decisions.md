@@ -287,3 +287,19 @@ All within the requested +25–30% range (mobile slightly under due to integer f
 - Playwright screenshots: mobile (375×812) and desktop (1440×900), hr and en, dark and light — all show clearly legible digits at a glance, no zooming needed.
 - Mobile Lighthouse (simulated throttling, 4x CPU slowdown, same methodology as the earlier POLISH-002 mobile-height check): performance score 90 — unchanged from the pre-existing baseline, matching the "~90" acceptance target.
 - `astro check`: 0 errors. Full-site regression (`audit-site.mjs`): 0 axe violations, 0 broken links.
+
+## BRAND-002 — Full logo lockup shown by default on mobile
+
+**Request:** Show the full icon+wordmark lockup in the default mobile header, not just the icon-only mark. Original reasoning for icon-only on mobile (saving horizontal space) backfired: an abstract brain icon alone doesn't communicate "you're on our site" for a first-time visitor on a brand this new.
+
+**Change:** `src/components/Header.astro` — the `.bb-logo-slot--full` / `.bb-logo-slot--icon` visibility toggle was previously icon-only by default and swapped to full only at the `min-width: 64rem` desktop breakpoint. Flipped so `.bb-logo-slot--full` is the default everywhere; `.bb-logo-slot--icon` is now `display: none` unconditionally. The icon-only markup and mask are left in place (not deleted) for a possible future scrolled/compact header state, since none currently exists to trigger it — removed only the now-redundant desktop-breakpoint override that used to do this same swap.
+
+**Verification (Playwright, real measurement not assumption):**
+- 320×568, 375×812, 414×896, dark + light theme: `document.documentElement.scrollWidth <= clientWidth` (no horizontal overflow) at every combination; logo/menu-button bounding rects don't overlap even at 320px (114px of clear space between them).
+- Screenshots at all three widths confirm the wordmark renders fully legible, no clipping or wrapping.
+- Mobile hamburger menu still functional (`aria-expanded` toggles, panel un-hides) after the change.
+- EN locale checked at 320px — same result.
+- Desktop (1440px) header height unchanged (73px, same as before) — confirms desktop is unaffected.
+- `astro check`: 0 errors. Full-site regression (`audit-site.mjs`): 0 axe violations, 0 broken links.
+
+No scaling-down of the lockup was needed — even at 320px there was ample clearance, so the existing 52px logo height (set in BUGFIX-008) was kept as-is.

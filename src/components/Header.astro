@@ -114,8 +114,18 @@ const logoIconMaskUrl = `url(${logoIconOptimized.src})`;
     position: relative;
   }
 
-  .bb-logo-slot--icon {
+  /*
+    BRAND-002: the full icon+wordmark lockup is the default everywhere, including mobile --
+    an abstract brain icon alone doesn't yet read as "you're on our site" for a first-time
+    visitor on a brand this new. Icon-only stays available (see .bb-logo-slot--icon rule
+    below) for a future scrolled/compact header state, but nothing currently triggers it.
+  */
+  .bb-logo-slot--full {
     display: flex;
+  }
+
+  .bb-logo-slot--icon {
+    display: none;
   }
 
   /*
@@ -285,14 +295,6 @@ const logoIconMaskUrl = `url(${logoIconOptimized.src})`;
     }
 
     .bb-header__menu-toggle {
-      display: none;
-    }
-
-    .bb-logo-slot--full {
-      display: flex;
-    }
-
-    .bb-logo-slot--icon {
       display: none;
     }
   }
