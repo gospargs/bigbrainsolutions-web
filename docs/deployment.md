@@ -13,10 +13,11 @@ Created via `wrangler pages project create bigbrainsolutions-web --production-br
 
 The project is connected to GitHub, so pushing to `main` deploys to production.
 
+The `contact-mailer` Worker (`workers/contact-mailer/`) is **not** deployed by that push. After changing it, run `npx wrangler deploy` from its folder.
+
 ## Secrets and bindings on the Pages project
 
 - `TURNSTILE_SECRET_KEY` — set as a Pages secret (production environment) via `wrangler pages secret put`. Not in the repo.
-- `CONTACT_TO_EMAIL` / `CONTACT_FROM_EMAIL` — **not yet set**. Setting these activates real email delivery from `functions/api/contact.ts`; intentionally left unset until the `bigbrain-solutions.com` domain is onboarded to Cloudflare Email Sending (a DNS change, deferred to `DEPLOY-001` — see `docs/decisions.md`).
-- `EMAIL` (send_email binding) — not bound. Cloudflare's Pages Functions bindings docs don't list `send_email`, so delivery needs a decision first — see SECURITY-001 in `docs/decisions.md`. Until then the function answers real submissions with a 503 and the form shows its "call us" error.
+- `MAILER` — service binding to the `contact-mailer` Worker, which sends form submissions. Declared in `wrangler.jsonc`.
 - `CONTACT_RATE_KV` — KV namespace declared in `wrangler.jsonc`, backs the 3-per-IP-per-10-minutes limit in the function.
 - `TURNSTILE_SECRET_KEY` is production-only and verification fails closed, so the form rejects every submission on preview deployments and local dev unless a secret is supplied there.

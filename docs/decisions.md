@@ -344,3 +344,11 @@ No scaling-down of the lockup was needed — even at 320px there was ample clear
 ## HOME-003 follow-up — Scroll reveal site-wide
 
 MOTION-002 was never built, so HOME-003 added `src/scripts/reveal.ts` for the homepage spotlight only. It now loads from `BaseLayout` and applies to every `[data-reveal]` element (cards, section headings, CTA bands, plus the warranty band and About panels). It uses IntersectionObserver only, not the CSS scroll-driven path in the roadmap: scroll-driven animation follows scroll position, so it reverses on scroll-up and can't do a time-based stagger. Testimonial cards are deliberately not included; they sit in a horizontal scroller.
+
+---
+
+## EMAIL-001 — Contact form delivery through a mailer Worker
+
+Pages Functions have no `send_email` binding, so `functions/api/contact.ts` calls the `contact-mailer` Worker over a service binding. The binding uses `destination_address`, so `gospargs@gmail.com` is the only possible recipient, and the Worker has no public URL.
+
+**No DNS changes.** Cloudflare's docs allow sending to verified destination addresses with only Email Routing configured, free on any plan. Routing was already on and the address already verified. The domain was not onboarded to Email Sending, which is what would add `cf-bounce` records. Sends show as "dropped" in the Email Routing summary even when delivered; that's documented Cloudflare behavior.

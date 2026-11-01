@@ -3,6 +3,9 @@
   "name": "bigbrainsolutions-web",
   "compatibility_date": "2026-08-18",
   "pages_build_output_dir": "dist",
+  "services": [
+    { "binding": "MAILER", "service": "contact-mailer" }
+  ],
   "kv_namespaces": [
     { "binding": "CONTACT_RATE_KV", "id": "4e535347941344218625ba5966921add" }
   ]

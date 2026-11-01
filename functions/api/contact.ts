@@ -1,9 +1,16 @@
 interface Env {
-  EMAIL?: { send: (msg: unknown) => Promise<unknown> };
+  MAILER?: { send: (submission: Submission) => Promise<void> };
   CONTACT_RATE_KV?: KVNamespace;
   TURNSTILE_SECRET_KEY?: string;
-  CONTACT_TO_EMAIL?: string;
-  CONTACT_FROM_EMAIL?: string;
+}
+
+// Matches the send() argument in workers/contact-mailer/src/index.ts.
+interface Submission {
+  name: string;
+  email: string;
+  clientType: string;
+  service: string;
+  message: string;
 }
 
 interface ContactPayload {
@@ -51,14 +58,6 @@ async function isRateLimited(kv: KVNamespace, ip: string): Promise<boolean> {
   if (count >= RATE_LIMIT_MAX) return true;
   await kv.put(key, String(count + 1), { expirationTtl: RATE_LIMIT_WINDOW_SECONDS });
   return false;
-}
-
-function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
 }
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
@@ -109,40 +108,21 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     return rejected(400);
   }
 
-  const submission = {
+  const submission: Submission = {
     name: name.trim(),
     email: email.trim(),
     clientType: clientType ?? 'individual',
     service: service ?? 'unspecified',
     message: message.trim(),
-    receivedAt: new Date().toISOString(),
   };
 
-  // Email delivery is not configured in production yet -- see docs/decisions.md
-  // (SECURITY-001). Until it is, tell the visitor the send failed so the form's error
-  // message sends them to the phone number, rather than claiming a message was received.
-  if (env.EMAIL && env.CONTACT_TO_EMAIL && env.CONTACT_FROM_EMAIL) {
-    await env.EMAIL.send({
-      to: env.CONTACT_TO_EMAIL,
-      from: { email: env.CONTACT_FROM_EMAIL, name: 'Big Brain Solutions website' },
-      subject: `New contact form submission from ${submission.name.replace(/[\r\n]+/g, ' ')}`,
-      text: [
-        `Name: ${submission.name}`,
-        `Email: ${submission.email}`,
-        `Client type: ${submission.clientType}`,
-        `Service: ${submission.service}`,
-        '',
-        submission.message,
-      ].join('\n'),
-      html: `<p><strong>Name:</strong> ${escapeHtml(submission.name)}</p>
-        <p><strong>Email:</strong> ${escapeHtml(submission.email)}</p>
-        <p><strong>Client type:</strong> ${escapeHtml(submission.clientType)}</p>
-        <p><strong>Service:</strong> ${escapeHtml(submission.service)}</p>
-        <p>${escapeHtml(submission.message).replace(/\n/g, '<br>')}</p>`,
-    });
-  } else {
-    console.log('[contact] submission received (email delivery not yet configured):', submission);
-    return rejected(503);
+  // A failed send must not look like success: the form's error message points visitors to the phone.
+  try {
+    if (!env.MAILER) throw new Error('MAILER binding missing');
+    await env.MAILER.send(submission);
+  } catch (err) {
+    console.error('[contact] email delivery failed:', err);
+    return rejected(502);
   }
 
   return Response.json({ success: true });
