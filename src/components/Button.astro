@@ -1,17 +1,19 @@
 ---
 interface Props {
   variant?: 'primary' | 'secondary' | 'ghost';
+  id?: string;
   href?: string;
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
   class?: string;
 }
 
-const { variant = 'primary', href, type = 'button', disabled = false, class: className } = Astro.props;
+const { variant = 'primary', id, href, type = 'button', disabled = false, class: className } = Astro.props;
 const Tag = href ? 'a' : 'button';
 ---
 
 <Tag
+  id={id}
   class:list={['bb-button', `bb-button--${variant}`, className]}
   href={href}
   type={href ? undefined : type}

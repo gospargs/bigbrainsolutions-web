@@ -1,4 +1,6 @@
 ---
+import Button from './Button.astro';
+
 interface Props {
   services: { value: string; label: string }[];
   turnstileSiteKey: string;
@@ -105,13 +107,7 @@ const { services, labels, selectedService, turnstileSiteKey } = Astro.props;
     <input id="cf-company-website" name="company_website" type="text" tabindex="-1" autocomplete="off" />
   </div>
 
-  <button
-    type="submit"
-    id="cf-submit"
-    class="bb-button bb-button--primary"
-  >
-    {labels.submit}
-  </button>
+  <Button type="submit" id="cf-submit" variant="primary">{labels.submit}</Button>
 
   <p id="cf-status" class="text-caption" role="status" aria-live="polite"></p>
 </form>
