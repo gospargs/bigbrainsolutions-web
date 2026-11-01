@@ -60,8 +60,7 @@ async function isRateLimited(kv: KVNamespace, ip: string): Promise<boolean> {
   return false;
 }
 
-export const onRequestPost: PagesFunction<Env> = async (context) => {
-  const { request, env } = context;
+async function handleSubmission({ request, env }: EventContext<Env, string, unknown>): Promise<Response> {
 
   const ip = request.headers.get('CF-Connecting-IP');
   if (env.CONTACT_RATE_KV && ip) {
@@ -132,4 +131,12 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   }
 
   return Response.json({ success: true });
+}
+
+export const onRequestPost: PagesFunction<Env> = (context) => {
+  // Covers the whole handler, not just the send, so a visitor closing the tab during the Turnstile
+  // check can't lose the enquiry either. The response still waits for the outcome.
+  const result = handleSubmission(context);
+  context.waitUntil(result);
+  return result;
 };

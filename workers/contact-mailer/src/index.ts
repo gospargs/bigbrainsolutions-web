@@ -25,12 +25,12 @@ function escapeHtml(value: string): string {
 }
 
 export default {
-  async fetch(request: Request, env: Env): Promise<Response> {
+  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     if (request.method !== 'POST') return new Response('Not found', { status: 404 });
 
     const { name, email, clientType, service, message } = (await request.json()) as Submission;
     try {
-      const { messageId } = await env.EMAIL.send({
+      const sending = env.EMAIL.send({
         to: TO,
         from: FROM,
         replyTo: email,
@@ -49,6 +49,8 @@ export default {
           <p><strong>Service:</strong> ${escapeHtml(service)}</p>
           <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>`,
       });
+      ctx.waitUntil(sending);
+      const { messageId } = await sending;
       console.log('[contact-mailer] sent', messageId);
       return new Response('Sent');
     } catch (err) {
