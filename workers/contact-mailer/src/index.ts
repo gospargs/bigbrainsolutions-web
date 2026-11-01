@@ -34,8 +34,7 @@ export default {
         to: TO,
         from: FROM,
         replyTo: email,
-        subject: `New contact form submission from ${name.replace(/[
-]+/g, ' ')}`,
+        subject: `New contact form submission from ${name.replace(/[\r\n]+/g, ' ')}`,
         text: [
           `Name: ${name}`,
           `Email: ${email}`,
@@ -43,14 +42,12 @@ export default {
           `Service: ${service}`,
           '',
           message,
-        ].join('
-'),
+        ].join('\n'),
         html: `<p><strong>Name:</strong> ${escapeHtml(name)}</p>
           <p><strong>Email:</strong> ${escapeHtml(email)}</p>
           <p><strong>Client type:</strong> ${escapeHtml(clientType)}</p>
           <p><strong>Service:</strong> ${escapeHtml(service)}</p>
-          <p>${escapeHtml(message).replace(/
-/g, '<br>')}</p>`,
+          <p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>`,
       });
       console.log('[contact-mailer] sent', messageId);
       return new Response('Sent');
