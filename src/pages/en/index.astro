@@ -135,7 +135,7 @@ const testimonials = [
 			</div>
 		</section>
 
-		<!-- Case study + HomeStock spotlight -->
+		<!-- Case study + product spotlights -->
 		<section class="bb-section">
 			<div class="bb-grid-2">
 				<Card variant="case-study" href="/en/case-studies/ubique-safety-consultants/">
@@ -148,6 +148,14 @@ const testimonials = [
 					<h3 class="mb-2">HomeStock — a household inventory app</h3>
 					<p class="text-muted">A mobile app we designed, built, and shipped ourselves — track your household inventory, scan receipts, and share with the people you live with.</p>
 				</Card>
+				<div class="bb-grid-2__full">
+					<Card variant="case-study">
+						<Badge variant="accent" class="mb-3">Coming soon</Badge>
+						<h3 class="mb-2">Books and board games from your neighborhood</h3>
+						<p class="text-muted mb-5">Korice i Kockice is what we’re working on next: borrow a book or game from someone nearby for the weekend, swap with a neighbor, or buy something outright — all sorted in person, with no shipping. We’re starting in Dubrovnik.</p>
+						<Button href="https://koriceikockice.com/" variant="secondary">Join the waitlist</Button>
+					</Card>
+				</div>
 			</div>
 		</section>
 
@@ -249,6 +257,10 @@ const testimonials = [
 		display: grid;
 		gap: 1.5rem;
 		grid-template-columns: 1fr;
+	}
+
+	.bb-grid-2__full {
+		grid-column: 1 / -1;
 	}
 
 	.bb-warranty {
