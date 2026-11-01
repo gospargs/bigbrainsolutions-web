@@ -1,8 +1,7 @@
 ---
 // A restrained nod to falling 0s/1s -- the idea of it, not a literal Matrix screensaver.
-// Sparse slow columns, canvas capped ~15fps. Mounted once at the layout level (BaseLayout)
-// so it appears at the top of every page, confined to a fixed-height band on desktop / full
-// viewport height on mobile -- not stretching down the full scroll length of longer pages.
+// Sparse slow digits, canvas capped ~15fps. Mounted once at the layout level (BaseLayout) and
+// runs down the full length of every page, densest at the top (MOTION-006).
 // Disabled under prefers-reduced-motion (always) -- mobile is enabled as of BUGFIX-010.
 //
 // Tuning history (density/speed unchanged throughout -- only visibility/placement moved):
@@ -24,6 +23,10 @@
 //   passes (28% was still too faint against #FAFAF9 on an actual screenshot) before landing at
 //   36%. Colors (accent mint / --color-foreground) were already correct from BUGFIX-006/POLISH-001,
 //   this was purely an opacity increase. See docs/decisions.md for the before/after screenshots.
+// MOTION-006: replaced the top band with a page-length gradient. The canvas is viewport-sized and
+//   fixed, with digits positioned in page coordinates, so long pages don't need a huge canvas.
+//   z-index -1 puts it behind all content (at 0 it painted over anything unpositioned, cards
+//   included), and digits that would overlap text are skipped, so text stays clean at any density.
 ---
 
 <canvas class="bb-digital-rain" aria-hidden="true"></canvas>
@@ -31,23 +34,15 @@
 <style>
   .bb-digital-rain {
     display: block;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    /* Mobile: fills the screen the visitor lands on (100dvh accounts for mobile browser
-       chrome better than 100vh), then scrolls away normally -- not pinned, not stretching
-       down the rest of the page. */
+    /* Large viewport height, so mobile browser chrome collapsing doesn't resize and clear it. */
     height: 100vh;
-    height: 100dvh;
-    z-index: 0;
+    height: 100lvh;
+    z-index: -1;
     pointer-events: none;
-  }
-
-  @media (min-width: 48rem) {
-    .bb-digital-rain {
-      height: 31.25rem; /* ~500px desktop band -- roughly a typical hero height, not the full page */
-    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -92,65 +87,136 @@
     }
 
     const fontSize = 14;
-    // POLISH-004: 42 -> 33 gives roughly +25-30% more columns at every viewport width
-    // tested (1440px: 34->43, 768px: 18->23, 390px: 9->11) -- density-only change, opacity/
-    // speed/font-size/frame-cap/band-height all untouched. Narrower mobile viewports still
-    // naturally get proportionally fewer columns than desktop, no separate mobile density needed.
-    const columnGap = 33;
     const rowHeight = fontSize * 1.6;
     const chars = '01';
+    // Same top-of-page density as the old band: one digit per 33px column (POLISH-004) per 500px.
+    const topDensity = 1 / (33 * 500);
+    const columnGap = 33;
+    const minDensity = 0.1; // share of topDensity left at the very bottom of the page
+    const textPadding = 4;
+
+    type Drop = { x: number; startY: number; y: number; travel: number; speed: number; char: string };
 
     let width = 0;
     let height = 0;
-    let columns: { x: number; y: number; speed: number; nextStep: number }[] = [];
-    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let pageHeight = 0;
+    let drops: Drop[] = [];
+    let textRects: { top: number; bottom: number; left: number; right: number }[] = [];
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let running = true;
     let lastFrame = 0;
+    let lastScrollY = -1;
     const frameInterval = 1000 / 15; // capped ~15fps -- verified fine on mobile, see docs/decisions.md
+
+    function densityAt(y: number) {
+      const remaining = 1 - Math.min(y / pageHeight, 1);
+      return minDensity + (1 - minDensity) * remaining * remaining;
+    }
+
+    // Rejection sampling, so digits land according to densityAt.
+    function spawn(): Drop {
+      let startY = 0;
+      do {
+        startY = Math.random() * pageHeight;
+      } while (Math.random() > densityAt(startY));
+      const columnCount = Math.max(1, Math.floor(width / columnGap));
+      return {
+        x: Math.floor(Math.random() * columnCount) * columnGap + columnGap / 2,
+        startY,
+        y: startY,
+        travel: 240 + Math.random() * 400,
+        speed: 1.4 + Math.random() * 1.4,
+        char: '0',
+      };
+    }
+
+    function measureText() {
+      const rects: typeof textRects = [];
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      const range = document.createRange();
+      while (walker.nextNode()) {
+        const node = walker.currentNode;
+        if (!node.nodeValue?.trim() || node.parentElement?.closest('script, style')) continue;
+        range.selectNodeContents(node);
+        for (const r of range.getClientRects()) {
+          rects.push({
+            top: r.top + window.scrollY - textPadding,
+            bottom: r.bottom + window.scrollY + textPadding,
+            left: r.left + window.scrollX - textPadding,
+            right: r.right + window.scrollX + textPadding,
+          });
+        }
+      }
+      textRects = rects;
+    }
+
+    function overlapsText(x: number, y: number) {
+      // fillText draws from the baseline, so the digit occupies the box above y.
+      return textRects.some((r) => x + fontSize > r.left && x < r.right && y > r.top && y - fontSize < r.bottom);
+    }
 
     function resize() {
       const rect = canvas!.getBoundingClientRect();
+      const widthChanged = rect.width !== width;
       width = rect.width;
       height = rect.height;
       canvas!.width = width * dpr;
       canvas!.height = height * dpr;
-      canvas!.style.width = `${width}px`;
-      canvas!.style.height = `${height}px`;
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
+      measurePage(widthChanged);
+    }
 
-      const columnCount = Math.max(1, Math.floor(width / columnGap));
-      columns = Array.from({ length: columnCount }, (_, i) => ({
-        x: i * columnGap + columnGap / 2,
-        // start already scattered through the visible area (not just above it) so the
-        // effect is present immediately on load instead of taking ~10s to trickle in
-        y: Math.random() * height * 1.4 - height * 0.4,
-        speed: 1.4 + Math.random() * 1.4, // slow fall: ~15-30s to cross the band height
-        nextStep: 0,
-      }));
+    function measurePage(respawn = false) {
+      const nextHeight = Math.max(document.documentElement.scrollHeight, height);
+      const heightChanged = Math.abs(nextHeight - pageHeight) > 1;
+      pageHeight = nextHeight;
+      measureText();
+      if (!respawn && !heightChanged) return;
+      // Integral of densityAt over the page is pageHeight * (minDensity + (1 - minDensity) / 3).
+      const count = Math.round(topDensity * width * pageHeight * (minDensity + (1 - minDensity) / 3));
+      drops = Array.from({ length: count }, () => {
+        const drop = spawn();
+        drop.y = drop.startY + Math.random() * drop.travel; // already mid-fall on load
+        return drop;
+      });
+    }
+
+    function render() {
+      const style = currentStyle();
+      const scrollY = window.scrollY;
+      lastScrollY = scrollY;
+
+      ctx!.clearRect(0, 0, width, height);
+      ctx!.font = `${fontSize}px ui-monospace, "SF Mono", Menlo, Consolas, monospace`;
+      ctx!.fillStyle = style.color;
+
+      for (const drop of drops) {
+        const screenY = drop.y - scrollY;
+        if (screenY < -rowHeight || screenY > height + rowHeight || overlapsText(drop.x, drop.y)) continue;
+        const progress = (drop.y - drop.startY) / drop.travel;
+        ctx!.globalAlpha = style.alpha * Math.min(1, progress * 5, (1 - progress) * 5); // fade at both ends
+        ctx!.fillText(drop.char, drop.x, screenY);
+      }
     }
 
     function draw(time: number) {
       if (!running) return;
       requestAnimationFrame(draw);
 
-      if (time - lastFrame < frameInterval) return;
+      if (time - lastFrame < frameInterval) {
+        // Digits belong to the page, so they have to keep up with scrolling between frames.
+        if (window.scrollY !== lastScrollY) render();
+        return;
+      }
       lastFrame = time;
 
-      const style = currentStyle();
-
-      ctx!.clearRect(0, 0, width, height);
-      ctx!.font = `${fontSize}px ui-monospace, "SF Mono", Menlo, Consolas, monospace`;
-      ctx!.fillStyle = style.color;
-      ctx!.globalAlpha = style.alpha;
-
-      for (const col of columns) {
-        const char = chars[Math.floor(Math.random() * chars.length)];
-        ctx!.fillText(char, col.x, col.y);
-        col.y += col.speed;
-        if (col.y > height + rowHeight) {
-          col.y = -rowHeight - Math.random() * height * 0.5; // organic, staggered restart
-        }
+      for (let i = 0; i < drops.length; i++) {
+        const drop = drops[i];
+        drop.y += drop.speed;
+        drop.char = chars[Math.floor(Math.random() * chars.length)];
+        if (drop.y - drop.startY > drop.travel) drops[i] = spawn();
       }
+      render();
     }
 
     resize();
@@ -158,6 +224,15 @@
 
     const ro = new ResizeObserver(() => resize());
     ro.observe(canvas);
+
+    // Page content changing height (fonts loading, an FAQ opening) moves text without resizing the canvas.
+    const pageObserver = new ResizeObserver(() => measurePage());
+    pageObserver.observe(document.body);
+    document.fonts?.ready.then(() => measureText());
+    // Scroll reveals shift text while they play, so its measured position is only right afterwards.
+    document.addEventListener('transitionend', (e) => {
+      if (e.propertyName === 'transform' && (e.target as Element).matches('[data-reveal]')) measureText();
+    });
 
     // Stop entirely if reduced-motion is toggled live.
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
