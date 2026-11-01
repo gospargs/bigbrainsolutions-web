@@ -1,8 +1,8 @@
 // Scroll-triggered entrance for [data-reveal] elements, loaded site-wide from BaseLayout. Plays once per
 // page load. Elements start visible and are only hidden here, so without JS or with reduced motion
 // they simply stay visible. Styles live in src/styles/global.css.
-const DURATION_MS = 500;
-const STAGGER_MS = 90;
+const DURATION_MS = 750; // Keep in sync with the transition in global.css.
+const STAGGER_MS = 140;
 
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   // Anything already on screen at load stays put rather than flashing out and back in.
@@ -34,7 +34,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
           }, delay + DURATION_MS);
         });
     },
-    { rootMargin: '0px 0px -10% 0px' },
+    { rootMargin: '0px 0px -15% 0px' },
   );
 
   pending.forEach((el) => {
