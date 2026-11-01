@@ -1,10 +1,10 @@
 interface Env {
-  MAILER?: { send: (submission: Submission) => Promise<void> };
+  MAILER?: Fetcher;
   CONTACT_RATE_KV?: KVNamespace;
   TURNSTILE_SECRET_KEY?: string;
 }
 
-// Matches the send() argument in workers/contact-mailer/src/index.ts.
+// The JSON body workers/contact-mailer/src/index.ts expects.
 interface Submission {
   name: string;
   email: string;
@@ -119,7 +119,13 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   // A failed send must not look like success: the form's error message points visitors to the phone.
   try {
     if (!env.MAILER) throw new Error('MAILER binding missing');
-    await env.MAILER.send(submission);
+    // The hostname is ignored: a service binding always reaches the Worker.
+    const res = await env.MAILER.fetch('https://contact-mailer/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(submission),
+    });
+    if (!res.ok) throw new Error(`contact-mailer responded ${res.status}`);
   } catch (err) {
     console.error('[contact] email delivery failed:', err);
     return rejected(502);
