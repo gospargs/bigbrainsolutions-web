@@ -338,3 +338,9 @@ No scaling-down of the lockup was needed — even at 320px there was ample clear
 **WAF rule not created.** The Free plan only allows 10-second counting periods, so 3-per-10-minutes can't be expressed at the WAF, which is why the limit is in the function. A burst rule still has to be added in the dashboard, since the wrangler login can't write WAF rules.
 
 **Deployment correction:** the Pages project has no Git connection, so pushing to `main` does not deploy. Each deploy is a manual `wrangler pages deploy`.
+
+---
+
+## HOME-003 follow-up — Scroll reveal site-wide
+
+MOTION-002 was never built, so HOME-003 added `src/scripts/reveal.ts` for the homepage spotlight only. It now loads from `BaseLayout` and applies to every `[data-reveal]` element (cards, section headings, CTA bands, plus the warranty band and About panels). It uses IntersectionObserver only, not the CSS scroll-driven path in the roadmap: scroll-driven animation follows scroll position, so it reverses on scroll-up and can't do a time-based stagger. Testimonial cards are deliberately not included; they sit in a horizontal scroller.

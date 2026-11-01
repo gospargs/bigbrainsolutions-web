@@ -1,4 +1,4 @@
-// Scroll-triggered entrance for [data-reveal] elements inside a [data-reveal-group]. Plays once per
+// Scroll-triggered entrance for [data-reveal] elements, loaded site-wide from BaseLayout. Plays once per
 // page load. Elements start visible and are only hidden here, so without JS or with reduced motion
 // they simply stay visible. Styles live in src/styles/global.css.
 const DURATION_MS = 500;
@@ -6,7 +6,7 @@ const STAGGER_MS = 90;
 
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   // Anything already on screen at load stays put rather than flashing out and back in.
-  const pending = [...document.querySelectorAll<HTMLElement>('[data-reveal-group] [data-reveal]')].filter(
+  const pending = [...document.querySelectorAll<HTMLElement>('[data-reveal]')].filter(
     (el) => el.getBoundingClientRect().top > window.innerHeight,
   );
 

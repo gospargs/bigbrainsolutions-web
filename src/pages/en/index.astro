@@ -103,7 +103,7 @@ const testimonials = [
 
 		<!-- Warranty -->
 		<section class="bb-section">
-			<div class="bb-warranty">
+			<div class="bb-warranty" data-reveal>
 				<Badge variant="success" class="mb-4">60-day warranty</Badge>
 				<h2 class="mb-3">60-day warranty on all services</h2>
 				<p class="text-muted max-w-2xl">
@@ -125,7 +125,7 @@ const testimonials = [
 
 		<!-- Case study + product spotlights -->
 		<section class="bb-section">
-			<div class="bb-grid-2" data-reveal-group>
+			<div class="bb-grid-2">
 				<Card variant="case-study" href="/en/case-studies/ubique-safety-consultants/">
 					<p class="text-caption text-primary-text mb-2 font-semibold uppercase tracking-wide">Case study</p>
 					<h3 class="mb-2">Web application for Ubique Safety Consultants</h3>
@@ -185,10 +185,6 @@ const testimonials = [
 		}}
 	/>
 </BaseLayout>
-
-<script>
-	import '../../scripts/reveal.ts';
-</script>
 
 <style>
 	.bb-hero {
