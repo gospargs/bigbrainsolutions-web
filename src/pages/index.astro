@@ -125,7 +125,7 @@ const testimonials = [
 
 		<!-- Case study + product spotlights -->
 		<section class="bb-section">
-			<div class="bb-grid-2">
+			<div class="bb-grid-2" data-reveal-group>
 				<Card variant="case-study" href="/studije-slucaja/ubique-safety-consultants/">
 					<p class="text-caption text-primary-text mb-2 font-semibold uppercase tracking-wide">Studija slučaja</p>
 					<h3 class="mb-2">Web aplikacija za Ubique Safety Consultants</h3>
@@ -185,6 +185,10 @@ const testimonials = [
 		}}
 	/>
 </BaseLayout>
+
+<script>
+	import '../scripts/reveal.ts';
+</script>
 
 <style>
 	.bb-hero {

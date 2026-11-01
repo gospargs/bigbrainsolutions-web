@@ -1,2 +1,13 @@
 @import "tailwindcss";
 @import "./tokens.css";
+
+/* Scroll reveal, driven by src/scripts/reveal.ts. Specificity beats component-scoped transitions. */
+[data-reveal-group] [data-reveal].bb-reveal--pending {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+[data-reveal-group] [data-reveal].bb-reveal--active {
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
+  transition-delay: var(--reveal-delay, 0ms);
+}
