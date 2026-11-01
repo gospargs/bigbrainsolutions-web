@@ -16,6 +16,9 @@ interface Props {
     submitting: string;
     success: string;
     error: string;
+    nameError: string;
+    emailError: string;
+    messageError: string;
   };
   selectedService?: string;
 }
@@ -141,9 +144,9 @@ const { services, labels, selectedService, turnstileSiteKey } = Astro.props;
   // Same check as functions/api/contact.ts, so the form can't pass an address the server rejects.
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const fields = [
-    { id: 'cf-name', isValid: (v) => !!v, error: 'Please enter your name.' },
-    { id: 'cf-email', isValid: (v) => emailPattern.test(v), error: 'Please enter a valid email address.' },
-    { id: 'cf-message', isValid: (v) => !!v, error: 'Please enter a message.' },
+    { id: 'cf-name', isValid: (v) => !!v, error: labels.nameError },
+    { id: 'cf-email', isValid: (v) => emailPattern.test(v), error: labels.emailError },
+    { id: 'cf-message', isValid: (v) => !!v, error: labels.messageError },
   ];
   const emailField = fields[1];
   // Fields show errors only once left or submitted, so nobody is told off mid-word on first entry.

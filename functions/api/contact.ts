@@ -28,7 +28,7 @@ const RATE_LIMIT_MAX = 3;
 const RATE_LIMIT_WINDOW_SECONDS = 600;
 const MIN_SUBMIT_MS = 2500;
 
-// Bot rejections carry no `error` text, so the form shows its own localized generic message.
+// Rejections carry no `error` text, so the form shows its own localized generic message.
 const rejected = (status: number) => Response.json({ success: false }, { status });
 
 async function verifyTurnstile(token: string, secret: string, ip: string | null): Promise<boolean> {
@@ -75,7 +75,7 @@ async function handleSubmission({ request, env }: EventContext<Env, string, unkn
   try {
     payload = await request.json();
   } catch {
-    return Response.json({ success: false, error: 'Invalid request.' }, { status: 400 });
+    return rejected(400);
   }
 
   const { name, email, clientType, service, message } = payload;
@@ -91,12 +91,12 @@ async function handleSubmission({ request, env }: EventContext<Env, string, unkn
   }
 
   if (!name?.trim() || !email?.trim() || !message?.trim()) {
-    return Response.json({ success: false, error: 'Please fill in all required fields.' }, { status: 400 });
+    return rejected(400);
   }
 
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailPattern.test(email)) {
-    return Response.json({ success: false, error: 'Please enter a valid email address.' }, { status: 400 });
+    return rejected(400);
   }
 
   // Fails closed: a missing secret must not turn bot verification off.
