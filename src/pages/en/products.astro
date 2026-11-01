@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Button from '../../components/Button.astro';
+import Card from '../../components/Card.astro';
+import Badge from '../../components/Badge.astro';
+
+const nav = [
+  { href: '/en/services/', label: 'Services' },
+  { href: '/en/about/', label: 'About' },
+  { href: '/en/products/', label: 'Our products' },
+  { href: '/en/contact/', label: 'Contact' },
+];
+---
+
+<BaseLayout
+	lang="en"
+	title="Our products — Big Brain Solutions"
+	description="Products built by Big Brain Solutions: HomeStock, a household inventory app, and Korice i Kockice, a neighborhood book and board game platform coming soon."
+>
+	<Header lang="en" nav={nav} altLangHref="/proizvodi/" altLangLabel="Hrvatski" />
+
+	<main>
+		<section class="bb-hero">
+			<div class="bb-hero__inner">
+				<h1 class="bb-hero__title">Our products</h1>
+				<p class="bb-hero__subtitle">Alongside client work, we build products of our own. Some are already out, others are on the way.</p>
+			</div>
+		</section>
+
+		<section class="bb-section">
+			<div class="bb-grid">
+				<Card variant="case-study" href="/en/homestock/">
+					<p class="text-caption text-primary-text mb-2 font-semibold uppercase tracking-wide">Our product</p>
+					<h2 class="bb-card-title mb-2">HomeStock — a household inventory app</h2>
+					<p class="text-muted">A mobile app we designed, built, and shipped ourselves — track your household inventory, scan receipts, and share with the people you live with.</p>
+				</Card>
+				<Card variant="case-study">
+					<Badge variant="accent" class="mb-3">Coming soon</Badge>
+					<h2 class="bb-card-title mb-2">Books and board games from your neighborhood</h2>
+					<p class="text-muted mb-5">Korice i Kockice is what we’re working on next: borrow a book or game from someone nearby for the weekend, swap with a neighbor, or buy something outright — all sorted in person, with no shipping. We’re starting in Dubrovnik.</p>
+					<Button href="https://koriceikockice.com/" variant="secondary">Join the waitlist</Button>
+				</Card>
+			</div>
+		</section>
+	</main>
+
+	<Footer
+		lang="en"
+		nav={nav}
+		privacyHref="/en/homestock-privacy-policy/"
+		privacyLabel="Privacy (HomeStock)"
+		labels={{
+			address: 'Address',
+			contact: 'Contact',
+			hours: 'Hours',
+			hoursValue: 'Mon–Sat 6am–6pm',
+			rights: 'All rights reserved.',
+			legalLine: 'BIG BRAIN SOLUTIONS, obrt za računalno programiranje, vl. Gordan Sentić · OIB (Tax ID): 71865731622',
+		}}
+	/>
+</BaseLayout>
+
+<style>
+	.bb-hero {
+		padding: var(--spacing-section-mobile) 1.5rem 1rem;
+		text-align: center;
+	}
+
+	.bb-hero__inner {
+		max-width: 44rem;
+		margin-inline: auto;
+	}
+
+	.bb-hero__subtitle {
+		margin-top: 1.25rem;
+		font-size: 1.125rem;
+		color: var(--color-muted);
+		font-family: var(--font-body);
+	}
+
+	.bb-section {
+		padding: 2.5rem 1.5rem var(--spacing-section-mobile);
+		max-width: 80rem;
+		margin-inline: auto;
+	}
+
+	.bb-grid {
+		display: grid;
+		gap: 1.5rem;
+		grid-template-columns: 1fr;
+	}
+
+	/* h2 for document order, sized like the homepage's h3 card titles so the cards match. */
+	.bb-card-title {
+		font-size: var(--text-h3);
+	}
+
+	@media (min-width: 48rem) {
+		.bb-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+</style>

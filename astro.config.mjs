@@ -42,6 +42,7 @@ export default defineConfig({
           ['/usluge/', '/en/services/'],
           ['/o-nama/', '/en/about/'],
           ['/homestock/', '/en/homestock/'],
+          ['/proizvodi/', '/en/products/'],
           ['/kontakt/', '/en/contact/'],
           ['/privatnost-homestock/', '/en/homestock-privacy-policy/'],
           ['/studije-slucaja/ubique-safety-consultants/', '/en/case-studies/ubique-safety-consultants/'],
