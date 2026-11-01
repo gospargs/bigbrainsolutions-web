@@ -17,7 +17,7 @@ const nav = [
 <BaseLayout
 	lang="hr"
 	title="Naši proizvodi — Big Brain Solutions"
-	description="Vlastiti proizvodi Big Brain Solutionsa: aplikacija HomeStock za upravljanje domaćinstvom i Korice i Kockice, platforma za knjige i društvene igre koja uskoro stiže."
+	description="Vlastiti proizvodi Big Brain Solutionsa: aplikacija HomeStock, DubrovnikFlow za prognozu gužve u Starom gradu i Korice i Kockice, platforma za knjige i društvene igre koja uskoro stiže."
 >
 	<Header lang="hr" nav={nav} altLangHref="/en/products/" altLangLabel="English" />
 
@@ -35,6 +35,13 @@ const nav = [
 					<p class="text-caption text-primary-text mb-2 font-semibold uppercase tracking-wide">Naš proizvod</p>
 					<h2 class="bb-card-title mb-2">HomeStock — aplikacija za upravljanje domaćinstvom</h2>
 					<p class="text-muted">Vlastita mobilna aplikacija koju smo osmislili, razvili i objavili — pratite popis namirnica, skenirajte račune i podijelite kućanstvo s ukućanima.</p>
+					<p class="text-caption text-muted mt-3">Trenutno u beta fazi, a nova verzija je u izradi.</p>
+				</Card>
+				<Card variant="case-study">
+					<Badge variant="accent" class="mb-3">Beta</Badge>
+					<h2 class="bb-card-title mb-2">DubrovnikFlow — prognoza gužve u Starom gradu</h2>
+					<p class="text-muted mb-5">Prije polaska provjerite koliko će ljudi biti u Starom gradu. Prognoza spaja javni raspored kruzera u luci s podacima o vremenu, a stranica je dostupna na šest jezika. Već je možete koristiti, a nove mogućnosti stižu postupno.</p>
+					<Button href="https://www.dubrovnikflow.com/" variant="secondary">Otvori DubrovnikFlow</Button>
 				</Card>
 				<Card variant="case-study">
 					<Badge variant="accent" class="mb-3">Uskoro</Badge>
@@ -97,9 +104,9 @@ const nav = [
 		font-size: var(--text-h3);
 	}
 
-	@media (min-width: 48rem) {
+	@media (min-width: 64rem) {
 		.bb-grid {
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(3, 1fr);
 		}
 	}
 </style>

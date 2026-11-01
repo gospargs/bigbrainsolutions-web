@@ -17,7 +17,7 @@ const nav = [
 <BaseLayout
 	lang="en"
 	title="Our products — Big Brain Solutions"
-	description="Products built by Big Brain Solutions: HomeStock, a household inventory app, and Korice i Kockice, a neighborhood book and board game platform coming soon."
+	description="Products built by Big Brain Solutions: HomeStock, a household inventory app; DubrovnikFlow, crowd forecasts for Dubrovnik Old Town; and Korice i Kockice, a neighborhood book and board game platform coming soon."
 >
 	<Header lang="en" nav={nav} altLangHref="/proizvodi/" altLangLabel="Hrvatski" />
 
@@ -35,6 +35,13 @@ const nav = [
 					<p class="text-caption text-primary-text mb-2 font-semibold uppercase tracking-wide">Our product</p>
 					<h2 class="bb-card-title mb-2">HomeStock — a household inventory app</h2>
 					<p class="text-muted">A mobile app we designed, built, and shipped ourselves — track your household inventory, scan receipts, and share with the people you live with.</p>
+					<p class="text-caption text-muted mt-3">Currently in beta, with a new version on the way.</p>
+				</Card>
+				<Card variant="case-study">
+					<Badge variant="accent" class="mb-3">Beta</Badge>
+					<h2 class="bb-card-title mb-2">DubrovnikFlow — crowd forecasts for Dubrovnik Old Town</h2>
+					<p class="text-muted mb-5">Know before you go: check how busy the Old Town will be before you set off. The forecast combines the public cruise-ship port schedule with weather data, and the site is available in six languages. You can use it today, with more features still to come.</p>
+					<Button href="https://www.dubrovnikflow.com/" variant="secondary">Open DubrovnikFlow</Button>
 				</Card>
 				<Card variant="case-study">
 					<Badge variant="accent" class="mb-3">Coming soon</Badge>
@@ -97,9 +104,9 @@ const nav = [
 		font-size: var(--text-h3);
 	}
 
-	@media (min-width: 48rem) {
+	@media (min-width: 64rem) {
 		.bb-grid {
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(3, 1fr);
 		}
 	}
 </style>

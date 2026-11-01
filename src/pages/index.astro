@@ -135,15 +135,20 @@ const testimonials = [
 					<p class="text-caption text-primary-text mb-2 font-semibold uppercase tracking-wide">Naš proizvod</p>
 					<h3 class="mb-2">HomeStock — aplikacija za upravljanje domaćinstvom</h3>
 					<p class="text-muted">Vlastita mobilna aplikacija koju smo osmislili, razvili i objavili — pratite popis namirnica, skenirajte račune i podijelite kućanstvo s ukućanima.</p>
+					<p class="text-caption text-muted mt-3">Trenutno u beta fazi, a nova verzija je u izradi.</p>
 				</Card>
-				<div class="bb-grid-2__full">
-					<Card variant="case-study">
-						<Badge variant="accent" class="mb-3">Uskoro</Badge>
-						<h3 class="mb-2">Knjige i društvene igre iz tvog susjedstva</h3>
-						<p class="text-muted mb-5">Korice i Kockice je ono na čemu trenutno radimo: za vikend posudiš knjigu ili igru od nekoga iz kvarta, zamijeniš se sa susjedom ili nešto kupiš — i sve dogovorite uživo, bez slanja poštom. Krećemo u Dubrovniku.</p>
-						<Button href="https://koriceikockice.com/" variant="secondary">Prijavi se na listu čekanja</Button>
-					</Card>
-				</div>
+				<Card variant="case-study">
+					<Badge variant="accent" class="mb-3">Beta</Badge>
+					<h3 class="mb-2">DubrovnikFlow — prognoza gužve u Starom gradu</h3>
+					<p class="text-muted mb-5">Prije polaska provjerite koliko će ljudi biti u Starom gradu. Prognoza spaja javni raspored kruzera u luci s podacima o vremenu, a stranica je dostupna na šest jezika. Već je možete koristiti, a nove mogućnosti stižu postupno.</p>
+					<Button href="https://www.dubrovnikflow.com/" variant="secondary">Otvori DubrovnikFlow</Button>
+				</Card>
+				<Card variant="case-study">
+					<Badge variant="accent" class="mb-3">Uskoro</Badge>
+					<h3 class="mb-2">Knjige i društvene igre iz tvog susjedstva</h3>
+					<p class="text-muted mb-5">Korice i Kockice je ono na čemu trenutno radimo: za vikend posudiš knjigu ili igru od nekoga iz kvarta, zamijeniš se sa susjedom ili nešto kupiš — i sve dogovorite uživo, bez slanja poštom. Krećemo u Dubrovniku.</p>
+					<Button href="https://koriceikockice.com/" variant="secondary">Prijavi se na listu čekanja</Button>
+				</Card>
 			</div>
 		</section>
 
@@ -257,10 +262,6 @@ const testimonials = [
 		display: grid;
 		gap: 1.5rem;
 		grid-template-columns: 1fr;
-	}
-
-	.bb-grid-2__full {
-		grid-column: 1 / -1;
 	}
 
 	.bb-warranty {
