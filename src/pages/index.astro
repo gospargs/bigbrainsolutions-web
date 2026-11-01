@@ -123,18 +123,6 @@ const testimonials = [
 			</div>
 		</section>
 
-		<!-- Testimonials -->
-		<section class="bb-section">
-			<SectionHeading eyebrow="Iskustva klijenata" title="Što kažu naši klijenti" align="center" class="mb-8" />
-			<div class="bb-testimonial-scroll">
-				{testimonials.map((t) => (
-					<div class="bb-testimonial-scroll__item">
-						<TestimonialCard quote={t.quote} name={t.name} role={t.role} />
-					</div>
-				))}
-			</div>
-		</section>
-
 		<!-- Case study + product spotlights -->
 		<section class="bb-section">
 			<div class="bb-grid-2">
@@ -156,6 +144,18 @@ const testimonials = [
 						<Button href="https://koriceikockice.com/" variant="secondary">Prijavi se na listu čekanja</Button>
 					</Card>
 				</div>
+			</div>
+		</section>
+
+		<!-- Testimonials -->
+		<section class="bb-section">
+			<SectionHeading eyebrow="Iskustva klijenata" title="Što kažu naši klijenti" align="center" class="mb-8" />
+			<div class="bb-testimonial-scroll">
+				{testimonials.map((t) => (
+					<div class="bb-testimonial-scroll__item">
+						<TestimonialCard quote={t.quote} name={t.name} role={t.role} />
+					</div>
+				))}
 			</div>
 		</section>
 
