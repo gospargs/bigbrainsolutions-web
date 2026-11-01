@@ -96,7 +96,14 @@ const { services, labels, selectedService, turnstileSiteKey } = Astro.props;
   {/* BUGFIX-010(3): Turnstile's default "normal" size has a fixed ~300px minimum render
       width -- wider than the available space at narrow mobile widths (206px at a 320px
       viewport), causing horizontal overflow. "compact" (~150px) fits everywhere. */}
-  <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-size="compact"></div>
+  <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-size="compact" data-appearance="interaction-only"></div>
+
+  {/* SECURITY-001: honeypot. display:none keeps it away from real users, screen readers and
+      browser autofill; bots posting every field they find in the HTML still fill it. */}
+  <div class="cf-hp">
+    <label for="cf-company-website">Company website</label>
+    <input id="cf-company-website" name="company_website" type="text" tabindex="-1" autocomplete="off" />
+  </div>
 
   <button
     type="submit"
@@ -177,6 +184,8 @@ const { services, labels, selectedService, turnstileSiteKey } = Astro.props;
     try {
       const formData = new FormData(form);
       const payload = Object.fromEntries(formData.entries());
+      // Time since page load, not a timestamp, so a wrong device clock can't block a real visitor.
+      payload.elapsedMs = Math.round(performance.now());
 
       const res = await fetch('/api/contact', {
         method: 'POST',
@@ -190,7 +199,6 @@ const { services, labels, selectedService, turnstileSiteKey } = Astro.props;
         status.textContent = labels.success;
         status.classList.add('text-success-fg');
         form.reset();
-        if (window.turnstile) window.turnstile.reset();
       } else {
         status.textContent = data.error || labels.error;
         status.classList.add('text-error-fg');
@@ -199,8 +207,16 @@ const { services, labels, selectedService, turnstileSiteKey } = Astro.props;
       status.textContent = labels.error;
       status.classList.add('text-error-fg');
     } finally {
+      // Turnstile tokens are single-use, so a retry after any outcome needs a fresh one.
+      if (window.turnstile) window.turnstile.reset();
       submitBtn.disabled = false;
       submitBtn.textContent = labels.submit;
     }
   });
 </script>
+
+<style>
+  .cf-hp {
+    display: none;
+  }
+</style>

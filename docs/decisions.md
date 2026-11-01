@@ -322,3 +322,19 @@ No scaling-down of the lockup was needed — even at 320px there was ample clear
 **Note:** CONTENT-007 (broader grep for the "portfelj/portfolio" pattern site-wide, plus the "besplatna konzultacija" case-grammar issue) is still outstanding per the task's own note and should be run as a follow-up.
 
 **Verification:** `astro check` (0 errors), `astro build` (16 pages). `git diff --stat` confirmed only the three intended files changed. Playwright: confirmed all seven old strings are absent and all seven new strings are present on the rendered pages (`innerText` checks), full-page screenshots of all three pages show no layout breakage from the paragraph-length changes. Full-site regression (`audit-site.mjs`): 0 axe violations, 0 broken links.
+
+---
+
+## SECURITY-001 — Contact form hardening, and where the spam actually comes from
+
+**Audit result: the form is not the source of the bot email.** Turnstile siteverify already existed and rejected missing/invalid tokens on the live endpoint. The production Pages project has no `EMAIL` binding and no `CONTACT_TO_EMAIL`/`CONTACT_FROM_EMAIL`, so the function could not send any email at all. Cloudflare Email Routing analytics (2026-10-03 to 2026-11-01, 33 messages) show the unwanted mail is sent directly over SMTP to `info@` and `gordans@bigbrain-solutions.com` from outside domains, then forwarded to Gmail. `info@` is published on the site; `gordans@` is not.
+
+**Spoofing: no evidence.** No message in that log claims to be from the business domain. Separate gap, not changed here: the domain publishes no DMARC record and SPF ends in `~all`, so spoofing would not be blocked if someone tried it.
+
+**Real submissions were being lost.** Since launch the function returned success and only logged the message. It now returns 503 when delivery isn't configured, so the visitor sees the "try again or call us" message. Delivery still needs an owner decision (onboarding the domain to Email Sending adds DNS records to the live zone; `send_email` isn't a documented Pages binding).
+
+**Added:** honeypot `company_website` (silent fake success), minimum 2.5s using elapsed time since page load (not a timestamp, so device clock errors can't block anyone), fail-closed Turnstile with `data-appearance="interaction-only"`, KV-backed limit of 3 per hashed IP per 10 minutes, HTML escaping in the email body.
+
+**WAF rule not created.** The Free plan only allows 10-second counting periods, so 3-per-10-minutes can't be expressed at the WAF, which is why the limit is in the function. A burst rule still has to be added in the dashboard, since the wrangler login can't write WAF rules.
+
+**Deployment correction:** the Pages project has no Git connection, so pushing to `main` does not deploy. Each deploy is a manual `wrangler pages deploy`.
