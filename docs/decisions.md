@@ -352,3 +352,13 @@ MOTION-002 was never built, so HOME-003 added `src/scripts/reveal.ts` for the ho
 Pages Functions have no `send_email` binding, so `functions/api/contact.ts` calls the `contact-mailer` Worker over a service binding. The binding uses `destination_address`, so `gospargs@gmail.com` is the only possible recipient, and the Worker has no public URL.
 
 **No DNS changes.** Cloudflare's docs allow sending to verified destination addresses with only Email Routing configured, free on any plan. Routing was already on and the address already verified. The domain was not onboarded to Email Sending, which is what would add `cf-bounce` records. Sends show as "dropped" in the Email Routing summary even when delivered; that's documented Cloudflare behavior.
+
+---
+
+## BUGFIX-001 — Rate-limit counter reading 3 after one failed attempt
+
+**No bug reproduced, no code changed.** There is one increment per request, with no retries or loops. Measured on the live site: a tab-close submission, an invalid token and a too-fast request took the counter to exactly 3, and a single later submission took it from 0 to 1.
+
+**Cause of the original reading: not proven.** Its stored logs weren't accessible. The likeliest explanation is other submissions from the same IP within the window, because the counter is per IP and the 10-minute expiry restarts on each increment. It may also have been specific to the RPC failure, and that code is gone.
+
+**When reading the counter by hand:** KV reads can lag by 60 seconds or more, so wait before trusting a value. Failed attempts count toward the limit by design, and a shared IP (an office, a mobile network) shares the 3 submissions.
