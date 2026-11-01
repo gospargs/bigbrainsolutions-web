@@ -142,41 +142,52 @@ const { services, labels, selectedService, turnstileSiteKey } = Astro.props;
     }
   }
 
-  function validate() {
-    let valid = true;
-    const name = form.querySelector('#cf-name');
-    const email = form.querySelector('#cf-email');
-    const message = form.querySelector('#cf-message');
+  // Same check as functions/api/contact.ts, so the form can't pass an address the server rejects.
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const fields = [
+    { id: 'cf-name', isValid: (v) => !!v, error: 'Please enter your name.' },
+    { id: 'cf-email', isValid: (v) => emailPattern.test(v), error: 'Please enter a valid email address.' },
+    { id: 'cf-message', isValid: (v) => !!v, error: 'Please enter a message.' },
+  ];
+  const emailField = fields[1];
+  // Fields show errors only once left or submitted, so nobody is told off mid-word on first entry.
+  const touched = new Set();
+  let submitting = false;
 
-    if (!name.value.trim()) {
-      setFieldError('cf-name', 'Please enter your name.');
-      valid = false;
-    } else {
-      setFieldError('cf-name', '');
-    }
+  function fieldIsValid(field) {
+    return field.isValid(document.getElementById(field.id).value.trim());
+  }
 
-    if (!email.value.trim() || !email.validity.valid) {
-      setFieldError('cf-email', 'Please enter a valid email address.');
-      valid = false;
-    } else {
-      setFieldError('cf-email', '');
-    }
+  // Recomputed from current values every time, so correcting a field always clears its state.
+  function render() {
+    fields.forEach((field) => {
+      setFieldError(field.id, touched.has(field.id) && !fieldIsValid(field) ? field.error : '');
+    });
+    submitBtn.disabled = submitting || (touched.has(emailField.id) && !fieldIsValid(emailField));
+  }
 
-    if (!message.value.trim()) {
-      setFieldError('cf-message', 'Please enter a message.');
-      valid = false;
-    } else {
-      setFieldError('cf-message', '');
-    }
+  fields.forEach((field) => {
+    const input = document.getElementById(field.id);
+    input.addEventListener('input', render);
+    input.addEventListener('change', render);
+    input.addEventListener('blur', () => {
+      touched.add(field.id);
+      render();
+    });
+  });
 
-    return valid;
+  function setSubmitting(value) {
+    submitting = value;
+    render();
   }
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (!validate()) return;
+    fields.forEach((field) => touched.add(field.id));
+    render();
+    if (!fields.every(fieldIsValid)) return;
 
-    submitBtn.disabled = true;
+    setSubmitting(true);
     submitBtn.textContent = labels.submitting;
     status.textContent = '';
     status.className = 'text-caption';
@@ -199,6 +210,7 @@ const { services, labels, selectedService, turnstileSiteKey } = Astro.props;
         status.textContent = labels.success;
         status.classList.add('text-success-fg');
         form.reset();
+        touched.clear();
       } else {
         status.textContent = data.error || labels.error;
         status.classList.add('text-error-fg');
@@ -209,7 +221,7 @@ const { services, labels, selectedService, turnstileSiteKey } = Astro.props;
     } finally {
       // Turnstile tokens are single-use, so a retry after any outcome needs a fresh one.
       if (window.turnstile) window.turnstile.reset();
-      submitBtn.disabled = false;
+      setSubmitting(false);
       submitBtn.textContent = labels.submit;
     }
   });
