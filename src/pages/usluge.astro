@@ -21,7 +21,7 @@ const tracks = [
       {
         value: 'computer-repair',
         title: 'Popravak i instalacija računala',
-        description: 'Dijagnostika kvarova, ugradnja novih komponenti i sređivanje sustava — za kućne korisnike i male tvrtke.',
+        description: 'Dijagnostika kvarova, ugradnja novih komponenti, instalacija Windowsa i sređivanje sustava — za kućne korisnike i male tvrtke.',
         price: 'od 35 €',
       },
       {
@@ -45,13 +45,13 @@ const tracks = [
       {
         value: 'hardware-services',
         title: 'Hardverske usluge',
-        description: 'Instalacija, nadogradnja i održavanje računala, servera i periferije.',
+        description: 'Instalacija, nadogradnja i održavanje računala i radnih stanica, pisača, routera, servera te POS opreme.',
         price: 'od 25 €',
       },
       {
         value: 'software-services',
         title: 'Softverske usluge',
-        description: 'Instalacija, konfiguracija i podrška za poslovne i produktivne alate.',
+        description: 'Instalacija, konfiguracija i podrška za poslovne alate — uredske programe, licence te računovodstveni i POS softver.',
         price: 'od 20 €',
       },
     ],
@@ -63,32 +63,37 @@ const tracks = [
       {
         value: 'website-design',
         title: 'Izrada web stranica',
-        description: 'Responzivne, brze web stranice prilagođene vašem brendu — od poslovnih stranica do portfolija.',
+        description: 'Brze web stranice prilagođene vašem brendu — od poslovnih stranica do portfolija.',
         price: 'od 500 €',
       },
       {
         value: 'web-app-development',
         title: 'Razvoj web aplikacija',
-        description: 'Prilagođene web aplikacije, planirane i razvijene tako da budu sigurne, skalabilne i jednostavne za korištenje.',
+        description: 'Prilagođene web aplikacije, planirane i razvijene tako da budu sigurne i jednostavne za korištenje.',
         price: 'Individualna ponuda',
         proofPoint: {
-          before: 'Vidi',
-          linkText: 'DubrovnikFlow',
-          after: ', naš alat za predviđanje gužve u Dubrovniku.',
-          url: 'https://www.dubrovnikflow.com/',
+          before: 'Iz prakse:',
+          linkText: 'USC-Vision za Ubique Safety Consultants',
+          after: ', trogodišnja suradnja na razvoju web aplikacije.',
+          url: '/studije-slucaja/ubique-safety-consultants/',
         },
       },
       {
         value: 'mobile-app-development',
         title: 'Mobilne aplikacije',
-        description: 'Mobilne aplikacije — od koncepta do objave. Vidi HomeStock, našu vlastitu aplikaciju.',
+        description: 'Mobilne aplikacije — od koncepta do objave.',
         price: 'Individualna ponuda',
-        href: '/homestock/',
+        proofPoint: {
+          before: 'Vidi',
+          linkText: 'HomeStock',
+          after: ', našu vlastitu aplikaciju.',
+          url: '/homestock/',
+        },
       },
       {
         value: 'ai-automation',
         title: 'AI automatizacija poslovanja',
-        description: 'Razvrstavanje e-pošte i priprema odgovora, chatbot za upite na vašoj stranici, izdvajanje podataka iz računa i obrazaca te povezivanje alata koje već koristite — primjerice upiti koji sami stižu u CRM ili izvještaji koji se sami izrađuju.',
+        description: 'Razvrstavanje e-pošte i priprema odgovora, chatbot za upite na vašoj stranici, izdvajanje podataka iz računa i obrazaca te povezivanje alata koje već koristite — primjerice upiti koji se sami spremaju u bazu vaših klijenata ili izvještaji koji se sami izrađuju.',
         price: 'Individualna ponuda',
       },
     ],
@@ -120,24 +125,19 @@ const tracks = [
 				<div class="bb-grid">
 					{track.services.map((s) => (
 						<div>
-							<Card variant="service" href={s.href ?? `/kontakt/?service=${s.value}`}>
+							<Card variant="service" href={`/kontakt/?service=${s.value}`}>
 								<Badge variant="accent" class="mb-3">{s.price}</Badge>
 								<h3 class="mb-2">{s.title}</h3>
 								<p class="text-muted">{s.description}</p>
 							</Card>
 							{s.proofPoint && (
 								<p class="bb-track-note bb-track-note--card">
-									{s.proofPoint.before} <a href={s.proofPoint.url} target="_blank" rel="noopener noreferrer">{s.proofPoint.linkText}</a>{s.proofPoint.after}
+									{s.proofPoint.before} <a href={s.proofPoint.url} {...(s.proofPoint.url.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>{s.proofPoint.linkText}</a>{s.proofPoint.after}
 								</p>
 							)}
 						</div>
 					))}
 				</div>
-				{track.key === 'razvoj' && (
-					<p class="bb-track-note">
-						Vidite kako to izgleda u praksi: <a href="/studije-slucaja/ubique-safety-consultants/">studija slučaja — Ubique Safety Consultants</a>, trogodišnja suradnja na razvoju web aplikacije.
-					</p>
-				)}
 			</section>
 		))}
 	</main>

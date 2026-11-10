@@ -21,7 +21,7 @@ const tracks = [
       {
         value: 'computer-repair',
         title: 'Computer Repair & Installation',
-        description: 'Hardware diagnostics, new component installation, and system clean-ups — for home users and small businesses.',
+        description: 'Hardware diagnostics, new component installation, Windows installation, and system clean-ups — for home users and small businesses.',
         price: 'from €35',
       },
       {
@@ -45,13 +45,13 @@ const tracks = [
       {
         value: 'hardware-services',
         title: 'Hardware Services',
-        description: 'Installation, upgrades, and maintenance for computers, servers, and peripherals.',
+        description: 'Installation, upgrades, and maintenance for computers and workstations, printers, routers, servers, and POS equipment.',
         price: 'from €25',
       },
       {
         value: 'software-services',
         title: 'Software Services',
-        description: 'Installation, configuration, and support for business and productivity tools.',
+        description: 'Installation, configuration, and support for business tools — office software, licensing, and accounting and POS software.',
         price: 'from €20',
       },
     ],
@@ -63,32 +63,37 @@ const tracks = [
       {
         value: 'website-design',
         title: 'Website Design & Development',
-        description: 'Responsive, fast websites tailored to your brand — from business sites to portfolios.',
+        description: 'Fast websites tailored to your brand — from business sites to portfolios.',
         price: 'from €500',
       },
       {
         value: 'web-app-development',
         title: 'Web Application Development',
-        description: 'Custom web applications, planned and built to be secure, scalable, and easy to use.',
+        description: 'Custom web applications, planned and built to be secure and easy to use.',
         price: 'Custom quote',
         proofPoint: {
-          before: 'See',
-          linkText: 'DubrovnikFlow',
-          after: ', our crowd-forecasting tool for Dubrovnik.',
-          url: 'https://www.dubrovnikflow.com/',
+          before: 'In practice:',
+          linkText: 'USC-Vision for Ubique Safety Consultants',
+          after: ', a three-year web application engagement.',
+          url: '/en/case-studies/ubique-safety-consultants/',
         },
       },
       {
         value: 'mobile-app-development',
         title: 'Mobile App Development',
-        description: 'Mobile apps — from concept to launch. See HomeStock, our own shipped app.',
+        description: 'Mobile apps — from concept to launch.',
         price: 'Custom quote',
-        href: '/en/homestock/',
+        proofPoint: {
+          before: 'See',
+          linkText: 'HomeStock',
+          after: ', our own shipped app.',
+          url: '/en/homestock/',
+        },
       },
       {
         value: 'ai-automation',
         title: 'AI Business Automation',
-        description: 'Email triage and draft replies, a chatbot for enquiries on your website, data extraction from invoices and forms, and connections between the tools you already use — like form enquiries that land in your CRM or reports that generate themselves.',
+        description: 'Email triage and draft replies, a chatbot for enquiries on your website, data extraction from invoices and forms, and connections between the tools you already use — like enquiries that save themselves to your customer database, or reports that generate themselves.',
         price: 'Custom quote',
       },
     ],
@@ -120,24 +125,19 @@ const tracks = [
 				<div class="bb-grid">
 					{track.services.map((s) => (
 						<div>
-							<Card variant="service" href={s.href ?? `/en/contact/?service=${s.value}`}>
+							<Card variant="service" href={`/en/contact/?service=${s.value}`}>
 								<Badge variant="accent" class="mb-3">{s.price}</Badge>
 								<h3 class="mb-2">{s.title}</h3>
 								<p class="text-muted">{s.description}</p>
 							</Card>
 							{s.proofPoint && (
 								<p class="bb-track-note bb-track-note--card">
-									{s.proofPoint.before} <a href={s.proofPoint.url} target="_blank" rel="noopener noreferrer">{s.proofPoint.linkText}</a>{s.proofPoint.after}
+									{s.proofPoint.before} <a href={s.proofPoint.url} {...(s.proofPoint.url.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>{s.proofPoint.linkText}</a>{s.proofPoint.after}
 								</p>
 							)}
 						</div>
 					))}
 				</div>
-				{track.key === 'dev' && (
-					<p class="bb-track-note">
-						See what this looks like in practice: <a href="/en/case-studies/ubique-safety-consultants/">case study — Ubique Safety Consultants</a>, a three-year web application engagement.
-					</p>
-				)}
 			</section>
 		))}
 	</main>
