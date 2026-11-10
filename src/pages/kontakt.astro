@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Badge from '../components/Badge.astro';
 import ContactForm from '../components/ContactForm.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
 import SectionHeading from '../components/SectionHeading.astro';
@@ -76,6 +77,12 @@ const faqItems = [
 			<div class="bb-contact-form">
 				<h2 class="mb-2">Pošaljite nam poruku za besplatnu konzultaciju!</h2>
 				<p class="text-muted mb-6">Ispunite obrazac i javit ćemo vam se što prije.</p>
+				<ul class="bb-quick-facts" aria-label="Ukratko">
+					<li><Badge variant="accent">Odgovaramo u roku od 24h</Badge></li>
+					<li><Badge variant="accent">Radno vrijeme: 8:00–18:00</Badge></li>
+					<li><Badge variant="accent">Besplatne konzultacije</Badge></li>
+					<li><Badge variant="accent">Jednostavno ispunite obrazac</Badge></li>
+				</ul>
 				<ContactForm
 					services={services}
 					turnstileSiteKey="0x4AAAAAAEUSYcUTL0MKoxT1"
@@ -150,6 +157,16 @@ const faqItems = [
 		padding: 2.5rem 1.5rem;
 		max-width: 80rem;
 		margin-inline: auto;
+	}
+
+	/* CONTENT-010: quick facts above the form, reusing the site's Badge pills. */
+	.bb-quick-facts {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		list-style: none;
+		padding: 0;
+		margin: 0 0 1.5rem;
 	}
 
 	.bb-contact-grid {
