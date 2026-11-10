@@ -1,6 +1,8 @@
 ---
 interface Props {
-  items: { question: string; answer: string }[];
+  // emailPrefix: optional closing sentence ending in the public address, which is built at
+  // runtime by src/scripts/email-links.ts so it never sits in the static HTML (POLISH-004).
+  items: { question: string; answer: string; emailPrefix?: string }[];
   class?: string;
 }
 
@@ -11,7 +13,10 @@ const { items, class: className } = Astro.props;
   {items.map((item) => (
     <details class="bb-faq__item">
       <summary class="bb-faq__question">{item.question}</summary>
-      <p class="bb-faq__answer">{item.answer}</p>
+      <p class="bb-faq__answer">
+        {item.answer}
+        {item.emailPrefix && <>{' '}{item.emailPrefix} <a data-email-link>info [at] bigbrain-solutions.com</a></>}
+      </p>
     </details>
   ))}
 </div>
@@ -49,5 +54,9 @@ const { items, class: className } = Astro.props;
     color: var(--color-muted);
     margin-top: 0.75rem;
     line-height: 1.7;
+  }
+
+  .bb-faq__answer a {
+    color: var(--color-primary-text);
   }
 </style>
