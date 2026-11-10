@@ -9,33 +9,34 @@ import Badge from '../components/Badge.astro';
 const nav = [
   { href: '/usluge/', label: 'Usluge' },
   { href: '/o-nama/', label: 'O nama' },
-  { href: '/proizvodi/', label: 'Naši proizvodi' },
+  { href: '/proizvodi/', label: 'Naše aplikacije' },
   { href: '/kontakt/', label: 'Kontakt' },
 ];
 ---
 
 <BaseLayout
 	lang="hr"
-	title="Naši proizvodi — Big Brain Solutions"
-	description="Vlastiti proizvodi Big Brain Solutionsa: aplikacija HomeStock, DubrovnikFlow za prognozu gužve u Starom gradu i Korice i Kockice, platforma za knjige i društvene igre koja uskoro stiže."
+	title="Naše aplikacije — Big Brain Solutions"
+	description="Vlastite aplikacije Big Brain Solutionsa: aplikacija HomeStock, DubrovnikFlow za prognozu gužve u Starom gradu i Korice i Kockice, platforma za knjige i društvene igre koja uskoro stiže."
 >
 	<Header lang="hr" nav={nav} altLangHref="/en/products/" altLangLabel="English" />
 
 	<main>
 		<section class="bb-hero">
 			<div class="bb-hero__inner">
-				<h1 class="bb-hero__title">Naši proizvodi</h1>
-				<p class="bb-hero__subtitle">Uz rad za klijente razvijamo i vlastite proizvode. Neki su već objavljeni, a neki tek stižu.</p>
+				<h1 class="bb-hero__title">Naše aplikacije</h1>
+				<p class="bb-hero__subtitle">Uz rad za klijente razvijamo i vlastite aplikacije. Neki su već objavljeni, a neki tek stižu.</p>
 			</div>
 		</section>
 
 		<section class="bb-section">
 			<div class="bb-grid">
-				<Card variant="case-study" href="/homestock/">
-					<p class="text-caption text-primary-text mb-2 font-semibold uppercase tracking-wide">Naš proizvod</p>
+				<Card variant="case-study">
+					<Badge variant="accent" class="mb-3">Naša aplikacija</Badge>
 					<h2 class="bb-card-title mb-2">HomeStock — aplikacija za upravljanje domaćinstvom</h2>
 					<p class="text-muted">Vlastita mobilna aplikacija koju smo osmislili, razvili i objavili — pratite popis namirnica, skenirajte račune i podijelite kućanstvo s ukućanima.</p>
-					<p class="text-caption text-muted mt-3">Trenutno u beta fazi, a nova verzija je u izradi.</p>
+					<p class="text-caption text-muted mt-3 mb-5">Trenutno u beta fazi, a nova verzija je u izradi.</p>
+					<Button href="/homestock/" variant="secondary">Vidi HomeStock</Button>
 				</Card>
 				<Card variant="case-study">
 					<Badge variant="accent" class="mb-3">Beta</Badge>
@@ -45,7 +46,7 @@ const nav = [
 				</Card>
 				<Card variant="case-study">
 					<Badge variant="accent" class="mb-3">Uskoro</Badge>
-					<h2 class="bb-card-title mb-2">Knjige i društvene igre iz tvog susjedstva</h2>
+					<h2 class="bb-card-title mb-2">Korice i Kockice — knjige i društvene igre iz tvog susjedstva</h2>
 					<p class="text-muted mb-5">Korice i Kockice je ono na čemu trenutno radimo: za vikend posudiš knjigu ili igru od nekoga iz kvarta, zamijeniš se sa susjedom ili nešto kupiš — i sve dogovorite uživo, bez slanja poštom. Krećemo u Dubrovniku.</p>
 					<Button href="https://koriceikockice.com/" variant="secondary">Prijavi se na listu čekanja</Button>
 				</Card>

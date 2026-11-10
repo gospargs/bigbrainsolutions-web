@@ -18,7 +18,7 @@ const { title, description, ogImage } = entry.data;
 const nav = [
   { href: '/usluge/', label: 'Usluge' },
   { href: '/o-nama/', label: 'O nama' },
-  { href: '/proizvodi/', label: 'Naši proizvodi' },
+  { href: '/proizvodi/', label: 'Naše aplikacije' },
   { href: '/kontakt/', label: 'Kontakt' },
 ];
 
@@ -131,11 +131,12 @@ const testimonials = [
 					<h3 class="mb-2">Web aplikacija za Ubique Safety Consultants</h3>
 					<p class="text-muted">Tri godine razvoja i podrške za tvrtku za sigurnosno savjetovanje — pouzdana suradnja od početka do danas.</p>
 				</Card>
-				<Card variant="case-study" href="/homestock/">
-					<p class="text-caption text-primary-text mb-2 font-semibold uppercase tracking-wide">Naš proizvod</p>
+				<Card variant="case-study">
+					<Badge variant="accent" class="mb-3">Naša aplikacija</Badge>
 					<h3 class="mb-2">HomeStock — aplikacija za upravljanje domaćinstvom</h3>
 					<p class="text-muted">Vlastita mobilna aplikacija koju smo osmislili, razvili i objavili — pratite popis namirnica, skenirajte račune i podijelite kućanstvo s ukućanima.</p>
-					<p class="text-caption text-muted mt-3">Trenutno u beta fazi, a nova verzija je u izradi.</p>
+					<p class="text-caption text-muted mt-3 mb-5">Trenutno u beta fazi, a nova verzija je u izradi.</p>
+					<Button href="/homestock/" variant="secondary">Vidi HomeStock</Button>
 				</Card>
 				<Card variant="case-study">
 					<Badge variant="accent" class="mb-3">Beta</Badge>
@@ -145,7 +146,7 @@ const testimonials = [
 				</Card>
 				<Card variant="case-study">
 					<Badge variant="accent" class="mb-3">Uskoro</Badge>
-					<h3 class="mb-2">Knjige i društvene igre iz tvog susjedstva</h3>
+					<h3 class="mb-2">Korice i Kockice — knjige i društvene igre iz tvog susjedstva</h3>
 					<p class="text-muted mb-5">Korice i Kockice je ono na čemu trenutno radimo: za vikend posudiš knjigu ili igru od nekoga iz kvarta, zamijeniš se sa susjedom ili nešto kupiš — i sve dogovorite uživo, bez slanja poštom. Krećemo u Dubrovniku.</p>
 					<Button href="https://koriceikockice.com/" variant="secondary">Prijavi se na listu čekanja</Button>
 				</Card>
