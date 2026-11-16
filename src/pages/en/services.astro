@@ -23,12 +23,14 @@ const tracks = [
         title: 'Computer Repair & Installation',
         description: 'Hardware diagnostics, new component installation, Windows installation, and system clean-ups — for home users and small businesses.',
         price: 'from €35',
+        anchor: '€35',
       },
       {
         value: 'virus-removal',
         title: 'Virus & Malware Removal',
         description: 'Threat detection and removal, plus advice on preventing future infections.',
         price: 'from €30',
+        anchor: '€30',
       },
     ],
   },
@@ -41,18 +43,21 @@ const tracks = [
         title: 'Network Setup & Support',
         description: 'Router and switch configuration, Wi-Fi coverage, and network security, with ongoing support.',
         price: 'from €45',
+        anchor: '€45',
       },
       {
         value: 'hardware-services',
         title: 'Hardware Services',
         description: 'Installation, upgrades, and maintenance for computers and workstations, printers, routers, servers, and POS equipment.',
         price: 'from €25',
+        anchor: '€25',
       },
       {
         value: 'software-services',
         title: 'Software Services',
         description: 'Installation, configuration, and support for business tools — office software, licensing, and accounting and POS software.',
         price: 'from €20',
+        anchor: '€20',
       },
     ],
   },
@@ -65,6 +70,7 @@ const tracks = [
         title: 'Website Design & Development',
         description: 'Fast websites tailored to your brand — from business sites to portfolios.',
         price: 'from €500',
+        anchor: '€500',
       },
       {
         value: 'web-app-development',
@@ -126,7 +132,10 @@ const tracks = [
 					{track.services.map((s) => (
 						<div>
 							<Card variant="service" href={`/en/contact/?service=${s.value}`}>
-								<Badge variant="accent" class="mb-3">{s.price}</Badge>
+								<div class="bb-price mb-3">
+									<Badge variant="accent">{s.price}</Badge>
+									{s.anchor && <span class="bb-price__anchor">Anchor price: {s.anchor}</span>}
+								</div>
 								<h3 class="mb-2">{s.title}</h3>
 								<p class="text-muted">{s.description}</p>
 							</Card>
@@ -180,6 +189,20 @@ const tracks = [
 		padding: 2.5rem 1.5rem;
 		max-width: 80rem;
 		margin-inline: auto;
+	}
+
+	/* COMPLIANCE-001: anchor price (sidrena cijena) shown next to fixed prices, see docs/COMPLIANCE.md. */
+	.bb-price {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.25rem 0.75rem;
+	}
+
+	.bb-price__anchor {
+		font-family: var(--font-body);
+		font-size: var(--text-caption);
+		color: var(--color-muted);
 	}
 
 	.bb-grid {

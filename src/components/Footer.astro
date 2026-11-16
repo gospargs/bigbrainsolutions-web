@@ -1,4 +1,6 @@
 ---
+import { PRICE_LIST_PATH } from '../data/price-list';
+
 interface NavItem {
   href: string;
   label: string;
@@ -40,6 +42,7 @@ const country = lang === 'hr' ? 'Hrvatska' : 'Croatia';
           <li><a href={item.href}>{item.label}</a></li>
         ))}
         <li><a href={privacyHref}>{privacyLabel}</a></li>
+        <li><a href={PRICE_LIST_PATH}>{lang === 'hr' ? 'Cjenik usluga (sidrene cijene)' : 'Price list (anchor prices)'}</a></li>
       </ul>
     </nav>
   </div>
